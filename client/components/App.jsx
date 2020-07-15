@@ -1,14 +1,19 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Words from './Words'
 import AddWord from './AddWord'
 
 const App = () => (
   <div className='app-container'>
-    <Route path="/">
-      <Words />
-      <AddWord />
-    </Route>
+    <Switch>
+      <Route path="/">
+        <Words />
+        <AddWord />
+      </Route>
+      <Route path="/budget">
+
+      </Route>
+    </Switch>
   </div>
 )
 
