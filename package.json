@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "d3": "^5.16.0",
     "express": "^4.17.1",
     "knex": "^0.21.2",
     "react-router": "^5.2.0",
