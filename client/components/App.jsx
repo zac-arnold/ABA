@@ -6,13 +6,13 @@ import Title from './Title'
 
 const App = () => (
   <div className='app-container'>
-  <Router>
+    <Router>
       <Switch>
-      <Route exact path='/' component={Welcome} />
+        <Route exact path='/' component={Welcome} />
         {/* <Route exact path='/' component={FoodList} />
         <Route exact path='/foods/:id' component={FoodDetails}/> */}
       </Switch>
-  </Router>
+    </Router>
 
   </div>
 )
