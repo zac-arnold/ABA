@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { sendIncome } from '../actions'
+
 class Income extends React.Component {
   state = {
     incomes: [{ name: '', amount: '', occurrance: 'weekly' }]
@@ -15,12 +17,17 @@ class Income extends React.Component {
     })
   }
 
+  submitHandler = (dispatch, income) => {
+    dispatch(sendIncome(income))
+  }
+
   render () {
     const { incomes } = this.state
     // console.log(incomes)
+
     return (
       <div>
-        <form>
+        <form onSubmit={this.submitHandler(this.props.dispatch, this.state.value)}>
           {
             incomes.map((incomeSource, index) => {
               return (
