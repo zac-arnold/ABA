@@ -1,8 +1,9 @@
 import React from 'react'
+import Graph from './Graph'
 
 const Budget = () => {
   return (
-    <div id='budget-wrapper'></div>
+    <div id='budget-wrapper'><Graph /></div>
   )
 }
 
