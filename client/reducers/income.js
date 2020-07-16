@@ -1,7 +1,7 @@
 import { SEND_INCOME } from '../actions'
 
 const initialState = {
-  incomes:[{
+  income:[{
     name: 'My Salary',
     amount: 50000,
     frequency: 365,

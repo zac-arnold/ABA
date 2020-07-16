@@ -1,11 +1,13 @@
 import React, { Component, useState, useEffect } from 'react'
 import * as d3 from 'd3'
+import { connect } from 'react-redux'
 
-const DonutGraph = () => {
+const DonutGraph = (props) => {
   // set the dimensions and margins of the graph
   const [graphState, setGraphState] = useState({})
 
   useEffect(() => {
+    
     updateGraph()
   }, [graphState])
 
@@ -108,4 +110,11 @@ const DonutGraph = () => {
   )
 }
 
-export default DonutGraph
+const mapStateToProps = (state) => {
+  return {
+    incomes: state.income.incomes,
+    expenses: state.income.expenses
+  }
+}
+
+export default connect(mapStateToProps)(DonutGraph)
