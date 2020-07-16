@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
-import words from './words'
+import income from './income'
 
 export default combineReducers({
-  words
+  income
 })
