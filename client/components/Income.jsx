@@ -3,42 +3,41 @@ import { connect } from 'react-redux'
 
 class Income extends React.Component {
   state = {
-    incomes: [{ name: '', amount: 0, occurrance: 'weekly' }]
+    incomes: [{ name: '', amount: '', occurrance: 'weekly' }]
   }
 
   changeHandler = (evt, index) => {
-    // const { value, name } = evt.target
-    this.state.incomes[index] = evt.target.value
+    const { value, name } = evt.target
+    const newIncomes = this.state.incomes
+    newIncomes[index] = { ...newIncomes[index], [name]: value }
     this.setState({
-      incomes: this.state.incomes.index
+      incomes: newIncomes
     })
-    // console.log(value, name)
   }
-
-  changeHandlerAmount = (evt, index) => {
-    // const { value, name } = evt.target
-    this.state.incomes[index] = evt.target.value
-    this.setState({
-      incomes: this.state.incomes.amount
-    })
-    // console.log(value, name)
-  }
-
 
   render () {
-    console.log(this.state)
+    const { incomes } = this.state
+    // console.log(incomes)
     return (
       <div>
         <form>
           {
-            this.state.incomes.map((name, index) => {
-              console.log(name.name)
+            incomes.map((incomeSource, index) => {
               return (
                 <div key={index}>
                   <label htmlFor="name">Name </label>
-                  <input type="text" value={name.name} placeholder="Income Type" name="name" onChange={evt => this.changeHandler(evt, index)} />
+                  <input type="text"
+                    value={incomeSource.name}
+                    placeholder="Income Type"
+                    name="name"
+                    onChange={evt => this.changeHandler(evt, index)} />
+
                   <label htmlFor="amount">Amount </label>
-                  <input type="text" value={name.amount} placeholder="Amount" name="amount" onChange={evt => this.changeHandlerAmount(evt, index)}/>
+                  <input type="text"
+                    value={incomeSource.amount}
+                    placeholder="Amount"
+                    name="amount"
+                    onChange={evt => this.changeHandler(evt, index)}/>
                   <button type="submit" value="submit">Submit</button>
                 </div>
               )
