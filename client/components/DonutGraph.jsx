@@ -22,7 +22,7 @@ const DonutGraph = () => {
     const radius = Math.min(width, height) / 2 - margin
 
     // append the svg object to the div called 'my_dataviz'
-    const svg = d3.select('#my_dataviz')
+    const svg = d3.select('#donut-graph')
       .append('svg')
       .attr('id', 'graph-container')
       .append('g')
@@ -103,7 +103,7 @@ const DonutGraph = () => {
 
   return (
 
-    <div id='my_dataviz'></div>
+    <div id='donut-graph'></div>
 
   )
 }
