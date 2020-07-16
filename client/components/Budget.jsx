@@ -1,9 +1,12 @@
 import React from 'react'
-import Graph from './Graph'
+
+import Slider from './Slider'
 
 const Budget = () => {
   return (
-    <div id='budget-wrapper'><Graph /></div>
+    <div id='budget-wrapper'>
+      <Slider />
+    </div>
   )
 }
 

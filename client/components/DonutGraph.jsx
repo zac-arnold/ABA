@@ -1,7 +1,8 @@
 import React, { Component, useState, useEffect } from 'react'
-import * as d3 from 'd3'
+import * as d3 from 'd3'\
+import Slider from "react-slick"
 
-const Graph = () => {
+const DonutGraph = () => {
   // set the dimensions and margins of the graph
   const [graphState, setGraphState] = useState({})
 
@@ -106,4 +107,4 @@ const Graph = () => {
   )
 }
 
-export default Graph
+export default DonutGraph

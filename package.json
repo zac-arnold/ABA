@@ -32,8 +32,10 @@
     "knex": "^0.21.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-slick": "^0.26.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.88.2",
+    "slick-carousel": "^1.8.1",
     "sqlite3": "^5.0.0",
     "superagent": "^5.3.1"
   },
