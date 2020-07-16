@@ -6,12 +6,11 @@ import AddWord from './AddWord'
 const App = () => (
   <div className='app-container'>
     <Switch>
-      <Route path="/">
+      <Route exact path="/">
         <Words />
-        <AddWord />
       </Route>
-      <Route path="/budget">
-
+      <Route exact path="/budget" component={Title} >
+      <AddWord />
       </Route>
     </Switch>
   </div>
