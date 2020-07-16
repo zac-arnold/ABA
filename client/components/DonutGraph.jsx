@@ -10,9 +10,13 @@ const DonutGraph = () => {
   }, [graphState])
 
   const updateGraph = () => {
-    const width = 800
-    const height = 800
-    const margin = 40
+
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+    const width = vw / 2
+    const height = vh
+    const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
@@ -20,8 +24,6 @@ const DonutGraph = () => {
     // append the svg object to the div called 'my_dataviz'
     const svg = d3.select('#my_dataviz')
       .append('svg')
-      .attr('width', 800)
-      .attr('height', 800)
       .attr('id', 'graph-container')
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
