@@ -10,3 +10,13 @@ button {
   height: 2rem;
   border-radius: 50%;
 }
+
+.welcome-page {
+  background-color: black;
+  width: 100vh;
+  height: 100vh;
+}
+
+.welcome-create-budget-button {
+  margin: 0 auto;
+}
