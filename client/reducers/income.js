@@ -69,7 +69,7 @@ function incomes (state = initialState, action) {
   switch (action.type) {
     case SEND_INCOME:
       return action.income
-
+      
     default:
       return state
   }
