@@ -5,7 +5,7 @@ import Income from './Income'
 
 export const SideBar = () => {
   return (
-    <div>
+    <div id='sidebar'>
       <Income />
     </div>
   )

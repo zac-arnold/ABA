@@ -6,15 +6,13 @@ import GraphSlider from './GraphSlider'
 
 const Budget = () => {
   return (
-    <div>
+    <>
         <Title />
-      <div>
-        <SideBar />
-      </div>
       <div id='budget-wrapper'>
+        <SideBar />
         <GraphSlider />
       </div>
-    </div>
+    </>
   )
 }
 
