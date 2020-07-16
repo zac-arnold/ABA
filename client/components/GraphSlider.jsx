@@ -7,7 +7,7 @@ class GraphSlider extends React.Component {
   render () {
     var settings = {
       dots: true,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1
@@ -16,6 +16,7 @@ class GraphSlider extends React.Component {
       <Slider {...settings}>
         <div>
           <h3>1</h3>
+          < DonutGraph />
         </div>
         <div>
           <h3>2</h3>
