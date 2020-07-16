@@ -5,11 +5,11 @@ import Welcome from './Welcome'
 const App = () => (
 
   <Router>
-      <Switch>
+    <Switch>
       <Route exact path='/' component={Welcome} />
-        {/* <Route exact path='/' component={FoodList} />
+      {/* <Route exact path='/' component={FoodList} />
         <Route exact path='/foods/:id' component={FoodDetails}/> */}
-      </Switch>
+    </Switch>
   </Router>
 
 )
