@@ -28,7 +28,7 @@ class Income extends React.Component {
 
     return (
       <>
-        <form onSubmit={(evt) => this.submitHandler(this.state, evt)}>
+        <form onSubmit={(evt) => this.submitHandler(incomes, evt)}>
           {
             incomes.map((incomeSource, index) => {
               return (
