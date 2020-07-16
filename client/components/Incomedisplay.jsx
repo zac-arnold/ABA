@@ -7,7 +7,27 @@ export const Incomedisplay = ({ incomes }) => {
     console.log(incomes[0])
   return (
       <div>
-        <p>{incomes[0].name}</p>
+        <table>
+          <thead>
+            <tr>
+              <td>Name:</td>
+              <td>Amount:</td>
+              <td>Occurrace:</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          <tr>
+              <td>{incomes[0].name}</td>
+              <td>{incomes[0].amount}</td>
+              <td>{incomes[0].occurrance}</td>
+              <td><button>-</button></td>
+              <td><button>Update</button></td>
+            </tr>
+          </tbody>
+          
+        </table>  
       </div>
 
   )
