@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react'
 import * as d3 from 'd3'
 
-const Graph = () => {
+const DonutGraph = () => {
   // set the dimensions and margins of the graph
   const [graphState, setGraphState] = useState({})
 
@@ -10,18 +10,20 @@ const Graph = () => {
   }, [graphState])
 
   const updateGraph = () => {
-    const width = 800
-    const height = 800
-    const margin = 40
+
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
+    const width = vw / 2
+    const height = vh / 1.5
+    const margin = 20
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
 
     // append the svg object to the div called 'my_dataviz'
-    const svg = d3.select('#my_dataviz')
+    const svg = d3.select('#donut-graph')
       .append('svg')
-      .attr('width', 800)
-      .attr('height', 800)
       .attr('id', 'graph-container')
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
@@ -101,9 +103,9 @@ const Graph = () => {
 
   return (
 
-    <div id='my_dataviz'></div>
+    <div id='donut-graph'></div>
 
   )
 }
 
-export default Graph
+export default DonutGraph
