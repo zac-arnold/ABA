@@ -1,11 +1,11 @@
 import React from 'react'
 
-import Slider from './Slider'
+import GraphSlider from './GraphSlider'
 
 const Budget = () => {
   return (
     <div id='budget-wrapper'>
-      <Slider />
+      <GraphSlider />
     </div>
   )
 }

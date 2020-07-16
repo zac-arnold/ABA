@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 
 import DonutGraph from './DonutGraph'
 
-class SimpleSlider extends React.Component {
+class GraphSlider extends React.Component {
   render () {
     var settings = {
       dots: true,
@@ -15,7 +15,7 @@ class SimpleSlider extends React.Component {
     return (
       <Slider {...settings}>
         <div>
-          <h3><DonutGraph /></h3>
+          <h3>1</h3>
         </div>
         <div>
           <h3>2</h3>
@@ -37,4 +37,4 @@ class SimpleSlider extends React.Component {
   }
 }
 
-export default SimpleSlider
+export default GraphSlider
