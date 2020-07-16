@@ -9,7 +9,8 @@
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "start": "run-s client server",
-    "dev": "run-p dev:client dev:server"
+    "dev": "run-p dev:client dev:server",
+    "cypress:open": "cypress open"
   },
   "author": "EDA",
   "license": "ISC",
