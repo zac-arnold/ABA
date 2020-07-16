@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { sendIncome } from '../actions'
+import { sendIncomeToStore } from '../actions'
 
 class Income extends React.Component {
   state = {
@@ -17,8 +17,9 @@ class Income extends React.Component {
     })
   }
 
-  submitHandler = (dispatch, income) => {
-    dispatch(sendIncome(income))
+  submitHandler = (income, evt) => {
+    evt.preventDefault()
+    this.props.dispatch(sendIncomeToStore(income))
   }
 
   render () {
@@ -27,7 +28,7 @@ class Income extends React.Component {
 
     return (
       <div>
-        <form onSubmit={this.submitHandler(this.props.dispatch, this.state.value)}>
+        <form onSubmit={(evt) => this.submitHandler(this.state, evt)}>
           {
             incomes.map((incomeSource, index) => {
               return (
