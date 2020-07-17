@@ -90,7 +90,7 @@ const DonutGraph = (props) => {
       .attr('d', arc)
       .attr('fill', function (d) { return (color(d.data.key)) })
       .attr('stroke', 'white')
-      .style('stroke-width', '1px')
+      .style('stroke-width', '2px')
       .style('opacity', 0.7)
 
     // Add the polylines between chart and labels:
@@ -120,8 +120,8 @@ const DonutGraph = (props) => {
       .text(function (d) { console.log(d.data.key); return d.data.key })
       .attr('transform', function (d) {
         var pos = outerArc.centroid(d)
-        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-        pos[0] = radius * 0.5 * (midangle < Math.PI ? 1 : -1)
+        // var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        // pos[0] = radius * 0.5 * (midangle < Math.PI ? 1 : -1)
         return 'translate(' + pos + ')'
       })
       .style('text-anchor', function (d) {
