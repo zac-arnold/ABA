@@ -135,8 +135,8 @@ const DonutGraph = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    incomes: state.income.income,
-    expenses: state.income.expenses
+    incomes: state.income,
+    expenses: state.expense
   }
 }
 
