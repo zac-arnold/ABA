@@ -2,8 +2,8 @@
 
 describe('The Home Page', () => {
   // beforeEach(() => {
-  //   // Add a reset and seed the database prior to every test
-  //   // Without this, the food list will not show on the screen
+  //   Add a reset and seed the database prior to every test
+  //   Without this, the food list will not show on the screen
   //   cy.exec('npm run db:reset && npm run db:seed')
   // })
 
