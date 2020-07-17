@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const ExpenseDisplay = (props) => {
   if (props.expenses[0]) {
     return (
-      <div>
+      <>
         <table>
           <thead>
             <tr>
@@ -27,7 +27,7 @@ const ExpenseDisplay = (props) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </>
     )
   } else {
     return <h1>hi</h1>

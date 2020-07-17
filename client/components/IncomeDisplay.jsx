@@ -6,7 +6,7 @@ const IncomeDisplay = ({ incomes }) => {
   if (incomes[0]) {
     console.log(incomes[0])
     return (
-      <div>
+      <>
         <table>
           <thead>
             <tr>
@@ -27,7 +27,7 @@ const IncomeDisplay = ({ incomes }) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </>
     )
   } else {
     return null
