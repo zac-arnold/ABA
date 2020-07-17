@@ -14,7 +14,6 @@ const initialState = {
   ]
 }
 
-
 test('Income has the correct structure', async () => {
   renderWithRedux(<Income />, {initialState})
   const form = await screen.findByText('Name')
