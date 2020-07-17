@@ -34,7 +34,9 @@
       "/node_modules/",
       "/tests/cypress/"
     ],
-    "setupFiles": ["<rootDir>/client/testing/setup.js"]
+    "setupFiles": [
+      "<rootDir>/client/testing/setup.js"
+    ]
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
