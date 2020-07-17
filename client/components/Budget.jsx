@@ -3,6 +3,7 @@ import React from 'react'
 import Title from './Title'
 import SideBar from './SideBar'
 import GraphSlider from './GraphSlider'
+import Footer from './Footer'
 
 const Budget = () => {
   return (
@@ -10,6 +11,7 @@ const Budget = () => {
       <Title />
       <SideBar />
       <GraphSlider />
+      {/* <Footer /> */}
     </div>
   )
 }

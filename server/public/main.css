@@ -1,5 +1,6 @@
 body {
   border: border-box;
+  font-family: 'Baloo Da 2', cursive;
 }
 
 #app {
@@ -37,52 +38,59 @@ button {
 
 .title-bar{
   text-align: center;
-  border: solid 1px blue;
-  background-color: bisque;
-  padding: 10px;
+  background-color: #f37685;
+  padding: 0.5px;
+  color: white;
+  font-size: 2rem;
 }
 
 .container {
-  border: solid rgb(117, 117, 22) 1px;
   padding: 20px;
   height: 70vh;
-  background-color: rgb(155, 72, 72);
+  background-color: #ffc1c8;
 }
 
 .left-container {
-  border: solid 1px red;
-  background-color: rgb(78, 134, 134);
+  background-color: #ffcece;
   border-radius: 30pt;
   float: left;
-  height: 40vh;
+  height: 35vh;
   width: 40%;
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 300px;
+  margin-top: 2vh;
+  margin-bottom: 1px;
   margin-left: 100px;
   margin-right: 20px;
+  box-shadow:
+  0 51px 54px -8px rgba(0, 0, 0, 0.23)
+;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .right-container {
-  border: solid 1px blue;
   float: right;
-  background-color: rgb(78, 134, 134);
+  background-color: #ffcece;
   border-radius: 30pt;
-  height: 40vh;
+  height: 35vh;
   width: 40%;
-  padding: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding-top: 300px;
+  margin-top: 2vh;
+  margin-bottom: 1px;
   margin-left: 20px;
   margin-right: 100px;
+  box-shadow:
+  0 51px 54px -8px rgba(0, 0, 0, 0.23)
+;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .footer {
   text-align: center;
-  border: solid 1px black;
   padding: 5vh;
   color: white;
-  background-color: rgb(53, 53, 53);
+  background-color: #f37685;
   
 }
 
