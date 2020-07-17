@@ -1,5 +1,4 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
 import { renderWithRedux } from '../testing/utils'
 import { screen } from '@testing-library/react'
 
@@ -10,12 +9,12 @@ import Income from './Income'
 
 const initialState = {
   income: [
-    {name: 'Wages', amount: '45000', occurrancy: 'weekly'}
+    { name: 'Wages', amount: '45000', occurrancy: 'weekly' }
   ]
 }
 
 test('Income has the correct structure', async () => {
-  renderWithRedux(<Income />, {initialState})
+  renderWithRedux(<Income />, { initialState })
   const form = await screen.findByText('Name')
   expect(form).toBeInTheDocument()
   expect(form).toMatchSnapshot()

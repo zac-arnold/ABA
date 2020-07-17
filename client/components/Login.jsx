@@ -6,7 +6,7 @@ import Register from './Register'
 const Login = () => {
   return (
     <div>
-      <LoginAgain /> 
+      <LoginAgain />
       <Register />
     </div>
   )

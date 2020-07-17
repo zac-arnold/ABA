@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { renderWithRedux } from '../testing/utils'
-import { screen } from '@testing-library/react'
 
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
