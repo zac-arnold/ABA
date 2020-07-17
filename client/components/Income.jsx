@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import { sendIncomeToStore } from '../actions'
@@ -57,8 +57,5 @@ class Income extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
 
-})
-
-export default connect(mapStateToProps)(Income)
+export default connect(Income)
