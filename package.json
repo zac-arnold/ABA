@@ -4,7 +4,7 @@
   "description": "React Redux using express",
   "main": "server/index.js",
   "scripts": {
-    "lint": "eslint . --ignore-path .eslintignore",
+    "lint": "npx eslint . --ext .js,.jsx --ignore-path .eslintignore",
     "client": "webpack",
     "server": "node server",
     "dev:client": "webpack --watch",
@@ -34,7 +34,9 @@
       "/node_modules/",
       "/tests/cypress/"
     ],
-    "setupFiles": ["<rootDir>/client/testing/setup.js"]
+    "setupFiles": [
+      "<rootDir>/client/testing/setup.js"
+    ]
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
