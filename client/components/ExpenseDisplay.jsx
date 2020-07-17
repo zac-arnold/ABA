@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const ExpenseDisplay = ({ expenses }) => {
-  if (incomes[0]) {
-    console.log(incomes[0])
+const ExpenseDisplay = (props) => {
+  if (props.expenses[0]) {
     return (
       <div>
         <table>
@@ -11,6 +10,7 @@ const ExpenseDisplay = ({ expenses }) => {
             <tr>
               <td>Name:</td>
               <td>Amount:</td>
+              <td>Category:</td>
               <td>Occurrace:</td>
               <td></td>
               <td></td>
@@ -18,25 +18,24 @@ const ExpenseDisplay = ({ expenses }) => {
           </thead>
           <tbody>
             <tr>
-              <td>{incomes[0].name}</td>
-              <td>{incomes[0].amount}</td>
-              <td>{incomes[0].occurrance}</td>
+              <td>{props.expenses[0].name}</td>
+              <td>{props.expenses[0].amount}</td>
+              <td>{props.expenses[0].category}</td>
+              <td>{props.expenses[0].occurrance}</td>
               <td><button>-</button></td>
               <td><button>Update</button></td>
             </tr>
           </tbody>
-
         </table>
       </div>
-
     )
   } else {
-    return null
+    return <h1>hi</h1>
   }
 }
 
 const mapStateToProps = (state) => ({
-  incomes: state.income
+  expenses: state.expense
 })
 
 export default connect(mapStateToProps)(ExpenseDisplay)
