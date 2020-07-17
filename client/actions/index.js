@@ -6,3 +6,12 @@ export function sendIncomeToStore (income) {
     income
   }
 }
+
+export const SEND_EXPENSE = 'SEND_EXPENSE'
+
+export function sendExpenseToStore (expense) {
+  return {
+    type: SEND_EXPENSE,
+    expense
+  }
+}
