@@ -9,9 +9,4 @@ export const LoginAgain = () => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-
-export default connect(mapStateToProps)(LoginAgain)
+export default connect()(LoginAgain)

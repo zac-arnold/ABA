@@ -8,7 +8,6 @@ import Login from './Login'
 const Welcome = () => {
   return (
     <>
-    {/* <div id='welcome-page'> */}
       <Title />
       <div className='container'>
           <div className='left-container'>
@@ -19,7 +18,6 @@ const Welcome = () => {
           </div>
       </div>
       <Footer />
-    {/* </div> */}
     </>
   )
 }

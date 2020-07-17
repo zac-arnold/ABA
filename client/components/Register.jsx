@@ -9,8 +9,4 @@ export const Register = () => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-export default connect(mapStateToProps)(Register)
+export default connect()(Register)
