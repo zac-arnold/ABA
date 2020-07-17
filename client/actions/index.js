@@ -1,4 +1,10 @@
+import { dispatch } from "d3"
+
+import { newClient } from '../api'
+
 export const SEND_INCOME = 'SEND_INCOME'
+export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
+export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
 
 export function sendIncomeToStore (income) {
   return {
@@ -13,5 +19,28 @@ export function sendExpenseToStore (expense) {
   return {
     type: SEND_EXPENSE,
     expense
+  }
+}
+
+export function newRegister () {
+  return {
+    type: NEW_REGISTER_SENDING
+  }
+}
+
+export function newRegisterSuccess (res) {
+  return {
+    type: NEW_REGISTER_SUCCESS,
+    res
+  }
+}
+
+export function register (form) {
+  console.log('actions.index.js', form)
+  return (dispatch) => {
+    dispatch(newRegister())
+
+    return newClient(form)
+      .then(res => dispatch(newRegisterSuccess(res)))
   }
 }

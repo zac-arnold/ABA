@@ -1,11 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 
-const Register = () => {
-  return (
-    <div id='register-box'>
-      <p>boo</p>
-    </div>
-  )
+import { register } from '../actions'
+
+class Register extends React.Component {
+  state = {
+    username: '',
+    email: '',
+    password: ''
+  }
+
+  handleChange = evt => {
+    const { name, value } = evt.target
+    console.log(name, value)
+    this.setState({
+      [name]: value
+    })
+  }
+
+  submitHandler = form => {
+    console.log(form)
+    this.props.dispatch(register(form[0]))
+  }
+
+  render () {
+    const { form } = this.state
+    return (
+      <div>
+        <h3>Register</h3>
+        <form onSubmit={evt => this.submitHandler(form, evt)}>
+          <label htmlFor='username'>Username:</label>
+          <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
+          <label htmlFor='email'>Email:</label>
+          <input type='text' name='email' value={this.state.email} onChange={this.handleChange} />
+          <label htmlFor='password'>Password:</label>
+          <input type='text' name='password' value={this.state.password} onChange={this.handleChange} />
+          <button type='submit'>Register</button>
+        </form>
+      </div>
+    )
+  }
 }
 
-export default Register
+export default connect()(Register)
