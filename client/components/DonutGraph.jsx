@@ -7,10 +7,8 @@ const DonutGraph = (props) => {
   const [graphState, setGraphState] = useState({})
 
   useEffect(() => {
-
     const frequency = 30.4375 //days in a year
     const totalIncome = props.incomes[0].amount / frequency //divide yearly salary
-    console.log('total:' + totalIncome)
     //this function puts all categories into an array of unique values
     let categories = []
     props.expenses.forEach(expense => {
@@ -18,7 +16,6 @@ const DonutGraph = (props) => {
         categories.push(expense.category)
       }
     })
-    console.log('categories:' +  categories)
 
     //this function uses the unique category array to sum all amounts of that category
     let data = {}
@@ -33,7 +30,6 @@ const DonutGraph = (props) => {
         }
       })
     })
-    console.log('data:' + data.Treats)
 
     updateGraph(data)
   }, [graphState])
@@ -63,7 +59,7 @@ const DonutGraph = (props) => {
     // set the color scale
     const color = d3.scaleOrdinal()
       .domain(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
-      .range(d3.schemeDark2)
+      .range(d3.schemePaired)
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
