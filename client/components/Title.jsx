@@ -3,7 +3,7 @@ import React from 'react'
 const Title = () => {
   return (
     <div className='title-bar'>
-      <h1>A Budgetting App</h1>
+      <h3>BALANCE</h3>
     </div>
   )
 }
