@@ -10,7 +10,9 @@
     "dev:server": "nodemon server",
     "start": "run-s client server",
     "dev": "run-p dev:client dev:server",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test": "jest --verbose --noStackTrace",
+    "test:watch": "npm test -- --watchAll"
   },
   "author": "EDA",
   "license": "ISC",
@@ -21,8 +23,17 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-runtime"
     ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/cypress/"
+    ],
+    "setupFiles": ["<rootDir>/client/testing/setup.js"]
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -44,6 +55,10 @@
     "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.3",
+    "@babel/plugin-transform-regenerator": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.5",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
