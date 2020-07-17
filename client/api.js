@@ -15,3 +15,7 @@ export function newClient (form) {
     })
     .catch(err => console.log('api.js ', err))
 }
+
+export function login (form) {
+  console.log('api.js', form)
+}
