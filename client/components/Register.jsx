@@ -1,10 +1,9 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button'
 
 const Register = () => {
   return (
-    <div id='register-box'>
-      <p>boo</p>
-    </div>
+    <Button>Register</Button>
   )
 }
 

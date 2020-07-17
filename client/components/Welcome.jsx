@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { Container, Col, Row, Button } from 'react-bootstrap'
 
 import Title from './Title'
 import Footer from './Footer'
@@ -7,19 +8,20 @@ import Login from './Login'
 
 const Welcome = () => {
   return (
-    <>
+    <Container>
       <Title />
-      <div className='container'>
-        <div className='left-container'>
-          <Link to='/budget'>Create a budget</Link>
-        </div>
-        <div className='right-container'>
+      <Row>
+        <Col>
+          <Link to='/budget'><Button>Create a budget</Button></Link>
+        </Col>
+        <Col>
           <Login />
-        </div>
-      </div>
+        </Col>
+      </Row>
       <Footer />
-    </>
+    </Container >
   )
 }
 
 export default Welcome
+
