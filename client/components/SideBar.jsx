@@ -5,7 +5,7 @@ import Income from './Income'
 import IncomeDisplay from './Incomedisplay'
 
 export const SideBar = () => {
-  
+
   return (
     <div id='sidebar'>
       <Income />
