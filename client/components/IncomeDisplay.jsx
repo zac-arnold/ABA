@@ -26,9 +26,9 @@ const IncomeDisplay = ({ incomes }) => {
               <td><button>Update</button></td>
             </tr>
           </tbody>
-        </table>  
+        </table>
       </div>
-  )
+    )
   } else {
     return null
   }

@@ -50,7 +50,6 @@ class Expense extends React.Component {
   }
 
   changeHandler = (evt, index) => {
-    
     const { value, name } = evt.target
     const newExpenses = this.state.expenses
     newExpenses[index] = { ...newExpenses[index], [name]: value }
