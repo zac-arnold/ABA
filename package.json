@@ -4,7 +4,7 @@
   "description": "React Redux using express",
   "main": "server/index.js",
   "scripts": {
-    "lint": "eslint . --ignore-path .eslintignore",
+    "lint": "npx eslint . --ext .js,.jsx --ignore-path .eslintignore",
     "client": "webpack",
     "server": "node server",
     "dev:client": "webpack --watch",
