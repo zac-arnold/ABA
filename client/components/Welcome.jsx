@@ -8,18 +8,16 @@ import Login from './Login'
 const Welcome = () => {
   return (
     <>
-    {/* <div id='welcome-page'> */}
       <Title />
       <div className='container'>
-          <div className='left-container'>
-            <Link to='/budget'>Create a budget</Link>
-          </div>
-          <div className='right-container'>
-            <Login />
-          </div>
+        <div className='left-container'>
+          <Link to='/budget'>Create a budget</Link>
+        </div>
+        <div className='right-container'>
+          <Login />
+        </div>
       </div>
       <Footer />
-    {/* </div> */}
     </>
   )
 }
