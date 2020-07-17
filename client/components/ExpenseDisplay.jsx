@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export const Expensedisplay = ({ expenses }) => {
+export const ExpenseDisplay = ({ expenses }) => {
   
-  if (incomes[0]) {
-    console.log(incomes[0])
+  if (expenses[0]) {
+    console.log(expenses[0])
   return (
       <div>
         <table>
@@ -12,6 +12,7 @@ export const Expensedisplay = ({ expenses }) => {
             <tr>
               <td>Name:</td>
               <td>Amount:</td>
+              <td>Category:</td>
               <td>Occurrace:</td>
               <td></td>
               <td></td>
@@ -19,17 +20,16 @@ export const Expensedisplay = ({ expenses }) => {
           </thead>
           <tbody>
           <tr>
-              <td>{incomes[0].name}</td>
-              <td>{incomes[0].amount}</td>
-              <td>{incomes[0].occurrance}</td>
+              <td>{expenses[0].name}</td>
+              <td>{expenses[0].amount}</td>
+              <td>{expenses[0].category}</td>
+              <td>{expenses[0].occurrance}</td>
               <td><button>-</button></td>
               <td><button>Update</button></td>
             </tr>
           </tbody>
-          
         </table>  
       </div>
-
   )
   } else {
     return null
@@ -37,8 +37,8 @@ export const Expensedisplay = ({ expenses }) => {
 }
 
 const mapStateToProps = (state) => ({
-  incomes: state.income
+  expenses: state.expenses
 })
 
 
-export default connect(mapStateToProps)(Incomedisplay)
+export default connect(mapStateToProps)(ExpenseDisplay)

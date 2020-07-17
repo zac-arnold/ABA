@@ -58,4 +58,4 @@ class Income extends React.Component {
 }
 
 
-export default connect(Income)
+export default connect()(Income)

@@ -6,6 +6,7 @@ import IncomeDisplay from './Incomedisplay'
 
 
 import Expense from './Expense'
+import ExpenseDisplay from './ExpenseDisplay'
 
 export const SideBar = () => {
   
@@ -14,6 +15,7 @@ export const SideBar = () => {
       <Income />
       <IncomeDisplay />
       <Expense />
+      <ExpenseDisplay />
     </div>
   )
 }
