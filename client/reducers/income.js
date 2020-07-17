@@ -9,7 +9,7 @@ const initialState = [{
 function incomes (state = initialState, action) {
   switch (action.type) {
     case SEND_INCOME:
-      return [...state, action.income]
+      return [...state, { name: action.income.name, amount: Number(action.income.amount), frequency: action.income.frequency }]
 
     default:
       return state

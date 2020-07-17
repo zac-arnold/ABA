@@ -2,18 +2,20 @@ import React from 'react'
 
 import Income from './Income'
 import IncomeDisplay from './IncomeDisplay'
+import BudgetInput from './BudgetInput'
 
 import Expense from './Expense'
 import ExpenseDisplay from './ExpenseDisplay'
 
 const SideBar = () => {
   return (
-    <div id='sidebar'>
-      <Income />
-      <IncomeDisplay />
-      <Expense />
-      <ExpenseDisplay />
-    </div>
+    <>
+    <BudgetInput />
+    {/* <Income /> */}
+    {/* <IncomeDisplay /> */}
+    {/* <Expense /> */}
+    {/* <ExpenseDisplay /> */}
+    </>
   )
 }
 
