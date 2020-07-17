@@ -1,22 +1,12 @@
-const crypto = require('crypto')
-
-async function hash (password, salt) {
-  return new Promise((resolve, reject) => {
-
-  crypto.scrypt(password, salt, 64, (err, derivedKey) => {
-      if (err) reject(err)
-      resolve(derivedKey.toString('hex'))
-    })
-  })
-}
+const { hash, generateSalt } = require('../support/crypto')
 
 exports.seed = function (knex) {
   // Deletes ALL existing entries
-  return knex('user').del()
+  return knex('user')
     .then(async function () {
       // Inserts seed entries
       const password = 'bob'
-      const salt = crypto.randomBytes(16).toString('hex')
+      const salt = generateSalt()
       const hashedPassword = await hash(password, salt)
 
       return knex('user').insert([

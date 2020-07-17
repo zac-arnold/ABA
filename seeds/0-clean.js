@@ -3,5 +3,5 @@ exports.seed = function (knex) {
     () => knex(table).del()
 
   return empty('budget')()
-    .then(empty('users'))
+    .then(empty('user'))
 }
