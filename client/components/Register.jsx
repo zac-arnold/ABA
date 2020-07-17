@@ -18,16 +18,16 @@ class Register extends React.Component {
     })
   }
 
-  submitHandler = form => {
-    console.log(form)
-    this.props.dispatch(register(form))
+  submitHandler = evt => {
+    evt.preventDefault()
+    this.props.dispatch(register(this.state))
   }
 
   render () {
     return (
       <div>
         <h3>Register</h3>
-        <form onSubmit={(evt) => this.submitHandler(this.state, evt)}>
+        <form onSubmit={(evt) => this.submitHandler(evt)}>
           <label htmlFor='username'>Username:</label>
           <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
           <label htmlFor='email'>Email:</label>
