@@ -1,11 +1,11 @@
 /* global cy */
 
 describe('The Home Page', () => {
-  beforeEach(() => {
-    // Add a reset and seed the database prior to every test
-    // Without this, the food list will not show on the screen
-    cy.exec('npm run db:reset && npm run db:seed')
-  })
+  // beforeEach(() => {
+  //   // Add a reset and seed the database prior to every test
+  //   // Without this, the food list will not show on the screen
+  //   cy.exec('npm run db:reset && npm run db:seed')
+  // })
 
   it('Successfully loads the home page', () => {
     cy.visit('/')
