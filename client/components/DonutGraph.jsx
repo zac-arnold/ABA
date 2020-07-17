@@ -7,27 +7,26 @@ const DonutGraph = (props) => {
   const [graphState, setGraphState] = useState({})
 
   useEffect(() => {
-
-    const frequency = 30.4375 //days in a year
-    const totalIncome = props.incomes[0].amount / frequency //divide yearly salary
+    const frequency = 30.4375 // days in a year
+    const totalIncome = props.incomes[0].amount / frequency // divide yearly salary
     console.log('total:' + totalIncome)
-    //this function puts all categories into an array of unique values
-    let categories = []
+    // this function puts all categories into an array of unique values
+    const categories = []
     props.expenses.forEach(expense => {
       if (categories.indexOf(expense.category) === -1) {
         categories.push(expense.category)
       }
     })
-    console.log('categories:' +  categories)
+    console.log('categories:' + categories)
 
-    //this function uses the unique category array to sum all amounts of that category
-    let data = {}
+    // this function uses the unique category array to sum all amounts of that category
+    const data = {}
     categories.forEach(category => {
       props.expenses.forEach(expense => {
         if (expense.category === category) {
-          if(data[category]){
+          if (data[category]) {
             data[category] += expense.amount
-          }else{
+          } else {
             data[category] = expense.amount
           }
         }
@@ -39,7 +38,6 @@ const DonutGraph = (props) => {
   }, [graphState])
 
   const updateGraph = (data) => {
-
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 

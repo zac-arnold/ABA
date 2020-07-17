@@ -1,14 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import Income from './Income'
-import IncomeDisplay from './Incomedisplay'
-
+import IncomeDisplay from './IncomeDisplay'
 
 import Expense from './Expense'
 
-export const SideBar = () => {
-
+const SideBar = () => {
   return (
     <div id='sidebar'>
       <Income />
@@ -18,4 +15,4 @@ export const SideBar = () => {
   )
 }
 
-export default connect()(SideBar)
+export default SideBar

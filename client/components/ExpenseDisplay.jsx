@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export const Expensedisplay = ({ expenses }) => {
-  
+const ExpenseDisplay = ({ expenses }) => {
   if (incomes[0]) {
     console.log(incomes[0])
-  return (
+    return (
       <div>
         <table>
           <thead>
@@ -18,7 +17,7 @@ export const Expensedisplay = ({ expenses }) => {
             </tr>
           </thead>
           <tbody>
-          <tr>
+            <tr>
               <td>{incomes[0].name}</td>
               <td>{incomes[0].amount}</td>
               <td>{incomes[0].occurrance}</td>
@@ -26,11 +25,11 @@ export const Expensedisplay = ({ expenses }) => {
               <td><button>Update</button></td>
             </tr>
           </tbody>
-          
-        </table>  
+
+        </table>
       </div>
 
-  )
+    )
   } else {
     return null
   }
@@ -40,5 +39,4 @@ const mapStateToProps = (state) => ({
   incomes: state.income
 })
 
-
-export default connect(mapStateToProps)(Incomedisplay)
+export default connect(mapStateToProps)(ExpenseDisplay)

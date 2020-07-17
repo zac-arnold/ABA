@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-export const Register = () => {
+const Register = () => {
   return (
     <div>
       <p>boo</p>
@@ -9,4 +8,4 @@ export const Register = () => {
   )
 }
 
-export default connect()(Register)
+export default Register
