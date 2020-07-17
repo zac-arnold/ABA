@@ -7,11 +7,38 @@ const DonutGraph = (props) => {
   const [graphState, setGraphState] = useState({})
 
   useEffect(() => {
-    
-    updateGraph()
+
+    const frequency = 30.4375 //days in a year
+    const totalIncome = props.incomes[0].amount / frequency //divide yearly salary
+    console.log('total:' + totalIncome)
+    //this function puts all categories into an array of unique values
+    let categories = []
+    props.expenses.forEach(expense => {
+      if (categories.indexOf(expense.category) === -1) {
+        categories.push(expense.category)
+      }
+    })
+    console.log('categories:' +  categories)
+
+    //this function uses the unique category array to sum all amounts of that category
+    let data = {}
+    categories.forEach(category => {
+      props.expenses.forEach(expense => {
+        if (expense.category === category) {
+          if(data[category]){
+            data[category] += expense.amount
+          }else{
+            data[category] = expense.amount
+          }
+        }
+      })
+    })
+    console.log('data:' + data.Treats)
+
+    updateGraph(data)
   }, [graphState])
 
-  const updateGraph = () => {
+  const updateGraph = (data) => {
 
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
@@ -23,7 +50,7 @@ const DonutGraph = (props) => {
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
 
-    // append the svg object to the div called 'my_dataviz'
+    // append the svg object to the div called 'donut-graph '
     const svg = d3.select('#donut-graph')
       .append('svg')
       .attr('id', 'graph-container')
@@ -31,7 +58,7 @@ const DonutGraph = (props) => {
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
     // Create dummy data
-    const data = { Accomodation: 9, Groceries: 20, Utilities: 30, Insurance: 8, Debt: 12, Subscriptions: 3, Treats: 14 }
+    // const data = { Accomodation: 9, Groceries: 20, Utilities: 30, Insurance: 8, Debt: 12, Subscriptions: 3, Treats: 14 }
 
     // set the color scale
     const color = d3.scaleOrdinal()
@@ -46,13 +73,13 @@ const DonutGraph = (props) => {
 
     // The arc generator
     const arc = d3.arc()
-      .innerRadius(radius * 0.5) // This is the size of the donut hole
+      .innerRadius(radius * 0.6) // This is the size of the donut hole
       .outerRadius(radius * 0.8)
 
     // Another arc that won't be drawn. Just for labels positioning
     const outerArc = d3.arc()
-      .innerRadius(radius * 0.9)
-      .outerRadius(radius * 0.9)
+      .innerRadius(radius * 0.6)
+      .outerRadius(radius * 0.8)
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
@@ -63,7 +90,7 @@ const DonutGraph = (props) => {
       .attr('d', arc)
       .attr('fill', function (d) { return (color(d.data.key)) })
       .attr('stroke', 'white')
-      .style('stroke-width', '2px')
+      .style('stroke-width', '1px')
       .style('opacity', 0.7)
 
     // Add the polylines between chart and labels:
@@ -85,22 +112,22 @@ const DonutGraph = (props) => {
     //   })
 
     // Add the polylines between chart and labels:
-    // svg
-    //   .selectAll('allLabels')
-    //   .data(data_ready)
-    //   .enter()
-    //   .append('text')
-    //   .text(function (d) { console.log(d.data.key); return d.data.key })
-    //   .attr('transform', function (d) {
-    //     var pos = outerArc.centroid(d)
-    //     var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-    //     pos[0] = radius * 0.8 * (midangle < Math.PI ? 1 : -1)
-    //     return 'translate(' + pos + ')'
-    //   })
-    //   .style('text-anchor', function (d) {
-    //     var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
-    //     return (midangle < Math.PI ? 'start' : 'end')
-    //   })
+    svg
+      .selectAll('allLabels')
+      .data(data_ready)
+      .enter()
+      .append('text')
+      .text(function (d) { console.log(d.data.key); return d.data.key })
+      .attr('transform', function (d) {
+        var pos = outerArc.centroid(d)
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        pos[0] = radius * 0.5 * (midangle < Math.PI ? 1 : -1)
+        return 'translate(' + pos + ')'
+      })
+      .style('text-anchor', function (d) {
+        var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+        return (midangle < Math.PI ? 'start' : 'end')
+      })
   }
 
   return (
@@ -112,7 +139,7 @@ const DonutGraph = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    incomes: state.income.incomes,
+    incomes: state.income.income,
     expenses: state.income.expenses
   }
 }
