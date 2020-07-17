@@ -1,12 +1,12 @@
 import { SEND_INCOME } from '../actions'
 
 const initialState = {
-  income:[{
+  income: [{
     name: 'My Salary',
     amount: 50000,
-    frequency: 365,
+    frequency: 365
   }],
-  expenses:[{
+  expenses: [{
     name: 'Power bill',
     date: 1594938869,
     amount: 30.50,
@@ -62,7 +62,7 @@ const initialState = {
     frequency: null,
     category: 'Treats'
   }
-]
+  ]
 }
 
 function incomes (state = initialState, action) {

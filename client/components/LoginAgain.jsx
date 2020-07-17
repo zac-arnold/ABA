@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-export const LoginAgain = () => {
+
+const LoginAgain = () => {
   return (
     <div>
       <p>hi</p>
@@ -9,9 +9,4 @@ export const LoginAgain = () => {
   )
 }
 
-const mapStateToProps = (state) => ({
-  
-})
-
-
-export default connect(mapStateToProps)(LoginAgain)
+export default LoginAgain
