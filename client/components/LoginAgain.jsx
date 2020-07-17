@@ -2,7 +2,7 @@ import React from 'react'
 
 const LoginAgain = () => {
   return (
-    <div>
+    <div id='login-box'>
       <p>hi</p>
     </div>
   )

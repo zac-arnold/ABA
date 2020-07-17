@@ -6,8 +6,8 @@ const Footer = () => {
 
   return (
     <div className='footer'>
-      <div>{authors}</div>
-      <div>&copy; {copyright}</div>
+      <p>{authors}</p>
+      <p>&copy; {copyright}</p>
     </div>
   )
 }

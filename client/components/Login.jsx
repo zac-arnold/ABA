@@ -5,10 +5,10 @@ import Register from './Register'
 
 const Login = () => {
   return (
-    <div>
+    <>
       <LoginAgain />
       <Register />
-    </div>
+    </>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Register = () => {
   return (
-    <div>
+    <div id='register-box'>
       <p>boo</p>
     </div>
   )
