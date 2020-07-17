@@ -9,8 +9,8 @@ const Budget = () => {
     <>
       <Title />
       <div id='budget-wrapper'>
-      <SideBar />
-      <GraphSlider />
+        <SideBar />
+        <GraphSlider />
       </div>
     </>
   )

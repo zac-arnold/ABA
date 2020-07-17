@@ -1,4 +1,4 @@
-import { dispatch } from "d3"
+import { dispatch } from 'd3'
 
 import { newClient } from '../api'
 
