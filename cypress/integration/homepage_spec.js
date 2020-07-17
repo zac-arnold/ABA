@@ -10,28 +10,28 @@ describe('The Home Page', () => {
   it('Successfully loads the home page', () => {
     cy.visit('/')
     cy.get('h1')
-      .contains('The Food List')
+      .contains('A Budgetting App')
 
-    cy.get('.subtitle')
-      .contains('Home')
-  })
+    //   cy.get('.subtitle')
+    //     .contains('Home')
+    // })
 
-  it('Correct number of foods', () => {
-    cy.get('.food')
-      .its('length')
-      .should('be', 27)
-  })
+    // it('Correct number of foods', () => {
+    //   cy.get('.food')
+    //     .its('length')
+    //     .should('be', 27)
+    // })
 
-  it('Drop down list contains items', () => {
-    cy.get('#category-list')
-      .contains('Fruits')
-  })
+    // it('Drop down list contains items', () => {
+    //   cy.get('#category-list')
+    //     .contains('Fruits')
+    // })
 
-  it('Can navigate to the food details page', () => {
-    cy.server()
-    // alias the network request
-    cy.route('/200?**').as('networkRequest')
-    cy.get('.food').first().click()
-    cy.url().should('include', '/foods/1')
+  // it('Can navigate to the food details page', () => {
+  //   cy.server()
+  //   // alias the network request
+  //   cy.route('/200?**').as('networkRequest')
+  //   cy.get('.food').first().click()
+  //   cy.url().should('include', '/foods/1')
   })
 })
