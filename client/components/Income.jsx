@@ -45,7 +45,7 @@ class Income extends React.Component {
                     value={incomeSource.amount}
                     placeholder="Amount"
                     name="amount"
-                    onChange={evt => this.changeHandler(evt, index)}/>
+                    onChange={evt => this.changeHandler(evt, index)} />
                   <button type="submit" value="submit">Submit</button>
                 </div>
               )
@@ -56,6 +56,5 @@ class Income extends React.Component {
     )
   }
 }
-
 
 export default connect()(Income)

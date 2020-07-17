@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-export const Incomedisplay = ({ incomes }) => {
+const IncomeDisplay = ({ incomes }) => {
   console.log(incomes)
   if (incomes[0]) {
     console.log(incomes[0])
-  return (
+    return (
       <div>
         <table>
           <thead>
@@ -18,7 +18,7 @@ export const Incomedisplay = ({ incomes }) => {
             </tr>
           </thead>
           <tbody>
-          <tr>
+            <tr>
               <td>{incomes[0].name}</td>
               <td>{incomes[0].amount}</td>
               <td>{incomes[0].occurrance}</td>
@@ -38,5 +38,4 @@ const mapStateToProps = (state) => ({
   incomes: state.income
 })
 
-
-export default connect(mapStateToProps)(Incomedisplay)
+export default connect(mapStateToProps)(IncomeDisplay)
