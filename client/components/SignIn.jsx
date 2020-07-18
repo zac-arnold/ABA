@@ -10,7 +10,7 @@ class SignIn extends React.Component {
   }
 
   handleChange = evt => {
-    const { name, value } = evt.target
+    const { name, value } = evt.target,
     console.log(name, value)
     this.setState({
       [name]: value

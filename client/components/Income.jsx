@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { sendIncomeToStore } from '../actions'
 
 class Income extends React.Component {
-
   state = {
     incomes: [{ name: '', amount: '', frequency: 'weekly' }]
   }

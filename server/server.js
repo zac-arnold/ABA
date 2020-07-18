@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 
-
 const register = require('./routes/register')
 const user = require('./routes/user')
 
