@@ -12,12 +12,10 @@ router.post('/', (req, res) => {
   return db.login(credentials)
     .then(response => {
       const { user, session } = response
-      console.log('Session returned for id in user.js ', user, session)
       res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
       return user
     })
     .then((user) => {
-      console.log(user)
       const { username } = user
       const client = { username }
       res.status(202).json(client)
