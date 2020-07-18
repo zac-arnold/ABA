@@ -10,11 +10,9 @@ router.post('/', (req, res) => {
   console.log('user.js: ', req.body)
   const { username, password } = req.body
   const credentials = { username, password }
-  return db.getUserByName(credentials)
-    .then((res) => {
-      console.log('returned user.js ', res.body)
-      return res.status(202).res(res[0])
-    })
+  return db.login(credentials)
+  // 2) then, set cookie called "session" with its value being the session ID (the random stuff you put in the session table)
+    .then((response) => res.status(202).json(response))
     .catch(err => {
       return res.status(400).send(err.message)
     })

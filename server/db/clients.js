@@ -3,7 +3,7 @@ const { hash, generateSalt } = require('../../support/crypto')
 
 module.exports = {
   registerUser,
-  getUserByName
+  login
 }
 
 function registerUser (credentials, db = connection) {
@@ -42,10 +42,28 @@ function doesUserExist (username, db = connection) {
     })
 }
 
-function getUserByName (credentials, db = connection) {
+function login (credentials, db = connection) {
   console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
     .select()
     .first()
+    .then(user => {
+      if (!user) {
+        return Promise.reject(new Error('User not found'))
+      }
+      return user
+    })
+    .then(async (user) => {
+      const password = await hash(credentials.password, user.salt)
+      console.log('db getUserByName', user.password)
+      console.log('db password', password)
+      if (user.password === password) {
+        return user
+      }
+      return Promise.reject(new Error('Passwords do not match'))
+    })
+    // 1) generate a new session
+    // insert into the session table (id, user id)
+    // values ([something random here], the user's ID)
 }
