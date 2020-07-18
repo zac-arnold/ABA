@@ -30,10 +30,10 @@ export function newRegister () {
   }
 }
 
-export function newRegisterSuccess (res) {
+export function newRegisterSuccess (client) {
   return {
     type: NEW_REGISTER_SUCCESS,
-    res
+    client
   }
 }
 
@@ -43,7 +43,8 @@ export function register (form) {
     dispatch(newRegister())
 
     return newClient(form)
-      .then(res => dispatch(newRegisterSuccess(res)))
+      .then(client => dispatch(newRegisterSuccess(client)))
+      // NEED TO ADD ERROR ACTION .catch(err => dispatch(showError(err.message)))
   }
 }
 

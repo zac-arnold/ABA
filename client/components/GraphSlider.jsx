@@ -14,14 +14,14 @@ class GraphSlider extends React.Component {
     }
     return (
       <Slider {...settings}>
-        <div class='slider-frame'>
+        <div className='slider-frame'>
           <h3></h3>
           < DonutGraph />
         </div>
-        <div class='slider-frame'>
+        <div className='slider-frame'>
           <h3></h3>
         </div>
-        <div class='slider-frame'>
+        <div className='slider-frame'>
           <h3></h3>
         </div>
       </Slider>
