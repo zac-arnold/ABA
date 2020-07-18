@@ -5,15 +5,17 @@ import IncomeDisplay from './IncomeDisplay'
 
 import Expense from './Expense'
 import ExpenseDisplay from './ExpenseDisplay'
+import ExpenseInput from './ExpenseInput'
 
 const SideBar = () => {
   return (
-    <div id='sidebar'>
-      <Income />
-      <IncomeDisplay />
-      <Expense />
-      <ExpenseDisplay />
-    </div>
+    <>
+    <ExpenseInput />
+    {/* <Income />
+    <IncomeDisplay />
+    <Expense />
+    <ExpenseDisplay /> */}
+    </>
   )
 }
 

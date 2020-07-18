@@ -48,8 +48,8 @@ const DonutGraph = (props) => {
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     const width = vw / 2
-    const height = vh / 1.5
-    const margin = 20
+    const height = vh
+    const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
