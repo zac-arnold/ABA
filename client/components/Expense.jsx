@@ -1,73 +1,53 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useState } from 'react-redux'
+import { sendExpenseToStore } from '../actions/index'
 
-import { sendExpenseToStore } from '../actions'
-
-class Expense extends React.Component {
+class ExpenseEntry extends React.Component {
   state = {
-    expenses: [{ name: '', amount: '', category: '', occurance: 'weekly' }]
+    id: 0,
+    name: '',
+    amount: 0,
+    category: '',
+    frequency: ''
   }
 
-  changeHandler = (evt, index) => {
-    const { value, name } = evt.target
-    const newExpenses = this.state.expenses
-    newExpenses[index] = { ...newExpenses[index], [name]: value }
-    this.setState({
-      expenses: newExpenses
-    })
-  }
-
-  submitHandler = (expense, evt) => {
+  changeHandler = (evt) => {
     evt.preventDefault()
-    this.props.dispatch(sendExpenseToStore(expense[0]))
+    const { value, name } = evt.target
+    console.log(name)
+    this.setState({
+      [name]: value
+    })
+    console.log(this.state)
   }
+
+  sendToStore = () => {
+    const data = this.state
+    data.id = data.id + 1
+    this.props.dispatch(sendExpenseToStore(data))
+  }
+
+  // changeHandler = (evt) => {
+  //   evt.preventDefault()
+  //   const { value, name } = evt.target
+  //   console.log(evt)
+  // }
 
   render () {
-    const { expenses } = this.state
-
     return (
-      <>
-        <form onSubmit={(evt) => this.submitHandler(expenses, evt)}>
-          {
-            expenses.map((expenseEntry, index) => {
-              return (
-                <div key={index}>
-                  <label htmlFor="name">Name</label>
-                  <input type="text"
-                    value={expenseEntry.name}
-                    placeholder="e.g petrol"
-                    name="name"
-                    onChange={evt => this.changeHandler(evt, index)} />
-
-                  <label htmlFor="amount">Amount </label>
-                  <input type="text"
-                    value={expenseEntry.amount}
-                    placeholder="Amount"
-                    name="amount"
-                    onChange={evt => this.changeHandler(evt, index)} />
-
-                  <label htmlFor="category">Category</label>
-                  <input type="text"
-                    value={expenseEntry.category}
-                    placeholder="e.g car expenses"
-                    name="category"
-                    onChange={evt => this.changeHandler(evt, index)} />
-
-                  <label htmlFor="occurance">Occurrance</label>
-                  <input type="text"
-                    value={expenseEntry.occurrance}
-                    placeholder="e.g weekly"
-                    name="occurance"
-                    onChange={evt => this.changeHandler(evt, index)} />
-                  <button type="submit" value="submit">Submit</button>
-                </div>
-              )
-            })
-          }
-        </form>
-      </>
+      <form onSubmit={(evt) => this.changeHandler(evt)}>
+        <label>Name</label>
+        <input onChange={this.changeHandler(evt)} type='text' placeholder='e.g petrol' name='name' value={this.state.name} />
+        <label>Amount</label>
+        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g $50' name='amount' value={this.state.amount} />
+        <label>Category</label>
+        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g Groceries' name='category' value={this.state.category} />
+        <label>Frequency</label>
+        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g weekly' name='frequency' value={this.state.frequency} />
+        <button type="submit" value="submit" onClick={() => this.sendToStore()}>Submit</button>
+      </form>
     )
   }
 }
 
-export default connect()(Expense)
+export default connect()(ExpenseEntry)

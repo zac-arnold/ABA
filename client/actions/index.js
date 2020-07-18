@@ -1,12 +1,21 @@
+
+import { newClient } from '../api'
+
 import { dispatch } from "d3"
 
 import { newClient, login } from '../api'
 
+
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
 export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+export const DELETE_INCOME = 'DELETE_INCOME'
+
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+
 
 export function sendIncomeToStore (income) {
   return {
@@ -34,6 +43,20 @@ export function newRegisterSuccess (client) {
   return {
     type: NEW_REGISTER_SUCCESS,
     client
+  }
+}
+
+export function deleteExpense (id) {
+  return {
+    type: DELETE_EXPENSE,
+    id: id
+  }
+}
+
+export function deleteIncome (id) {
+  return {
+    type: DELETE_INCOME,
+    id: id
   }
 }
 
