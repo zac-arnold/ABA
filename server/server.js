@@ -1,11 +1,12 @@
 const path = require('path')
 const express = require('express')
-
+const cookieParser = require('cookie-parser')
 
 const register = require('./routes/register')
 const user = require('./routes/user')
 
 const server = express()
+server.use(cookieParser())
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))

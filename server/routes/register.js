@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
       console.log('newUser ', newUser)
       return db.login(newUser)
         .then(session => {
-          console.log('Session returned for cookie in register.js ', session.id)
+          console.log('Session returned for id in register.js ', session.id)
         })
     
     
