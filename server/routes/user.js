@@ -11,10 +11,7 @@ router.post('/', (req, res) => {
   const { username, password } = req.body
   const credentials = { username, password }
   return db.getUserByName(credentials)
-    .then((res) => {
-      console.log('returned user.js ', res.body)
-      return res.status(202).res(res[0])
-    })
+    .then((response) => res.status(202).json(response))
     .catch(err => {
       return res.status(400).send(err.message)
     })

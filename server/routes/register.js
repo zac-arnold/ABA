@@ -11,8 +11,17 @@ router.post('/', async (req, res) => {
   const { username, email, password } = req.body
   const credentials = { username, email, password }
   return db.registerUser(credentials)
-    .then(() => {
-      return db.login(username, password)
+    .then(user => {
+      const newUser = { username: credentials.username, password: credentials.password }
+      console.log('newUser ', newUser)
+      return db.getUserByName(newUser)
+        .then((response) => {
+          //console.log('returned user.js ', res)
+          return res.status(202).json(response)
+        })
+        .catch(err => {
+          return res.status(400).send(err.message)
+        })
     })
     .catch(err => {
       return res.status(400).send(err.message)
