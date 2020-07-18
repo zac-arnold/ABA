@@ -14,6 +14,6 @@ router.post('/', (req, res) => {
   // 2) then, set cookie called "session" with its value being the session ID (the random stuff you put in the session table)
     .then((response) => res.status(202).json(response))
     .catch(err => {
-      return res.status(400).send(err.message)
+      return res.status(401).send(err.message)
     })
 })

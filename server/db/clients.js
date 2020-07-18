@@ -7,7 +7,6 @@ module.exports = {
 }
 
 function registerUser (credentials, db = connection) {
-  console.log('client.js ', credentials)
   return doesUserExist(credentials.username, db)
     .then(exists => {
       if (exists) {
@@ -37,7 +36,6 @@ function doesUserExist (username, db = connection) {
     .count('id as number')
     .where('username', username)
     .then(rows => {
-      console.log('doesUserExist ', rows)
       return rows[0].number > 0
     })
 }
@@ -56,13 +54,18 @@ function login (credentials, db = connection) {
     })
     .then(async (user) => {
       const password = await hash(credentials.password, user.salt)
-      console.log('db getUserByName', user.password)
-      console.log('db password', password)
       if (user.password === password) {
         return user
       }
       return Promise.reject(new Error('Passwords do not match'))
     })
+    .then((user) => {
+      console.log('db returned user ', user)
+      db('session')
+        .where('id', user.id)
+        .insert()
+    })
+
     // 1) generate a new session
     // insert into the session table (id, user id)
     // values ([something random here], the user's ID)

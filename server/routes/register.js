@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
           return res.status(202).json(response)
         })
         .catch(err => {
-          return res.status(400).send(err.message)
+          return res.status(401).send(err.message)
         })
     })
     .catch(err => {
