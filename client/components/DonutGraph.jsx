@@ -3,12 +3,19 @@ import * as d3 from 'd3'
 import { connect } from 'react-redux'
 
 class DonutGraph extends React.Component {
+  state = {
+    count: 0
+  }
 
-  componentDidMount(){
+  componentDidMount() {
+    this.setState({
+      count: this.state.count + 1
+    })
     this.updateGraph(this.updateData(this.props))
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
+    console.log(this.state)
     this.updateGraph(this.updateData(this.props))
   }
 
@@ -141,11 +148,13 @@ class DonutGraph extends React.Component {
   }
 
   render() {
-    return (
-      <div key={1} id='donut-graph'></div>
-    )
+    if(this.state.count > 1) {
+      console.log(this.state.count)
+      return <div id='graph-container'>hi</div>
+    } else {
+      return null
+    }
   }
-
 }
 
 const mapStateToProps = (state) => {
