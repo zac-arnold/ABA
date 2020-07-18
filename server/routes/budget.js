@@ -6,3 +6,7 @@ const router = express.Router()
 
 module.exports = router
 
+router.post('/', (req, res) => {
+  console.log(req.cookies)
+  return res.status(201).json({})
+})
