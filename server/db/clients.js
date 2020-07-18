@@ -3,7 +3,7 @@ const { hash, generateSalt } = require('../../support/crypto')
 
 module.exports = {
   registerUser,
-  getUserByName
+  login
 }
 
 function registerUser (credentials, db = connection) {
@@ -42,7 +42,7 @@ function doesUserExist (username, db = connection) {
     })
 }
 
-function getUserByName (credentials, db = connection) {
+function login (credentials, db = connection) {
   console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
@@ -63,4 +63,7 @@ function getUserByName (credentials, db = connection) {
       }
       return Promise.reject(new Error('Passwords do not match'))
     })
+    // 1) generate a new session
+    // insert into the session table (id, user id)
+    // values ([something random here], the user's ID)
 }

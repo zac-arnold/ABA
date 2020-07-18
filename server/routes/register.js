@@ -11,12 +11,11 @@ router.post('/', async (req, res) => {
   const { username, email, password } = req.body
   const credentials = { username, email, password }
   return db.registerUser(credentials)
-    .then(user => {
+    .then(() => {
       const newUser = { username: credentials.username, password: credentials.password }
       console.log('newUser ', newUser)
-      return db.getUserByName(newUser)
+      return db.login(newUser)
         .then((response) => {
-          //console.log('returned user.js ', res)
           return res.status(202).json(response)
         })
         .catch(err => {
@@ -27,5 +26,3 @@ router.post('/', async (req, res) => {
       return res.status(400).send(err.message)
     })
 })
-
-//router.post('/login', .... db.login())
