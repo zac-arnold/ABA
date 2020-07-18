@@ -1,41 +1,23 @@
-import { SEND_EXPENSE } from '../actions'
+import { SEND_EXPENSE, DELETE_EXPENSE } from '../actions'
 
 const initialState = [{
+  id: 200,
   name: 'Power bill',
   date: 1594938869,
-  amount: 30.50,
+  amount: 300,
   frequency: null,
   category: 'Utilities'
 },
 {
-  name: 'Water bill',
-  date: 1594938869,
-  amount: 16.50,
-  frequency: null,
-  category: 'Utilities'
-},
-{
-  name: 'Phone bill',
-  date: 1594938869,
-  amount: 20.00,
-  frequency: null,
-  category: 'Utilities'
-},
-{
+  id: 216,
   name: 'Countdown Ponsonby',
   date: 1594938869,
-  amount: 80.50,
+  amount: 80,
   frequency: null,
   category: 'Groceries'
 },
 {
-  name: 'PaknSave Takapuna',
-  date: 1594938869,
-  amount: 55.50,
-  frequency: null,
-  category: 'Groceries'
-},
-{
+  id: 201,
   name: 'Rent',
   date: 1594938869,
   amount: 220.00,
@@ -43,16 +25,18 @@ const initialState = [{
   category: 'Accomodation'
 },
 {
+  id: 54,
   name: 'Netflix bill',
   date: 1594938869,
-  amount: 20.50,
+  amount: 200,
   frequency: null,
   category: 'Entertainment'
 },
 {
+  id: 202,
   name: 'Eating out with mates',
   date: 1594938869,
-  amount: 40.90,
+  amount: 100,
   frequency: null,
   category: 'Treats'
 }]
@@ -60,7 +44,13 @@ const initialState = [{
 function expenses (state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
+      action.expense.amount = Number(action.expense.amount)
       return [...state, action.expense]
+
+    case DELETE_EXPENSE:
+      return {
+
+      }
 
     default:
       return state

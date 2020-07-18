@@ -2,9 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const IncomeDisplay = ({ incomes }) => {
-  console.log(incomes)
   if (incomes[0]) {
-    console.log(incomes[0])
     return (
       <>
         <table>
