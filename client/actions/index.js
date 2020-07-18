@@ -7,6 +7,8 @@ export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
 export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 export function sendIncomeToStore (income) {
   return {
@@ -14,8 +16,6 @@ export function sendIncomeToStore (income) {
     income
   }
 }
-
-export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 export function sendExpenseToStore (expense) {
   return {
@@ -34,6 +34,13 @@ export function newRegisterSuccess (res) {
   return {
     type: NEW_REGISTER_SUCCESS,
     res
+  }
+}
+
+export function deleteExpense (id) {
+  return {
+    type: DELETE_EXPENSE,
+    id: id
   }
 }
 

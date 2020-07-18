@@ -2,7 +2,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 const ExpenseDisplay = (props) => {
-  if (props.expenses[0]) {
+  // const [expenseState, expenseSet] = useState(0)
+
+  const deleteExpense = () => {
+
+  }
+
+  if (props.expenses) {
     return (
       <>
         <table>
@@ -11,7 +17,7 @@ const ExpenseDisplay = (props) => {
               <td>Name:</td>
               <td>Amount:</td>
               <td>Category:</td>
-              <td>Occurrace:</td>
+              <td>Frequency:</td>
               <td></td>
               <td></td>
             </tr>
@@ -24,9 +30,9 @@ const ExpenseDisplay = (props) => {
                     <td>{expenseItem.name}</td>
                     <td>{expenseItem.amount}</td>
                     <td>{expenseItem.category}</td>
-                    <td>{expenseItem.occurrance}</td>
-                    <td><button>-</button></td>
-                    <td><button>Update</button></td>
+                    <td>{expenseItem.frequency}</td>
+                    <td><button onClick={() => deleteExpense()} >-</button></td>
+                    <td><button onClick={() => updateExpense()} >Update</button></td>
                   </tr>
                 </>
               )
@@ -36,7 +42,7 @@ const ExpenseDisplay = (props) => {
       </>
     )
   } else {
-    return <h1>hi</h1>
+    return null
   }
 }
 
