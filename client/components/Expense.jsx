@@ -37,7 +37,7 @@ class ExpenseEntry extends React.Component {
     return (
       <form onSubmit={(evt) => this.changeHandler(evt)}>
         <label>Name</label>
-        <input onChange={this.changeHandler} type='text' placeholder='e.g petrol' name='name' value={this.state.name} />
+        <input onChange={this.changeHandler(evt)} type='text' placeholder='e.g petrol' name='name' value={this.state.name} />
         <label>Amount</label>
         <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g $50' name='amount' value={this.state.amount} />
         <label>Category</label>

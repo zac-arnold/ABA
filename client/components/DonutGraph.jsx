@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 
-const DonutGraph = (props) => {
-  // set the dimensions and margins of the graph
-  const [graphState, setGraphState] = useState({})
+class DonutGraph extends React.Component {
 
-  useEffect(() => {
+  componentDidMount(){
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  componentDidUpdate(){
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  updateData = (props) => {
     const frequency = 30.4375 // days in a year
     const totalIncome = props.incomes[0].amount / frequency // divide yearly salary
 
@@ -39,11 +45,11 @@ const DonutGraph = (props) => {
     // convert values to percentage of total income
     const difference = 100 - ((100 / totalIncome) * sumTotal)
     data.Surplus = difference
-    console.log('hi')
-    updateGraph(data)
-  }, [])
+    console.log(data)
+    return data
+  }
 
-  const updateGraph = (data) => {
+  updateGraph = (data) => {
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
@@ -134,9 +140,12 @@ const DonutGraph = (props) => {
       })
   }
 
-  return (
-    <div id='donut-graph'></div>
-  )
+  render() {
+    return (
+      <div key={1} id='donut-graph'></div>
+    )
+  }
+
 }
 
 const mapStateToProps = (state) => {

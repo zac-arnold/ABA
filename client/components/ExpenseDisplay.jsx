@@ -9,7 +9,6 @@ const ExpenseDisplay = (props) => {
   const deleteExpense = () => {
 
   }
-
   if (props.expenses[0]) {
     return (
       <>

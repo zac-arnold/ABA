@@ -1,9 +1,9 @@
 import React from 'react'
 import { Form, Col, Row, Container, FormControl, Button } from 'react-bootstrap'
-import { sendExpenseToStore } from '../actions/index'
+import { sendIncomeToStore } from '../actions/index'
 import { connect } from 'react-redux'
 
-class ExpenseInput extends React.Component {
+class IncomeInput extends React.Component {
     state = {
         id: 0,
         name: '',
@@ -26,7 +26,7 @@ class ExpenseInput extends React.Component {
         const data = this.state
         data.id = data.id + 1
         console.log(data)
-        this.props.dispatch(sendExpenseToStore(data))
+        this.props.dispatch(sendIncomeToStore(data))
     }
 
     render() {
@@ -36,7 +36,7 @@ class ExpenseInput extends React.Component {
                 <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
                     <Row className='align-middle pt-2 m-0'>
                         <Col className='float-left'>
-                            Expense
+                            Income
                 </Col>
                         <Col>
                             <Button onClick={() => this.sendToStore()} className='float-right' size='sm'>Add</Button>
@@ -68,4 +68,4 @@ class ExpenseInput extends React.Component {
     }
 }
 
-export default connect()(ExpenseInput)
+export default connect()(IncomeInput)

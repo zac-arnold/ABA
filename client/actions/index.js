@@ -1,11 +1,10 @@
-import { dispatch } from "d3"
-
 import { newClient } from '../api'
 
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
 export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
 export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+export const DELETE_INCOME = 'DELETE_INCOME'
 
 export function sendIncomeToStore (income) {
   return {
@@ -39,6 +38,13 @@ export function newRegisterSuccess (res) {
 export function deleteExpense (id) {
   return {
     type: DELETE_EXPENSE,
+    id: id
+  }
+}
+
+export function deleteIncome (id) {
+  return {
+    type: DELETE_INCOME,
     id: id
   }
 }
