@@ -1,4 +1,4 @@
-import { SEND_EXPENSE } from '../actions'
+import { SEND_EXPENSE, DELETE_EXPENSE } from '../actions'
 
 const initialState = [{
   name: 'Power bill',
@@ -61,6 +61,11 @@ function expenses (state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
       return [...state, action.expense]
+
+    case DELETE_EXPENSE:
+      return {
+
+      }
 
     default:
       return state
