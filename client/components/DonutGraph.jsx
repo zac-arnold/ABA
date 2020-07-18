@@ -20,20 +20,28 @@ const DonutGraph = (props) => {
 
     // this function uses the unique category array to sum all amounts of that category
     const data = {}
+    let sumTotal = 0
     categories.forEach(category => {
       props.expenses.forEach(expense => {
         if (expense.category === category) {
           if (data[category]) {
             data[category] += expense.amount
+            sumTotal += expense.amount
           } else {
             data[category] = expense.amount
+            sumTotal += expense.amount
           }
         }
       })
+      // convert values to percentage of total income
+      data[category] = (100 / totalIncome) * data[category]
     })
-
+    // convert values to percentage of total income
+    const difference = 100 - ((100 / totalIncome) * sumTotal)
+    data.Surplus = difference
+    console.log('hi')
     updateGraph(data)
-  }, [graphState])
+  }, [])
 
   const updateGraph = (data) => {
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
@@ -127,9 +135,7 @@ const DonutGraph = (props) => {
   }
 
   return (
-
     <div id='donut-graph'></div>
-
   )
 }
 

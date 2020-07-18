@@ -6,9 +6,9 @@ class ExpenseEntry extends React.Component {
   state = {
     id: 0,
     name: '',
-    amount: '',
+    amount: 0,
     category: '',
-    occurance: ''
+    frequency: ''
   }
 
   changeHandler = (evt) => {
@@ -42,8 +42,8 @@ class ExpenseEntry extends React.Component {
         <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g $50' name='amount' value={this.state.amount} />
         <label>Category</label>
         <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g Groceries' name='category' value={this.state.category} />
-        <label>Occurence</label>
-        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g weekly' name='occurance' value={this.state.occurance} />
+        <label>Frequency</label>
+        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g weekly' name='frequency' value={this.state.frequency} />
         <button type="submit" value="submit" onClick={() => this.sendToStore()}>Submit</button>
       </form>
     )
