@@ -1,0 +1,32 @@
+label {
+  position: absolute;
+  width: 45px;
+  height: 45px;
+  right: 20px;
+  top: 20px;
+  border: 2px solid;
+  border-radius: 20px;
+}
+
+label:before {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  left: 1px;
+  top: 1pxpx;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: black;
+  transition: 0.4s;
+}
+
+label.active:before {
+  left: 24px;
+  background:#fff;
+}
+
+body.night {
+  background: #000;
+  color: #fff;
+}
