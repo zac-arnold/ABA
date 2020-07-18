@@ -4,8 +4,8 @@ exports.up = knex => {
     table.integer('user_id')
     table.string('name')
     table.string('amount')
-    table.category('string')
-    table.occurrance('string')
+    table.string('category')
+    table.string('occurrence')
   })
 }
 

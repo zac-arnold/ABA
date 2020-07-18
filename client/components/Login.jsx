@@ -1,12 +1,12 @@
 import React from 'react'
 
-import LoginAgain from './LoginAgain'
+import SignIn from './SignIn'
 import Register from './Register'
 
 const Login = () => {
   return (
     <>
-      <LoginAgain />
+      <SignIn />
       <Register />
     </>
   )
