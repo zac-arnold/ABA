@@ -1,5 +1,5 @@
 const connection = require('./connection')
-const { hash, generateSalt } = require('../../support/crypto')
+const { hash, generateSalt, generateSessionId } = require('../../support/crypto')
 
 module.exports = {
   registerUser,
@@ -61,19 +61,22 @@ function login (credentials, db = connection) {
     })
     .then((user) => {
       // console.log('db returned user ', user)
-      const randomString = generateSalt()
+      const randomString = generateSessionId()
       const objectToInsert = { id: randomString, user_id: user.id }
       return db('session')
         .insert(objectToInsert)
-        .then(session => {
-          return getSession(session[0])
+        .then(async () => {
+          return {
+            session: await getSession(randomString),
+            user
+          }
         })
     })
 }
 
 function getSession (id, db = connection) {
   return db('session')
-    .where('user_id', id)
+    .where('id', id)
     .select()
     .first()
 }

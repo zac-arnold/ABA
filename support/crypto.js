@@ -10,11 +10,15 @@ function hash (password, salt) {
 }
 
 function generateSalt () {
-  const salt = crypto.randomBytes(16).toString('hex')
-  return salt
+  return crypto.randomBytes(16).toString('hex')
 }
 
+function generateSessionId () {
+  return crypto.randomBytes(40).toString('hex')
+
+}
 module.exports = {
   hash,
-  generateSalt
+  generateSalt,
+  generateSessionId
 }
