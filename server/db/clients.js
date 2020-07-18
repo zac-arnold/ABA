@@ -2,7 +2,8 @@ const connection = require('./connection')
 const { hash, generateSalt } = require('../../support/crypto')
 
 module.exports = {
-  registerUser
+  registerUser,
+  getUserByName
 }
 
 function registerUser (credentials, db = connection) {
@@ -39,4 +40,12 @@ function doesUserExist (username, db = connection) {
       console.log('doesUserExist ', rows)
       return rows[0].number > 0
     })
+}
+
+function getUserByName (credentials, db = connection) {
+  console.log('db', credentials)
+  return db('user')
+    .where('username', credentials.username)
+    .select()
+    .first()
 }
