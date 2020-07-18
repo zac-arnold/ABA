@@ -14,8 +14,14 @@ router.post('/', (req, res) => {
       const { user, session } = response
       console.log('Session returned for id in user.js ', user, session)
       res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
+      return user
     })
-    .then((response) => res.status(202).json(response))
+    .then((user) => {
+      console.log(user)
+      const { username } = user
+      const client = { username }
+      res.status(202).json(client)
+    })
     .catch(err => {
       return res.status(401).send(err.message)
     })
