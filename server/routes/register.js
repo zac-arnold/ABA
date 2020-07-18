@@ -17,10 +17,12 @@ router.post('/', async (req, res) => {
       return db.login(newUser)
         .then(session => {
           console.log('Session returned for cookie in register.js ', session.id)
+          
         })
     
     
-      // 2) then, set cookie called "session" with its value being the session ID (the random stuff you put in the session table)
+      // 2) then, set cookie called "session" with its value being the session ID 
+      // (the random stuff you put in the session table)
   
         .then((response) => {
           return res.status(202).json(response)
