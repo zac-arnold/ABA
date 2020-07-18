@@ -7,7 +7,7 @@ const router = express.Router()
 module.exports = router
 
 router.post('/', async (req, res) => {
-  console.log('register.js: ', req.body)
+  // console.log('register.js: ', req.body)
   const { username, email, password } = req.body
   const credentials = { username, email, password }
   return db.registerUser(credentials)
@@ -15,6 +15,13 @@ router.post('/', async (req, res) => {
       const newUser = { username: credentials.username, password: credentials.password }
       console.log('newUser ', newUser)
       return db.login(newUser)
+        .then(session => {
+          console.log('Session returned for cookie in register.js ', session.id)
+        })
+    
+    
+      // 2) then, set cookie called "session" with its value being the session ID (the random stuff you put in the session table)
+  
         .then((response) => {
           return res.status(202).json(response)
         })

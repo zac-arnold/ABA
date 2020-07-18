@@ -41,7 +41,7 @@ function doesUserExist (username, db = connection) {
 }
 
 function login (credentials, db = connection) {
-  console.log('db', credentials)
+  // console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
     .select()
@@ -60,13 +60,20 @@ function login (credentials, db = connection) {
       return Promise.reject(new Error('Passwords do not match'))
     })
     .then((user) => {
-      console.log('db returned user ', user)
-      db('session')
-        .where('id', user.id)
-        .insert()
+      // console.log('db returned user ', user)
+      const randomString = generateSalt()
+      const objectToInsert = { id: randomString, user_id: user.id }
+      return db('session')
+        .insert(objectToInsert)
+        .then(session => {
+          return getSession(session[0])
+        })
     })
+}
 
-    // 1) generate a new session
-    // insert into the session table (id, user id)
-    // values ([something random here], the user's ID)
+function getSession (id, db = connection) {
+  return db('session')
+    .where('user_id', id)
+    .select()
+    .first()
 }
