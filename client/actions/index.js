@@ -38,7 +38,7 @@ export function newRegisterSuccess (res) {
 }
 
 export function register (form) {
-  console.log('actions.index.js', form)
+  // console.log('actions.index.js', form)
   return (dispatch) => {
     dispatch(newRegister())
 
@@ -61,7 +61,7 @@ export function signInSuccess (res) {
 }
 
 export function signIn (form) {
-  console.log('actions.index.js', form)
+  // console.log('actions.index.js', form)
   return (dispatch) => {
     dispatch(signingIn())
 

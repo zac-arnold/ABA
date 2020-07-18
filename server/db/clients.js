@@ -7,7 +7,6 @@ module.exports = {
 }
 
 function registerUser (credentials, db = connection) {
-  console.log('client.js ', credentials)
   return doesUserExist(credentials.username, db)
     .then(exists => {
       if (exists) {
@@ -37,13 +36,12 @@ function doesUserExist (username, db = connection) {
     .count('id as number')
     .where('username', username)
     .then(rows => {
-      console.log('doesUserExist ', rows)
       return rows[0].number > 0
     })
 }
 
 function login (credentials, db = connection) {
-  console.log('db', credentials)
+  // console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
     .select()
@@ -56,14 +54,26 @@ function login (credentials, db = connection) {
     })
     .then(async (user) => {
       const password = await hash(credentials.password, user.salt)
-      console.log('db getUserByName', user.password)
-      console.log('db password', password)
       if (user.password === password) {
         return user
       }
       return Promise.reject(new Error('Passwords do not match'))
     })
-    // 1) generate a new session
-    // insert into the session table (id, user id)
-    // values ([something random here], the user's ID)
+    .then((user) => {
+      // console.log('db returned user ', user)
+      const randomString = generateSalt()
+      const objectToInsert = { id: randomString, user_id: user.id }
+      return db('session')
+        .insert(objectToInsert)
+        .then(session => {
+          return getSession(session[0])
+        })
+    })
+}
+
+function getSession (id, db = connection) {
+  return db('session')
+    .where('user_id', id)
+    .select()
+    .first()
 }
