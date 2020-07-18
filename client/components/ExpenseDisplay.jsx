@@ -17,14 +17,20 @@ const ExpenseDisplay = (props) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{props.expenses[0].name}</td>
-              <td>{props.expenses[0].amount}</td>
-              <td>{props.expenses[0].category}</td>
-              <td>{props.expenses[0].occurrance}</td>
-              <td><button>-</button></td>
-              <td><button>Update</button></td>
-            </tr>
+            {props.expenses.map((expenseItem, index) => {
+              return (
+                <>
+                  <tr key={index}>
+                    <td>{expenseItem.name}</td>
+                    <td>{expenseItem.amount}</td>
+                    <td>{expenseItem.category}</td>
+                    <td>{expenseItem.occurrance}</td>
+                    <td><button>-</button></td>
+                    <td><button>Update</button></td>
+                  </tr>
+                </>
+              )
+            })}
           </tbody>
         </table>
       </>
