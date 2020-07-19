@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
       return db.login(newUser)
         .then(response => {
           const { user, session } = response
-          res.cookie('session', session.id, { maxAge: 24 * 60 * 60 * 1000, httpOnly: true })
+          res.cookie('session', session.id, { maxAge: 24 * 60 * 60 * 1000 })
           return user
         })
         .then((user) => {
