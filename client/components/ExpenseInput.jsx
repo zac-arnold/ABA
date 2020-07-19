@@ -9,7 +9,7 @@ class ExpenseInput extends React.Component {
       name: '',
       amount: 0,
       category: '',
-      frequency: ''
+      frequency: '',
     }
 
     changeHandler = (evt) => {
@@ -24,16 +24,15 @@ class ExpenseInput extends React.Component {
 
     sendToStore = () => {
       const data = this.state
-      data.id = data.id + 1
+      data.id = Date.now()
       console.log(data)
       this.props.dispatch(sendExpenseToStore(data))
     }
 
     render () {
       return (
-
         <Form>
-          <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
+          <Container className='mt-2 mb-1 border border-dark rounded p-0 bg-dark text-white'>
             <Row className='align-middle pt-2 m-0'>
               <Col className='float-left'>
                             Expense

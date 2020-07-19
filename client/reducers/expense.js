@@ -53,6 +53,7 @@ function expenses (state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
       action.expense.amount = Number(action.expense.amount)
+      console.log(action.expense)
       return [...state, action.expense]
 
     case DELETE_EXPENSE:

@@ -25,7 +25,7 @@ class DonutGraph extends React.Component {
     props.incomes.forEach((value) => {
       income += value.amount
     })
-    console.log(income)
+    
     const totalIncome = income / frequency // hardcoded for now
     // this function puts all categories into an array of unique values
     const categories = []

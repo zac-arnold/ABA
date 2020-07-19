@@ -1,14 +1,19 @@
 import { SEND_INCOME, DELETE_INCOME } from '../actions'
 
 const initialState = [{
-
+  id:345345,
   name: 'My Salary',
   amount: 50000,
-  frequency: 'annually'
-
+  frequency: 365
+},
+{
+  id:12452325,
+  name: 'Side Gig',
+  amount: 5000,
+  frequency: 365
 }]
 
-function incomes (state = initialState, action) {
+function incomes(state = initialState, action) {
   switch (action.type) {
     case SEND_INCOME:
       return [...state, action.income]

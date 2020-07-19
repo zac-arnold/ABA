@@ -23,10 +23,15 @@ class IncomeInput extends React.Component {
     }
 
     sendToStore = () => {
-      const data = this.state
-      data.id = data.id + 1
-      console.log(data)
-      this.props.dispatch(sendIncomeToStore(data))
+      this.state.id = Date.now()
+      this.props.dispatch(sendIncomeToStore(this.state))
+      this.setState({
+        id: 0,
+        name: '',
+        amount: 0,
+        category: '',
+        frequency: ''
+      })
     }
 
     render () {
