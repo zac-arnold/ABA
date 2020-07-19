@@ -15,7 +15,6 @@ class IncomeList extends React.Component {
   render () {
     return (
       this.props.incomes.map(income => {
-        console.log(income)
         return (
           <Modal.Dialog size="xl" key={income.id} className='m-2 p-1'>
             <Modal.Body closeButton className='p-2 font-size'>
