@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { register } from '../actions'
-import { propTypes } from 'react-bootstrap/esm/Image'
 
 class Register extends React.Component {
   state = {

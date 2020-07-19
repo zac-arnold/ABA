@@ -1,4 +1,4 @@
-const connection = require('../server/db/connection')
+// const connection = require('../server/db/connection')
 
 function authentication (req, res, next) {
   // console.log(req.cookies)
@@ -8,7 +8,6 @@ function authentication (req, res, next) {
   if (typeof (req.cookies.session) === 'undefined') {
     return next()
   }
-
   // check if there's a session with the cookie's value (this should be the session ID)
   // if not, call next()
   //
