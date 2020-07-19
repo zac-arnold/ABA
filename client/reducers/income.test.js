@@ -45,10 +45,7 @@ test('DELETE_INCOME deletes an income from the Income array', () => {
 
   const testAction = {
     type: DELETE_INCOME,
-    income: {
-      id: 300
-
-    }
+    id: 300
   }
   // Act
   const newState = incomes(initialTestState, testAction)
@@ -65,7 +62,11 @@ test('default returns State', () => {
     frequency: 'annually'
   }]
 
-  const newState = incomes(initialTestState, 'default')
+  const testAction = {
+    type: 'NOT_FOUND'
+  }
+
+  const newState = incomes(initialTestState, testAction)
 
   expect(newState).toBe(initialTestState)
 })
