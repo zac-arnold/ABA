@@ -111,12 +111,21 @@ class DonutGraph extends React.Component {
       .attr('fill', '#A0F5B7')
       .attr('stroke-width', 2)
 
-    // svg
-    //   .append('text')
-    //   .attr('x', 0)
-    //   .attr('y', 0)
-    //   .attr('heavy',
-    //   .text('hello!!!!!!!!!!!')
+      svg
+      .append('text')
+      .attr('x', -30)
+      .attr('y', -15)
+      .style('font-family', 'Helvetica')
+      .style('font-size', '15px')
+      .text('you spent')
+
+    svg
+      .append('text')
+      .attr('x', -35)
+      .attr('y', 15)
+      .style('font-family', 'Helvetica')
+      .style('font-size', '30px')
+      .text('$1615')
       
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
