@@ -14,7 +14,7 @@ class SideBar extends React.Component {
       <>
         <IncomeInput />
         <IncomeList />
-        {this.props.incomes[0] ? <ExpenseInput /> : <PopupAdvice />}
+        {this.props.incomes[0] ? <><ExpenseInput /><ExpenseList /></> : <PopupAdvice />}
       </>
     )
   }
