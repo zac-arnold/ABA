@@ -21,7 +21,10 @@ class DonutGraph extends React.Component {
 
   updateData = (props) => {
     const frequency = 30.4375 // days in a year
-    const totalIncome = props.incomes[0].amount / frequency // divide yearly salary
+
+    const Income = props.incomes.reduce((acc, value) => acc + value.amount)
+
+    const totalIncome = Income / 365 // hardcoded for now
 
     // this function puts all categories into an array of unique values
     const categories = []
@@ -111,7 +114,7 @@ class DonutGraph extends React.Component {
       .attr('fill', '#A0F5B7')
       .attr('stroke-width', 2)
 
-      svg
+    svg
       .append('text')
       .attr('x', -30)
       .attr('y', -15)
@@ -126,7 +129,7 @@ class DonutGraph extends React.Component {
       .style('font-family', 'Helvetica')
       .style('font-size', '30px')
       .text('$1615')
-      
+
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
       .selectAll('allSlices')
