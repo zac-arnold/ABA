@@ -16,8 +16,8 @@ class ExpenseList extends React.Component {
     return (
       this.props.expenses.map(expense => {
         return (
-          <Modal.Dialog key={expense.id} className='m-0 p-1'>
-            <Modal.Header closeButton className='p-2' onClick={() => this.removeItem(expense.id)}>{expense.name + ': $' + expense.amount + ' (' + expense.category + ')'}</Modal.Header>
+          <Modal.Dialog size="xl" key={expense.id} className='m-2 p-1'>
+            <Modal.Header closeButton className='p-3' onClick={() => this.removeItem(expense.id)}>{expense.name + ': $' + expense.amount + ' (' + expense.category + ')'}</Modal.Header>
           </Modal.Dialog>
         )
       })
