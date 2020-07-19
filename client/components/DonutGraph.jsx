@@ -15,6 +15,7 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate () {
+  //  console.log(this.state)
     d3.selectAll('svg > *').remove()
     this.updateGraph(this.updateData(this.props))
   }
@@ -151,6 +152,12 @@ class DonutGraph extends React.Component {
   }
 
   render () {
+    if (this.state.count > 1) {
+      console.log(this.state.count)
+      return <div id='graph-container'>hi</div>
+    } else {
+      return null
+    }
     return null
   }
 }
