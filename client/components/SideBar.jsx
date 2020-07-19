@@ -4,6 +4,7 @@ import ExpenseInput from './ExpenseInput'
 import IncomeInput from './IncomeInput'
 import ExpenseList from './ExpenseList'
 import IncomeList from './IncomeList'
+import SaveBudget from './SaveBudget'
 
 const SideBar = () => {
   return (
@@ -12,6 +13,7 @@ const SideBar = () => {
       <IncomeList />
       <ExpenseInput />
       <ExpenseList />
+      <SaveBudget />
     </>
   )
 }
