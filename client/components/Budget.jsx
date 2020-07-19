@@ -6,6 +6,7 @@ import DonutGraph from './DonutGraph'
 
 const Budget = () => {
   return (
+
     <Container fluid className='p-0'>
         <Title />
       <Row className='m-0'>
@@ -21,6 +22,7 @@ const Budget = () => {
         </Col>
       </Row>
     </Container>
+
   )
 }
 

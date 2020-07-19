@@ -4,6 +4,12 @@ const initialState = [{
 
   name: 'My Salary',
   amount: 50000,
+  frequency: 365
+}]
+
+
+  name: 'My Salary',
+  amount: 50000,
   frequency: 'annually'
 
 }]

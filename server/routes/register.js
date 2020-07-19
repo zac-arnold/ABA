@@ -19,10 +19,12 @@ router.post('/', async (req, res) => {
           res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
           return user
         })
+
         .then((user) => {
           const { username } = user
           const client = { username }
           res.status(202).json(client)
+
         })
         .catch(err => {
           return res.status(401).send(err.message)
