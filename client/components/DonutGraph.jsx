@@ -5,19 +5,27 @@ import { NavLink } from 'react-router-dom'
 
 class DonutGraph extends React.Component {
   state = {
-    count: false
+    previousData: {}
   }
 
   componentDidMount() {
     // this.updateGraph(this.updateData(this.props))
     this.setState({
-      count: true
+      previousData: { Surplus: 100 }
     })
   }
 
   componentDidUpdate() {
     d3.selectAll('svg > *').remove()
-    this.updateGraph(this.updateData(this.props))
+    let transitionData = this.updateData(this.props)
+    if(this.previousData !== transitionData) {
+      console.log(this.previousData)
+      console.log(this.transitionData)
+      this.updateGraph(transitionData)
+    }
+
+    // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
+    // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
   }
 
   updateData = (props) => {
@@ -25,10 +33,9 @@ class DonutGraph extends React.Component {
     const frequency = 30.4375 // days in a year
     let totalIncome = 0;
     props.incomes.forEach(value => {
-       totalIncome += value.amount
+      totalIncome += value.amount
     })
 
-    console.log(totalIncome)
     const MonthlyIncome = totalIncome / frequency
     // this function puts all categories into an array of unique values
     let categories = []
@@ -39,7 +46,7 @@ class DonutGraph extends React.Component {
     })
 
     // this function uses the unique category array to sum all amounts of that category
-    let data = {}
+    let data = { Surplus: 0 }
     let sumTotal = 0
     categories.forEach(category => {
       props.expenses.forEach(expense => {
@@ -59,8 +66,8 @@ class DonutGraph extends React.Component {
     // convert values to percentage of total income
     const difference = 100 - ((100 / MonthlyIncome) * sumTotal)
     data.Surplus = difference
-    if(isNaN(data.Surplus)){
-      return {Surplus: 100}
+    if (isNaN(data.Surplus)) {
+      return { Surplus: 100 }
     }
     return data
   }
@@ -78,17 +85,15 @@ class DonutGraph extends React.Component {
 
     // append the svg object to the div called 'donut-graph '
     const svg = d3.select('#my_dataviz')
-      .classed('svg-container', true)
-      .classed('svg-content-responsive', true)
       .attr('width', width)
       .attr('height', height)
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
     // set the color scale
-    const color = d3.scaleOrdinal()
-      .domain(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
-      .range(d3.schemeSpectral[9])
+    var color = d3.scaleOrdinal()
+      .domain(data)
+      .range(["#a0f5b7", "#002455", "#36a59c", "#64cda3", "#15637d"])
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
@@ -136,6 +141,14 @@ class DonutGraph extends React.Component {
       .style('font-family', 'Helvetica')
       .style('font-size', '30px')
       .text('$1615')
+
+    // svg
+    //   .append('rect')
+    //   .attr('width', 100)
+    //   .attr('height', 100)
+    //   .style('fill', 'rgb(0,0,255)')
+    //   .style('font-size', '30px')
+    //   .text('$1615')
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg

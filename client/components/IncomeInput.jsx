@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 
 class IncomeInput extends React.Component {
     state = {
-      id: 0,
-      name: '',
-      amount: 0,
-      category: '',
-      frequency: ''
-    }
+        id: 0,
+        amount: '',
+        description: '',
+        category: '',
+        frequency: '',
+      }
 
     changeHandler = (evt) => {
       evt.preventDefault()
@@ -19,7 +19,6 @@ class IncomeInput extends React.Component {
       this.setState({
         [name]: value
       })
-      console.log(this.state)
     }
 
     sendToStore = () => {
@@ -27,10 +26,10 @@ class IncomeInput extends React.Component {
       this.props.dispatch(sendIncomeToStore(this.state))
       this.setState({
         id: 0,
-        name: '',
-        amount: 0,
+        amount: '',
+        description: '',
         category: '',
-        frequency: ''
+        frequency: '',
       })
     }
 
@@ -49,10 +48,10 @@ class IncomeInput extends React.Component {
             </Row>
             <Form.Row className='m-0 p-2'>
               <Col>
-                <FormControl name='name' value={this.state.name} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount (to the nearest dollar)" placeholder='amount ($)' />
+                <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
               </Col>
               <Col>
-                <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount (to the nearest dollar)" placeholder='Description' />
+                <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
               </Col>
               <Col>
                 <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
