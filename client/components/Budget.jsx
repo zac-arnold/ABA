@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Carousel } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import Title from './Title'
 import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
@@ -14,11 +14,8 @@ const Budget = () => {
           <SideBar />
         </Col>
         <Col className='p-0'>
-          <Carousel>
-            <Carousel.Item>
-              < DonutGraph />
-            </Carousel.Item>
-          </Carousel>
+          <svg id="my_dataviz"></svg>
+          < DonutGraph />
         </Col>
       </Row>
     </Container>
