@@ -28,7 +28,6 @@ test('SEND_EXPENSE adds expense to expense array', () => {
 })
 
 test('DELETE_EXPENSE deletes expense from expense array', () => {
-  // Arrange
   const initialTestState = [{
     id: 200,
     name: 'Power bill',
@@ -49,9 +48,26 @@ test('DELETE_EXPENSE deletes expense from expense array', () => {
     }
   }
 
-  // Act
   const newState = expenses(initialTestState, testAction)
 
-  // Assert
   expect(newState).toHaveLength(1)
+  expect(newState[0].id).toBe(200)
+})
+
+test('default returns state', () => {
+  // Arrage
+  const initialTestState = [{
+    id: 200,
+    name: 'Power bill',
+    date: 1594938869,
+    amount: 300,
+    frequency: 'weekly',
+    category: 'Utilities'
+  }]
+
+  // Act
+  const newState = expenses(initialTestState, 'default')
+
+  // Assert
+  expect(newState).toBe(initialTestState)
 })
