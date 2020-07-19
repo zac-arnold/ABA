@@ -7,15 +7,15 @@ class DonutGraph extends React.Component {
     count: false
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // this.updateGraph(this.updateData(this.props))
     this.setState({
       count: true
     })
   }
 
-  componentDidUpdate() {
-    d3.selectAll("svg > *").remove()
+  componentDidUpdate () {
+    d3.selectAll('svg > *').remove()
     this.updateGraph(this.updateData(this.props))
   }
 
@@ -150,7 +150,7 @@ class DonutGraph extends React.Component {
       })
   }
 
-  render() {
+  render () {
     return null
   }
 }

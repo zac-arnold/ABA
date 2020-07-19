@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Carousel } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import Title from './Title'
 import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
