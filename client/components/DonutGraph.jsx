@@ -15,7 +15,7 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate () {
-    console.log(this.state)
+//    console.log(this.state)
     this.updateGraph(this.updateData(this.props))
   }
 
@@ -53,7 +53,7 @@ class DonutGraph extends React.Component {
     const difference = 100 - ((100 / totalIncome) * sumTotal)
     data.Surplus = difference
 
-    console.log(data)
+   // console.log(data)
     return data
   }
 
@@ -150,7 +150,7 @@ class DonutGraph extends React.Component {
 
   render () {
     if (this.state.count > 1) {
-      console.log(this.state.count)
+  //    console.log(this.state.count)
       return <div id='graph-container'>hi</div>
     } else {
       return null
