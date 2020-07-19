@@ -25,8 +25,14 @@ class ExpenseInput extends React.Component {
     sendToStore = () => {
       const data = this.state
       data.id = Date.now()
-      console.log(data)
       this.props.dispatch(sendExpenseToStore(data))
+      this.setState({
+        id: 0,
+        name: '',
+        amount: 0,
+        category: '',
+        frequency: ''
+      })
     }
 
     render () {

@@ -20,15 +20,17 @@ class DonutGraph extends React.Component {
   }
 
   updateData = (props) => {
+
     const frequency = 30.4375 // days in a year
-    let income = 0;
-    props.incomes.forEach((value) => {
-      income += value.amount
+    let totalIncome = 0;
+    props.incomes.forEach(value => {
+       totalIncome += value.amount
     })
-    
-    const totalIncome = income / frequency // hardcoded for now
+
+    console.log(totalIncome)
+    const MonthlyIncome = totalIncome / frequency
     // this function puts all categories into an array of unique values
-    const categories = []
+    let categories = []
     props.expenses.forEach(expense => {
       if (categories.indexOf(expense.category) === -1) {
         categories.push(expense.category)
@@ -36,7 +38,7 @@ class DonutGraph extends React.Component {
     })
 
     // this function uses the unique category array to sum all amounts of that category
-    const data = {}
+    let data = {}
     let sumTotal = 0
     categories.forEach(category => {
       props.expenses.forEach(expense => {
@@ -51,11 +53,12 @@ class DonutGraph extends React.Component {
         }
       })
       // convert values to percentage of total income
-      data[category] = (100 / totalIncome) * data[category]
+      data[category] = (100 / MonthlyIncome) * data[category]
     })
     // convert values to percentage of total income
-    const difference = 100 - ((100 / totalIncome) * sumTotal)
+    const difference = 100 - ((100 / MonthlyIncome) * sumTotal)
     data.Surplus = difference
+    console.log(data)
     return data
   }
 
