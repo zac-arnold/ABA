@@ -4,18 +4,18 @@ import { connect } from 'react-redux'
 
 class DonutGraph extends React.Component {
   state = {
-    count: 0
+    count: false
   }
 
   componentDidMount () {
+    // this.updateGraph(this.updateData(this.props))
     this.setState({
-      count: this.state.count + 1
+      count: true
     })
-    this.updateGraph(this.updateData(this.props))
   }
 
   componentDidUpdate () {
-    console.log(this.state)
+    d3.selectAll('svg > *').remove()
     this.updateGraph(this.updateData(this.props))
   }
 
@@ -52,9 +52,11 @@ class DonutGraph extends React.Component {
     // convert values to percentage of total income
     const difference = 100 - ((100 / totalIncome) * sumTotal)
     data.Surplus = difference
-
-    console.log(data)
     return data
+  }
+
+  drawGraph = () => {
+
   }
 
   updateGraph = (data) => {
@@ -62,16 +64,16 @@ class DonutGraph extends React.Component {
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     const width = vw / 2
-    const height = vh
+    const height = vh / 2
     const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
 
     // append the svg object to the div called 'donut-graph '
-    const svg = d3.select('#donut-graph')
-      .append('svg')
-      .attr('id', 'graph-container')
+    const svg = d3.select('#my_dataviz')
+      .attr('width', width)
+      .attr('height', height)
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
@@ -149,12 +151,7 @@ class DonutGraph extends React.Component {
   }
 
   render () {
-    if (this.state.count > 1) {
-      console.log(this.state.count)
-      return <div id='graph-container'>hi</div>
-    } else {
-      return null
-    }
+    return null
   }
 }
 
