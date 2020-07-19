@@ -1,4 +1,4 @@
-import { newClient, login, newBudget } from '../api'
+import { newClient, login, newBudget, signout } from '../api'
 
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
@@ -113,6 +113,7 @@ export function saveBudget (budget) {
 }
 
 export const LOGGING_OUT = 'LOGGING_OUT'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
 
 export function loggingOut () {
   return {
@@ -120,8 +121,17 @@ export function loggingOut () {
   }
 }
 
+export function logoutSuccess () {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
 export function logout () {
   return (dispatch) => {
     dispatch(loggingOut())
+
+    return signout()
+      .then(res => dispatch(logoutSuccess(res)))
   }
 }
