@@ -4,6 +4,17 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.advice-popup{
+  max-width: 400px;
+  margin-top: 40px;
+  margin-left: 40px;
+}
+
+.my_dataviz{
+  width: 500px;
+  height: 500px;
+}
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;

@@ -1,19 +1,29 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import ExpenseInput from './ExpenseInput'
 import IncomeInput from './IncomeInput'
 import ExpenseList from './ExpenseList'
 import IncomeList from './IncomeList'
+import PopupAdvice from './PopupAdvice'
 
-const SideBar = () => {
-  return (
-    <>
-      <IncomeInput />
-      <IncomeList />
-      <ExpenseInput />
-      <ExpenseList />
-    </>
-  )
+class SideBar extends React.Component {
+
+  render() {
+    return (
+      <>
+        <IncomeInput />
+        <IncomeList />
+        {this.props.incomes[0] ? <ExpenseInput /> : <PopupAdvice />}
+      </>
+    )
+  }
 }
 
-export default SideBar
+const mapStateToProps = (state) => {
+  return {
+    incomes: state.income
+  }
+}
+
+export default connect(mapStateToProps)(SideBar)
