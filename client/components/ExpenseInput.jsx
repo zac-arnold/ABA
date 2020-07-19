@@ -15,7 +15,7 @@ class ExpenseInput extends React.Component {
     changeHandler = (evt) => {
       evt.preventDefault()
       const { value, name } = evt.target
-      console.log(name)
+    //  console.log(name)
       this.setState({
         [name]: value
       })
