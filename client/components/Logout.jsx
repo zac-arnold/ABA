@@ -5,9 +5,8 @@ import { logout } from '../actions'
 
 class Logout extends React.Component {
   submitHandler = evt => {
-    console.log(this.props)
     evt.preventDefault()
-    this.props.dispatch(logout(this.props))
+    this.props.dispatch(logout())
   }
 
   render () {

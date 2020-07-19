@@ -111,3 +111,17 @@ export function saveBudget (budget) {
       .then(res => dispatch(saveBudgetSuccess(res)))
   }
 }
+
+export const LOGGING_OUT = 'LOGGING_OUT'
+
+export function loggingOut () {
+  return {
+    type: LOGGING_OUT
+  }
+}
+
+export function logout () {
+  return (dispatch) => {
+    dispatch(loggingOut())
+  }
+}
