@@ -5,12 +5,12 @@ import { connect } from 'react-redux'
 
 class IncomeInput extends React.Component {
     state = {
-        id: 0,
-        amount: '',
-        description: '',
-        category: '',
-        frequency: '',
-      }
+      id: 0,
+      amount: '',
+      description: '',
+      category: '',
+      frequency: ''
+    }
 
     changeHandler = (evt) => {
       evt.preventDefault()
@@ -22,14 +22,20 @@ class IncomeInput extends React.Component {
     }
 
     sendToStore = () => {
-      this.state.id = Date.now()
+      this.setState({
+        id: Date.now(),
+        amount: this.state.amount,
+        description: this.state.description,
+        category: this.state.category,
+        frequency: this.state.frequency
+      })
       this.props.dispatch(sendIncomeToStore(this.state))
       this.setState({
         id: 0,
         amount: '',
         description: '',
         category: '',
-        frequency: '',
+        frequency: ''
       })
     }
 

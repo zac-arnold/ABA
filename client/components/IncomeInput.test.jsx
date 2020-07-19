@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
-import Income from './Income'
+import IncomeInput from './IncomeInput'
 
 const initialState = {
   income: [
@@ -14,7 +14,7 @@ const initialState = {
 }
 
 test('Income has the correct structure', async () => {
-  renderWithRedux(<Income />, { initialState })
+  renderWithRedux(<IncomeInput />, { initialState })
   const form = await screen.findByText('Name')
   expect(form).toBeInTheDocument()
   expect(form).toMatchSnapshot()

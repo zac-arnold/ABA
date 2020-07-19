@@ -8,8 +8,7 @@ import IncomeList from './IncomeList'
 import PopupAdvice from './PopupAdvice'
 
 class SideBar extends React.Component {
-
-  render() {
+  render () {
     return (
       <>
         <IncomeInput />

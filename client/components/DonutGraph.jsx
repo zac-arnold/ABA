@@ -1,25 +1,23 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 
 class DonutGraph extends React.Component {
   state = {
     previousData: {}
   }
 
-  componentDidMount() {
+  componentDidMount () {
     // this.updateGraph(this.updateData(this.props))
     this.setState({
       previousData: { Surplus: 100 }
     })
   }
 
-
-  componentDidUpdate() {
+  componentDidUpdate () {
     d3.selectAll('svg > *').remove()
-    let transitionData = this.updateData(this.props)
-    if(this.previousData !== transitionData) {
+    const transitionData = this.updateData(this.props)
+    if (this.previousData !== transitionData) {
       console.log(this.previousData)
       console.log(this.transitionData)
       this.updateGraph(transitionData)
@@ -30,16 +28,15 @@ class DonutGraph extends React.Component {
   }
 
   updateData = (props) => {
-
     const frequency = 30.4375 // days in a year
-    let totalIncome = 0;
+    let totalIncome = 0
     props.incomes.forEach(value => {
       totalIncome += value.amount
     })
 
     const MonthlyIncome = totalIncome / frequency
     // this function puts all categories into an array of unique values
-    let categories = []
+    const categories = []
     props.expenses.forEach(expense => {
       if (categories.indexOf(expense.category) === -1) {
         categories.push(expense.category)
@@ -47,7 +44,7 @@ class DonutGraph extends React.Component {
     })
 
     // this function uses the unique category array to sum all amounts of that category
-    let data = { Surplus: 0 }
+    const data = { Surplus: 0 }
     let sumTotal = 0
     categories.forEach(category => {
       props.expenses.forEach(expense => {
@@ -76,7 +73,7 @@ class DonutGraph extends React.Component {
   updateGraph = (data) => {
     const height = 500
     const width = 500
-    const margin = 0
+    // const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width / 1.7, height / 1.7)
@@ -92,7 +89,7 @@ class DonutGraph extends React.Component {
     // set the color scale
     var color = d3.scaleOrdinal()
       .domain(data)
-      .range(["#a0f5b7", "#002455", "#36a59c", "#64cda3", "#15637d"])
+      .range(['#a0f5b7', '#002455', '#36a59c', '#64cda3', '#15637d'])
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
@@ -105,7 +102,7 @@ class DonutGraph extends React.Component {
       .innerRadius(radius * 0.6) // This is the size of the donut hole
       .outerRadius(radius * 0.8)
 
-    //inner border circle
+    // inner border circle
     svg
       .append('circle')
       .attr('cx', 0)
@@ -115,7 +112,7 @@ class DonutGraph extends React.Component {
       .attr('fill', 'white')
       .attr('stroke-width', 2)
 
-    //inner solid circle
+    // inner solid circle
     svg
       .append('circle')
       .attr('cx', 0)
@@ -162,8 +159,7 @@ class DonutGraph extends React.Component {
       .style('opacity', 0.7)
   }
 
-
-  render() {
+  render () {
     return null
   }
 }

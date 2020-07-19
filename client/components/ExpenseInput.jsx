@@ -3,14 +3,13 @@ import { Form, Col, Row, Container, FormControl, Button } from 'react-bootstrap'
 import { sendExpenseToStore } from '../actions/index'
 import { connect } from 'react-redux'
 
-
 class ExpenseInput extends React.Component {
     state = {
       id: 0,
       amount: '',
       description: '',
       category: '',
-      frequency: '',
+      frequency: ''
     }
 
     changeHandler = (evt) => {
@@ -30,7 +29,7 @@ class ExpenseInput extends React.Component {
         amount: 0,
         description: '',
         category: '',
-        frequency: '',
+        frequency: ''
       })
     }
 
@@ -68,7 +67,7 @@ class ExpenseInput extends React.Component {
             </Form.Row>
           </Container>
         </Form>
-        
+
       )
     }
 }
