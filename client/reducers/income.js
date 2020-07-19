@@ -1,7 +1,7 @@
 import { SEND_INCOME, DELETE_INCOME } from '../actions'
 
 const initialState = [{
-
+  id: 300,
   name: 'My Salary',
   amount: 50000,
   frequency: 'annually'
