@@ -2,7 +2,7 @@ import incomes from './income'
 import { SEND_INCOME, DELETE_INCOME } from '../actions'
 
 test('SEND_INCOME adds an income to the Income array', () => {
-  const testInitialState = [{
+  const initialTestState = [{
     id: 300,
     name: 'My Salary',
     amount: 50000,
@@ -20,7 +20,7 @@ test('SEND_INCOME adds an income to the Income array', () => {
     }
   }
 
-  const newState = incomes(testInitialState, testAction)
+  const newState = incomes(initialTestState, testAction)
 
   expect(newState).toHaveLength(2)
   expect(newState[1].name).toBe('Secondary Salary')
@@ -30,7 +30,7 @@ test('SEND_INCOME adds an income to the Income array', () => {
 
 test('DELETE_INCOME deletes an income from the Income array', () => {
   // Arrange
-  const testInitialState = [{
+  const initialTestState = [{
     id: 200,
     name: 'My Salary',
     amount: 50000,
@@ -53,8 +53,21 @@ test('DELETE_INCOME deletes an income from the Income array', () => {
     }
   }
   // Act
-  const newState = incomes(testInitialState, testAction)
+  const newState = incomes(initialTestState, testAction)
 
   // Assert
   expect(newState).toHaveLength(1)
+})
+
+test('default returns State', () => {
+  const initialTestState = [{
+    id: 300,
+    name: 'My Salary',
+    amount: 50000,
+    frequency: 'annually'
+  }]
+
+  const newState = incomes(initialTestState, 'default')
+
+  expect(newState).toBe(initialTestState)
 })
