@@ -4361,12 +4361,14 @@ input[type="button"].btn-block {
 
 .navbar-brand {
   display: inline-block;
-  padding-top: 0.3125rem;
-  padding-bottom: 0.3125rem;
+  padding: 0.6125rem;
   margin-right: 1rem;
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  border: 2px solid #002455;
+  border-radius: 5px 20px 5px;
+
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -5764,6 +5766,17 @@ a.badge-dark:focus, a.badge-dark.focus {
   color: #fff;
   background-color: #155724;
   border-color: #155724;
+}
+
+.footer {
+  padding: 30px;
+  height: 100px;
+  width: 100%;
+  text-align: right;
+  color: #002455;
+  background-color: #64cda3;
+  position: absolute;
+  bottom: 0;
 }
 
 .list-group-item-info {
