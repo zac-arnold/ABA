@@ -27,4 +27,12 @@ export function login (form) {
 
 export function newBudget (budget) {
   console.log('api.js ', budget)
+  return request
+    .post(`${rootUrl}/budget`)
+    .set(acceptJsonHeader)
+    .send(budget)
+    .then(res => {
+      return res.body
+    })
+    .catch(err => console.log('api.js ', err))
 }
