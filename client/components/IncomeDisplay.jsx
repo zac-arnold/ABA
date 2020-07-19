@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const IncomeDisplay = ({ incomes }) => {
-  console.log(incomes)
-  if (incomes[0]) {
-    console.log(incomes[0])
+const IncomeDisplay = (props) => {
+  if (props.incomes) {
+
     return (
       <>
         <table>
@@ -12,19 +11,25 @@ const IncomeDisplay = ({ incomes }) => {
             <tr>
               <td>Name:</td>
               <td>Amount:</td>
-              <td>Occurrace:</td>
+              <td>Frequency:</td>
               <td></td>
               <td></td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{incomes[0].name}</td>
-              <td>{incomes[0].amount}</td>
-              <td>{incomes[0].occurrance}</td>
-              <td><button>-</button></td>
-              <td><button>Update</button></td>
-            </tr>
+            {props.incomes.map((incomeItem, index) => {
+              return (
+                <>
+                  <tr key={index}>
+                    <td>{incomeItem.name}</td>
+                    <td>{incomeItem.amount}</td>
+                    <td>{incomeItem.frequency}</td>
+                    <td><button>-</button></td>
+                    <td><button>Update</button></td>
+                  </tr>
+                </>
+              )
+            })}
           </tbody>
         </table>
       </>

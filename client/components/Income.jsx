@@ -5,50 +5,44 @@ import { sendIncomeToStore } from '../actions'
 
 class Income extends React.Component {
   state = {
-    incomes: [{ name: '', amount: '', frequency: 'weekly' }]
+    id: 0,
+    name: '',
+    amount: 0,
+    frequency: 'weekly'
   }
 
-  changeHandler = (evt, index) => {
+  changeHandler = (evt) => {
+    evt.preventDefault()
     const { value, name } = evt.target
-    const newIncomes = this.state.incomes
-    newIncomes[index] = { ...newIncomes[index], [name]: value }
     this.setState({
-      incomes: newIncomes
+      [name]: value
     })
   }
 
-  submitHandler = (income, evt) => {
-    evt.preventDefault()
-    this.props.dispatch(sendIncomeToStore(income[0]))
+  submitHandler = () => {
+    const data = this.state
+    data.id = data.id + 1
+    this.props.dispatch(sendIncomeToStore(data))
   }
 
   render () {
-    const { incomes } = this.state
     return (
       <>
-        <form onSubmit={(evt) => this.submitHandler(incomes, evt)}>
-          {
-            incomes.map((incomeSource, index) => {
-              return (
-                <div key={index}>
-                  <label htmlFor="name">Name </label>
-                  <input type="text"
-                    value={incomeSource.name}
-                    placeholder="Income Type"
-                    name="name"
-                    onChange={evt => this.changeHandler(evt, index)} />
+        <form onSubmit={this.changeHandler}>
+          <label>Name </label>
+          <input type="text"
+            value={this.state.name}
+            placeholder="Income Type"
+            name="name"
+            onChange={this.changeHandler} />
 
-                  <label htmlFor="amount">Amount </label>
-                  <input type="text"
-                    value={incomeSource.amount}
-                    placeholder="Amount"
-                    name="amount"
-                    onChange={evt => this.changeHandler(evt, index)} />
-                  <button type="submit" value="submit">Submit</button>
-                </div>
-              )
-            })
-          }
+          <label>Amount </label>
+          <input type="text"
+            value={this.state.amount}
+            placeholder="Amount"
+            name="amount"
+            onChange={this.changeHandler} />
+          <button type="submit" value="submit" onClick={() => this.submitHandler()}>Submit</button>
         </form>
       </>
     )

@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 
-const DonutGraph = (props) => {
-  // set the dimensions and margins of the graph
-  const [graphState, setGraphState] = useState({})
+class DonutGraph extends React.Component {
+  state = {
+    count: 0
+  }
 
-  useEffect(() => {
+  componentDidMount() {
+    this.setState({
+      count: this.state.count + 1
+    })
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  componentDidUpdate() {
+    console.log(this.state)
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  updateData = (props) => {
     const frequency = 30.4375 // days in a year
     const totalIncome = props.incomes[0].amount / frequency // divide yearly salary
 
@@ -20,28 +33,38 @@ const DonutGraph = (props) => {
 
     // this function uses the unique category array to sum all amounts of that category
     const data = {}
+    let sumTotal = 0
     categories.forEach(category => {
       props.expenses.forEach(expense => {
         if (expense.category === category) {
           if (data[category]) {
             data[category] += expense.amount
+            sumTotal += expense.amount
           } else {
             data[category] = expense.amount
+            sumTotal += expense.amount
           }
         }
       })
+      // convert values to percentage of total income
+      data[category] = (100 / totalIncome) * data[category]
     })
+    // convert values to percentage of total income
+    const difference = 100 - ((100 / totalIncome) * sumTotal)
+    data.Surplus = difference
 
-    updateGraph(data)
-  }, [graphState])
+    console.log(data)
+    return data
+  }
 
-  const updateGraph = (data) => {
+  updateGraph = (data) => {
+
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     const width = vw / 2
-    const height = vh / 1.5
-    const margin = 20
+    const height = vh
+    const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
@@ -126,11 +149,15 @@ const DonutGraph = (props) => {
       })
   }
 
-  return (
+  render() {
+    if(this.state.count > 1) {
+      console.log(this.state.count)
+      return <div id='graph-container'>hi</div>
+    } else {
+      return null
+    }
+  }
 
-    <div id='donut-graph'></div>
-
-  )
 }
 
 const mapStateToProps = (state) => {
