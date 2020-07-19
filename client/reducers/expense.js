@@ -56,8 +56,7 @@ function expenses (state = initialState, action) {
       return [...state, action.expense]
 
     case DELETE_EXPENSE:
-      const newstate = state.filter(element => element.id !== action.id)
-      return newstate
+      return state.filter(element => element.id !== action.id)
 
     default:
       return state

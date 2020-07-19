@@ -1,7 +1,4 @@
-import { dispatch } from "d3"
-
 import { newClient, login } from '../api'
-
 
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
@@ -14,7 +11,6 @@ export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 
 export const SEND_EXPENSE = 'SEND_EXPENSE'
-
 
 export function sendIncomeToStore (income) {
   return {

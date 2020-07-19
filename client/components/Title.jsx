@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar, FormControl, Nav, Form, Button} from 'react-bootstrap'
+import { Navbar, FormControl, Nav, Form, Button } from 'react-bootstrap'
 
 const Title = () => {
   return (

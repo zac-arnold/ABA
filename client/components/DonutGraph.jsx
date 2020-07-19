@@ -7,14 +7,14 @@ class DonutGraph extends React.Component {
     count: 0
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       count: this.state.count + 1
     })
     this.updateGraph(this.updateData(this.props))
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     console.log(this.state)
     this.updateGraph(this.updateData(this.props))
   }
@@ -58,7 +58,6 @@ class DonutGraph extends React.Component {
   }
 
   updateGraph = (data) => {
-
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
@@ -88,7 +87,7 @@ class DonutGraph extends React.Component {
     const pie = d3.pie()
       .sort(null) // Do not sort group by size
       .value(function (d) { return d.value })
-    const data_ready = pie(d3.entries(data))
+    const dataReady = pie(d3.entries(data))
 
     // The arc generator
     const arc = d3.arc()
@@ -103,7 +102,7 @@ class DonutGraph extends React.Component {
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
       .selectAll('allSlices')
-      .data(data_ready)
+      .data(dataReady)
       .enter()
       .append('path')
       .attr('d', arc)
@@ -133,7 +132,7 @@ class DonutGraph extends React.Component {
     // Add the polylines between chart and labels:
     svg
       .selectAll('allLabels')
-      .data(data_ready)
+      .data(dataReady)
       .enter()
       .append('text')
       .text(function (d) { return d.data.key })
@@ -149,15 +148,14 @@ class DonutGraph extends React.Component {
       })
   }
 
-  render() {
-    if(this.state.count > 1) {
+  render () {
+    if (this.state.count > 1) {
       console.log(this.state.count)
       return <div id='graph-container'>hi</div>
     } else {
       return null
     }
   }
-
 }
 
 const mapStateToProps = (state) => {

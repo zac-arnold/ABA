@@ -29,7 +29,6 @@ class ExpenseEntry extends React.Component {
     this.props.dispatch(sendExpenseToStore(data))
   }
 
-
   render () {
     return (
       <form onSubmit={this.changeHandler}>

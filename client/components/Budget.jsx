@@ -8,7 +8,7 @@ const Budget = () => {
   return (
 
     <Container fluid className='p-0'>
-        <Title />
+      <Title />
       <Row className='m-0'>
         <Col className='m-0 p-2'>
           <SideBar />

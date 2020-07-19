@@ -14,8 +14,7 @@ function incomes (state = initialState, action) {
       return [...state, action.income]
 
     case DELETE_INCOME:
-      const newstate = state.filter(element => element.id !== action.id)
-      return newstate
+      return state.filter(element => element.id !== action.id)
 
     default:
       return state

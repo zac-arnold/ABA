@@ -24,7 +24,6 @@ router.post('/', async (req, res) => {
           const { username } = user
           const client = { username }
           res.status(202).json(client)
-
         })
         .catch(err => {
           return res.status(401).send(err.message)

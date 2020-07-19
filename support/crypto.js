@@ -15,7 +15,6 @@ function generateSalt () {
 
 function generateSessionId () {
   return crypto.randomBytes(40).toString('hex')
-
 }
 module.exports = {
   hash,

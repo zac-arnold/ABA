@@ -3,7 +3,6 @@ const express = require('express')
 
 const cookieParser = require('cookie-parser')
 
-
 const register = require('./routes/register')
 const user = require('./routes/user')
 const budget = require('./routes/budget')

@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 const IncomeDisplay = (props) => {
   if (props.incomes) {
-
     return (
       <>
         <table>
