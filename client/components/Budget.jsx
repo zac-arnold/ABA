@@ -14,7 +14,7 @@ const Budget = () => {
           <SideBar />
         </Col>
         <Col className='p-0'>
-          <div className='p-1 border border-dark rounded my_dataviz overflow-hidden'>
+          <div className='p-1 border border-dark rounded my_dataviz overflow-hidden mt-2'>
           <svg id="my_dataviz"></svg>
           </div>
           < DonutGraph />

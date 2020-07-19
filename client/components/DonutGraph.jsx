@@ -78,7 +78,7 @@ class DonutGraph extends React.Component {
     const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-    const radius = Math.min(width / 2, height / 2)
+    const radius = Math.min(width / 1.7, height / 1.7)
 
     // append the svg object to the div called 'donut-graph '
     const svg = d3.select('#my_dataviz')
