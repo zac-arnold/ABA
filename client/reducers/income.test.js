@@ -46,10 +46,8 @@ test('DELETE_INCOME deletes an income from the Income array', () => {
   const testAction = {
     type: DELETE_INCOME,
     income: {
-      id: 300,
-      name: '2nd Salary',
-      amount: 20,
-      frequency: 'one off'
+      id: 300
+
     }
   }
   // Act
