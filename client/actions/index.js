@@ -3,13 +3,10 @@ import { newClient, login, newBudget, signout } from '../api'
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
 export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
-
 export const DELETE_EXPENSE = 'DELETE_EXPENSE'
 export const DELETE_INCOME = 'DELETE_INCOME'
-
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
-
 export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 export const SAVE_BUDGET = 'SAVE_BUDGET'
