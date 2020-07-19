@@ -1,6 +1,7 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 class DonutGraph extends React.Component {
   state = {
@@ -58,7 +59,9 @@ class DonutGraph extends React.Component {
     // convert values to percentage of total income
     const difference = 100 - ((100 / MonthlyIncome) * sumTotal)
     data.Surplus = difference
-    console.log(data)
+    if(isNaN(data.Surplus)){
+      return {Surplus: 100}
+    }
     return data
   }
 
