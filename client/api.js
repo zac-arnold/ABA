@@ -38,7 +38,10 @@ export function newBudget (budget) {
 }
 
 export function signout () {
-  console.log('passing through signout function in api.js')
   return request
     .get(`${rootUrl}/logout`)
+    .then(response => {
+      return response.body
+    })
+    .catch('Failed to delete cookie from database')
 }

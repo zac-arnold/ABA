@@ -18,10 +18,4 @@ class Logout extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         session: state.
-//     }
-// }
-
-export default connect(mapStateToProps)(Logout)
+export default connect()(Logout)
