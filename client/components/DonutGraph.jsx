@@ -52,11 +52,13 @@ class DonutGraph extends React.Component {
     // convert values to percentage of total income
     const difference = 100 - ((100 / totalIncome) * sumTotal)
     data.Surplus = difference
+
     console.log(data)
     return data
   }
 
   updateGraph = (data) => {
+
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
@@ -155,6 +157,7 @@ class DonutGraph extends React.Component {
       return null
     }
   }
+
 }
 
 const mapStateToProps = (state) => {

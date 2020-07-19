@@ -1,5 +1,7 @@
 import React from 'react'
-import { connect, useState } from 'react-redux'
+
+import { connect } from 'react-redux'
+
 import { sendExpenseToStore } from '../actions/index'
 
 class ExpenseEntry extends React.Component {
@@ -14,7 +16,7 @@ class ExpenseEntry extends React.Component {
   changeHandler = (evt) => {
     evt.preventDefault()
     const { value, name } = evt.target
-    console.log(name)
+
     this.setState({
       [name]: value
     })
@@ -27,23 +29,19 @@ class ExpenseEntry extends React.Component {
     this.props.dispatch(sendExpenseToStore(data))
   }
 
-  // changeHandler = (evt) => {
-  //   evt.preventDefault()
-  //   const { value, name } = evt.target
-  //   console.log(evt)
-  // }
 
   render () {
     return (
-      <form onSubmit={(evt) => this.changeHandler(evt)}>
+      <form onSubmit={this.changeHandler}>
         <label>Name</label>
-        <input onChange={this.changeHandler(evt)} type='text' placeholder='e.g petrol' name='name' value={this.state.name} />
+        <input onChange={this.changeHandler} type='text' placeholder='e.g petrol' name='name' value={this.state.name} />
         <label>Amount</label>
-        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g $50' name='amount' value={this.state.amount} />
+        <input onChange={this.changeHandler} type='text' placeholder='e.g $50' name='amount' value={this.state.amount} />
         <label>Category</label>
-        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g Groceries' name='category' value={this.state.category} />
+        <input onChange={this.changeHandler} type='text' placeholder='e.g Groceries' name='category' value={this.state.category} />
         <label>Frequency</label>
-        <input onChange={(evt) => this.changeHandler(evt)} type='text' placeholder='e.g weekly' name='frequency' value={this.state.frequency} />
+        <input onChange={this.changeHandler} type='text' placeholder='e.g weekly' name='frequency' value={this.state.frequency} />
+
         <button type="submit" value="submit" onClick={() => this.sendToStore()}>Submit</button>
       </form>
     )

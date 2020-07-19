@@ -15,6 +15,8 @@ export const DELETE_INCOME = 'DELETE_INCOME'
 
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
+export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 
 export function sendIncomeToStore (income) {
@@ -23,8 +25,6 @@ export function sendIncomeToStore (income) {
     income
   }
 }
-
-export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 export function sendExpenseToStore (expense) {
   return {
@@ -56,6 +56,13 @@ export function deleteExpense (id) {
 export function deleteIncome (id) {
   return {
     type: DELETE_INCOME,
+    id: id
+  }
+}
+
+export function deleteExpense (id) {
+  return {
+    type: DELETE_EXPENSE,
     id: id
   }
 }

@@ -5,7 +5,9 @@ const initialState = [{
   name: 'Power bill',
   date: 1594938869,
   amount: 300,
-  frequency: null,
+
+  frequency: 'weekly',
+
   category: 'Utilities'
 },
 {
@@ -13,7 +15,9 @@ const initialState = [{
   name: 'Countdown Ponsonby',
   date: 1594938869,
   amount: 80,
-  frequency: null,
+
+  frequency: 'weekly',
+
   category: 'Groceries'
 },
 {
@@ -21,7 +25,7 @@ const initialState = [{
   name: 'Rent',
   date: 1594938869,
   amount: 220.00,
-  frequency: null,
+  frequency: 'weekly',
   category: 'Accomodation'
 },
 {
@@ -29,7 +33,9 @@ const initialState = [{
   name: 'Netflix bill',
   date: 1594938869,
   amount: 200,
-  frequency: null,
+
+  frequency: 'weekly',
+
   category: 'Entertainment'
 },
 {
@@ -37,19 +43,22 @@ const initialState = [{
   name: 'Eating out with mates',
   date: 1594938869,
   amount: 100,
-  frequency: null,
+
+  frequency: 'weekly',
+
   category: 'Treats'
 }]
 
 function expenses(state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
-      action.expense.amount = Number(action.expense.amount)
+      action.expense.amount = Number(action.expense.amount)0
       return [...state, action.expense]
 
     case DELETE_EXPENSE:
       const newstate = state.filter(element => element.id !== action.id)
       return newstate
+
 
     default:
       return state
