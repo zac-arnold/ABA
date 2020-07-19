@@ -4,18 +4,19 @@ import { connect } from 'react-redux'
 
 class DonutGraph extends React.Component {
   state = {
-    count: 0
+    count: false
   }
 
   componentDidMount() {
+    // this.updateGraph(this.updateData(this.props))
     this.setState({
-      count: this.state.count + 1
+      count: true
     })
-    this.updateGraph(this.updateData(this.props))
   }
 
   componentDidUpdate() {
-    console.log(this.state)
+    d3.selectAll("svg > *").remove()
+    this.updateGraph(this.updateData(this.props))
   }
 
   updateData = (props) => {
@@ -71,9 +72,8 @@ class DonutGraph extends React.Component {
 
     // append the svg object to the div called 'donut-graph '
     const svg = d3.select('#my_dataviz')
-      .append('svg')
-      .attr("width", width)
-      .attr("height", height)
+      .attr('width', width)
+      .attr('height', height)
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
@@ -151,7 +151,7 @@ class DonutGraph extends React.Component {
   }
 
   render() {
-    return <div id="my_dataviz"></div>
+    return null
   }
 }
 
