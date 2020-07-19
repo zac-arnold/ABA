@@ -7,17 +7,17 @@ import DonutGraph from './DonutGraph'
 const Budget = () => {
   return (
 
-    <Container fluid className='p-0'>
+    <Container fluid className='p-0' md={12}>
       <Title />
       <Row className='m-0'>
-        <Col className='m-0 p-2'>
-          <SideBar />
-        </Col>
-        <Col className='p-0'>
-          <div className='p-1 border border-dark rounded my_dataviz overflow-hidden mt-2'>
-          <svg id="my_dataviz"></svg>
+        <Col className='p-0 md-12' md={12} lg={6}>
+          <div className='p-1 border border-dark rounded my_dataviz overflow-hidden mt-2 m-auto'>
+            <svg id="my_dataviz"></svg>
           </div>
           < DonutGraph />
+        </Col>
+        <Col className='m-0 p-2' md={12} lg={6}>
+          <SideBar />
         </Col>
       </Row>
     </Container>
