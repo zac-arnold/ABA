@@ -4,17 +4,11 @@ const initialState = [{
 
   name: 'My Salary',
   amount: 50000,
-  frequency: 365
-}]
-
-
-  name: 'My Salary',
-  amount: 50000,
   frequency: 'annually'
 
 }]
 
-function incomes(state = initialState, action) {
+function incomes (state = initialState, action) {
   switch (action.type) {
     case SEND_INCOME:
       return [...state, action.income]

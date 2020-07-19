@@ -49,16 +49,15 @@ const initialState = [{
   category: 'Treats'
 }]
 
-function expenses(state = initialState, action) {
+function expenses (state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
-      action.expense.amount = Number(action.expense.amount)0
+      action.expense.amount = Number(action.expense.amount)
       return [...state, action.expense]
 
     case DELETE_EXPENSE:
       const newstate = state.filter(element => element.id !== action.id)
       return newstate
-
 
     default:
       return state

@@ -1,9 +1,4 @@
-
-
-import { newClient } from '../api'
-
 import { dispatch } from "d3"
-
 
 import { newClient, login } from '../api'
 
@@ -17,7 +12,7 @@ export const DELETE_INCOME = 'DELETE_INCOME'
 
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
-export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+
 export const SEND_EXPENSE = 'SEND_EXPENSE'
 
 
@@ -58,13 +53,6 @@ export function deleteExpense (id) {
 export function deleteIncome (id) {
   return {
     type: DELETE_INCOME,
-    id: id
-  }
-}
-
-export function deleteExpense (id) {
-  return {
-    type: DELETE_EXPENSE,
     id: id
   }
 }
