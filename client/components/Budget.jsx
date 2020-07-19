@@ -14,11 +14,7 @@ const Budget = () => {
           <SideBar />
         </Col>
         <Col className='p-0'>
-          <Carousel>
-            <Carousel.Item>
-              < DonutGraph />
-            </Carousel.Item>
-          </Carousel>
+          < DonutGraph/>
         </Col>
       </Row>
     </Container>
