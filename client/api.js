@@ -36,3 +36,9 @@ export function newBudget (budget) {
     })
     .catch(err => console.log('api.js ', err))
 }
+
+export function signout () {
+  console.log('passing through signout function in api.js')
+  return request
+    .get(`${rootUrl}/logout`)
+}
