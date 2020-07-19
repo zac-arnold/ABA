@@ -1,13 +1,12 @@
 const connection = require('./connection')
-const { hash, generateSalt } = require('../../support/crypto')
+const { hash, generateSalt, generateSessionId } = require('../../support/crypto')
 
 module.exports = {
   registerUser,
-  getUserByName
+  login
 }
 
 function registerUser (credentials, db = connection) {
-  console.log('client.js ', credentials)
   return doesUserExist(credentials.username, db)
     .then(exists => {
       if (exists) {
@@ -37,15 +36,47 @@ function doesUserExist (username, db = connection) {
     .count('id as number')
     .where('username', username)
     .then(rows => {
-      console.log('doesUserExist ', rows)
       return rows[0].number > 0
     })
 }
 
-function getUserByName (credentials, db = connection) {
-  console.log('db', credentials)
+function login (credentials, db = connection) {
+  // console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
+    .select()
+    .first()
+    .then(user => {
+      if (!user) {
+        return Promise.reject(new Error('User not found'))
+      }
+      return user
+    })
+    .then(async (user) => {
+      const password = await hash(credentials.password, user.salt)
+      if (user.password === password) {
+        return user
+      }
+      return Promise.reject(new Error('Passwords do not match'))
+    })
+    .then((user) => {
+      // console.log('db returned user ', user)
+      const randomString = generateSessionId()
+      const objectToInsert = { id: randomString, user_id: user.id }
+      return db('session')
+        .insert(objectToInsert)
+        .then(async () => {
+          return {
+            session: await getSession(randomString),
+            user
+          }
+        })
+    })
+}
+
+function getSession (id, db = connection) {
+  return db('session')
+    .where('id', id)
     .select()
     .first()
 }

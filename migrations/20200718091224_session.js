@@ -1,7 +1,7 @@
 exports.up = knex => {
   return knex.schema.createTable('session', (table) => {
-    table.increments('id').primary()
-    table.integer('user_id')
+    table.string('id').primary()
+    table.string('user_id')
   })
 }
 

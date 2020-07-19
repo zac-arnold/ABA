@@ -4,7 +4,7 @@ const rootUrl = 'http://localhost:3000/api/v1'
 const acceptJsonHeader = { Accept: 'application/json' }
 
 export function newClient (form) {
-  console.log('api.js ', form)
+  // console.log('api.js ', form)
   return request
     .post(`${rootUrl}/register`)
     .set(acceptJsonHeader)

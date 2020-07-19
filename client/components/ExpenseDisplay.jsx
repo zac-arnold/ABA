@@ -1,7 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useState } from 'react-redux'
 
 const ExpenseDisplay = (props) => {
+
   // const [expenseState, expenseSet] = useState(0)
 
   const deleteExpense = () => {
@@ -9,6 +10,7 @@ const ExpenseDisplay = (props) => {
   }
 
   if (props.expenses) {
+
     return (
       <>
         <table>
@@ -30,9 +32,11 @@ const ExpenseDisplay = (props) => {
                     <td>{expenseItem.name}</td>
                     <td>{expenseItem.amount}</td>
                     <td>{expenseItem.category}</td>
+
                     <td>{expenseItem.frequency}</td>
                     <td><button onClick={() => deleteExpense()} >-</button></td>
                     <td><button onClick={() => updateExpense()} >Update</button></td>
+
                   </tr>
                 </>
               )

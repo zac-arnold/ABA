@@ -7,16 +7,28 @@ const router = express.Router()
 module.exports = router
 
 router.post('/', async (req, res) => {
-  console.log('register.js: ', req.body)
   const { username, email, password } = req.body
   const credentials = { username, email, password }
   return db.registerUser(credentials)
     .then(() => {
-      return db.login(username, password)
+      const newUser = { username: credentials.username, password: credentials.password }
+      console.log('newUser ', newUser)
+      return db.login(newUser)
+        .then(response => {
+          const { user, session } = response
+          res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
+          return user
+        })
+        .then((user) => {
+          const { username } = user
+          const client = { username }
+          res.status(202).json(client)
+        })
+        .catch(err => {
+          return res.status(401).send(err.message)
+        })
     })
     .catch(err => {
       return res.status(400).send(err.message)
     })
 })
-
-//router.post('/login', .... db.login())

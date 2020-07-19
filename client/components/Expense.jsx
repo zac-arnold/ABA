@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
+
 import { sendExpenseToStore } from '../actions/index'
 
 class ExpenseEntry extends React.Component {
@@ -14,9 +16,11 @@ class ExpenseEntry extends React.Component {
   changeHandler = (evt) => {
     evt.preventDefault()
     const { value, name } = evt.target
+
     this.setState({
       [name]: value
     })
+    console.log(this.state)
   }
 
   sendToStore = () => {
@@ -24,6 +28,7 @@ class ExpenseEntry extends React.Component {
     data.id = data.id + 1
     this.props.dispatch(sendExpenseToStore(data))
   }
+
 
   render () {
     return (
@@ -36,6 +41,7 @@ class ExpenseEntry extends React.Component {
         <input onChange={this.changeHandler} type='text' placeholder='e.g Groceries' name='category' value={this.state.category} />
         <label>Frequency</label>
         <input onChange={this.changeHandler} type='text' placeholder='e.g weekly' name='frequency' value={this.state.frequency} />
+
         <button type="submit" value="submit" onClick={() => this.sendToStore()}>Submit</button>
       </form>
     )

@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
 
-const DonutGraph = (props) => {
-  // set the dimensions and margins of the graph
-  const [graphState, setGraphState] = useState({})
+class DonutGraph extends React.Component {
+  state = {
+    count: 0
+  }
 
-  useEffect(() => {
+  componentDidMount() {
+    this.setState({
+      count: this.state.count + 1
+    })
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  componentDidUpdate() {
+    console.log(this.state)
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  updateData = (props) => {
     const frequency = 30.4375 // days in a year
     const totalIncome = props.incomes[0].amount / frequency // divide yearly salary
 
@@ -39,17 +52,19 @@ const DonutGraph = (props) => {
     // convert values to percentage of total income
     const difference = 100 - ((100 / totalIncome) * sumTotal)
     data.Surplus = difference
-    console.log('hi')
-    updateGraph(data)
-  }, [])
 
-  const updateGraph = (data) => {
+    console.log(data)
+    return data
+  }
+
+  updateGraph = (data) => {
+
     const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
     const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 
     const width = vw / 2
-    const height = vh / 1.5
-    const margin = 20
+    const height = vh
+    const margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width, height) / 2 - margin
@@ -134,9 +149,15 @@ const DonutGraph = (props) => {
       })
   }
 
-  return (
-    <div id='donut-graph'></div>
-  )
+  render() {
+    if(this.state.count > 1) {
+      console.log(this.state.count)
+      return <div id='graph-container'>hi</div>
+    } else {
+      return null
+    }
+  }
+
 }
 
 const mapStateToProps = (state) => {

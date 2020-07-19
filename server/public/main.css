@@ -1,15 +1,23 @@
-body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  border: border-box;
-  font-family: 'Baloo Da 2', cursive;
+svg {
+  width: 100%;
+  height: 600px;
 }
 
-div{
+
+/* body {
+  width: 100%;
+  height: 100vh;
+}
+
+#app{
+  width: 100%;
+  height: 100%
+}
+
+/* div{
   height:100%;
   width:100%;
-}
+} */
 
 #app {
   width: 100%;
@@ -26,14 +34,14 @@ div{
 button {
   width: 4rem;
   height: 2rem;
-}
+} */
 
 /* #welcome-page {
   width: 100%;
   height: 100%;
   border: 1px solid green;
 } */
-
+/* 
 #donut-graph {
   width: 100%;
   height: 100%;
@@ -136,4 +144,4 @@ button {
 #register-box{
   margin: 0 auto;
   height: 50%;
-}
+} */

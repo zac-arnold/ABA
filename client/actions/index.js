@@ -1,14 +1,23 @@
+
+import { newClient } from '../api'
+
 import { dispatch } from "d3"
 
 import { newClient, login } from '../api'
 
+
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
 export const NEW_REGISTER_SUCCESS = 'NEW_REGISTER_SUCCESS'
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE'
+export const DELETE_INCOME = 'DELETE_INCOME'
+
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const DELETE_EXPENSE = 'DELETE_EXPENSE'
 export const SEND_EXPENSE = 'SEND_EXPENSE'
+
 
 export function sendIncomeToStore (income) {
   return {
@@ -30,10 +39,24 @@ export function newRegister () {
   }
 }
 
-export function newRegisterSuccess (res) {
+export function newRegisterSuccess (client) {
   return {
     type: NEW_REGISTER_SUCCESS,
-    res
+    client
+  }
+}
+
+export function deleteExpense (id) {
+  return {
+    type: DELETE_EXPENSE,
+    id: id
+  }
+}
+
+export function deleteIncome (id) {
+  return {
+    type: DELETE_INCOME,
+    id: id
   }
 }
 
@@ -45,12 +68,13 @@ export function deleteExpense (id) {
 }
 
 export function register (form) {
-  console.log('actions.index.js', form)
+  // console.log('actions.index.js', form)
   return (dispatch) => {
     dispatch(newRegister())
 
     return newClient(form)
-      .then(res => dispatch(newRegisterSuccess(res)))
+      .then(client => dispatch(newRegisterSuccess(client)))
+      // NEED TO ADD ERROR ACTION .catch(err => dispatch(showError(err.message)))
   }
 }
 
@@ -68,7 +92,7 @@ export function signInSuccess (res) {
 }
 
 export function signIn (form) {
-  console.log('actions.index.js', form)
+  // console.log('actions.index.js', form)
   return (dispatch) => {
     dispatch(signingIn())
 

@@ -7,15 +7,20 @@ const router = express.Router()
 module.exports = router
 
 router.post('/', (req, res) => {
-  console.log('user.js: ', req.body)
   const { username, password } = req.body
   const credentials = { username, password }
-  return db.getUserByName(credentials)
-    .then((res) => {
-      console.log('returned user.js ', res.body)
-      return res.status(202).res(res[0])
+  return db.login(credentials)
+    .then(response => {
+      const { user, session } = response
+      res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
+      return user
+    })
+    .then((user) => {
+      const { username } = user
+      const client = { username }
+      res.status(202).json(client)
     })
     .catch(err => {
-      return res.status(400).send(err.message)
+      return res.status(401).send(err.message)
     })
 })
