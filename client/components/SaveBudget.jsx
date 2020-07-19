@@ -5,7 +5,6 @@ import { saveBudget } from '../actions'
 
 class SaveBudget extends React.Component {
   submitHandler = evt => {
-    console.log(this.props)
     evt.preventDefault()
     this.props.dispatch(saveBudget(this.props))
   }

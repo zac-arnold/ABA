@@ -36,3 +36,12 @@ export function newBudget (budget) {
     })
     .catch(err => console.log('api.js ', err))
 }
+
+export function signout () {
+  return request
+    .get(`${rootUrl}/logout`)
+    .then(response => {
+      return response.body
+    })
+    .catch('Failed to delete cookie from database')
+}
