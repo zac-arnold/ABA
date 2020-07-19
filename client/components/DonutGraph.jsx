@@ -15,6 +15,7 @@ class DonutGraph extends React.Component {
     })
   }
 
+
   componentDidUpdate() {
     d3.selectAll('svg > *').remove()
     let transitionData = this.updateData(this.props)
@@ -160,6 +161,7 @@ class DonutGraph extends React.Component {
       .style('stroke-width', '2px')
       .style('opacity', 0.7)
   }
+
 
   render() {
     return null

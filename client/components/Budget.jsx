@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import Title from './Title'
 import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
+import Footer from './Footer'
 
 const Budget = () => {
   return (
@@ -20,6 +21,7 @@ const Budget = () => {
           <SideBar />
         </Col>
       </Row>
+      <Footer />
     </Container>
 
   )

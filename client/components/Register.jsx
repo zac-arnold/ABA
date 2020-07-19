@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { register } from '../actions'
+import { propTypes } from 'react-bootstrap/esm/Image'
 
 class Register extends React.Component {
   state = {
@@ -12,7 +13,6 @@ class Register extends React.Component {
 
   handleChange = evt => {
     const { name, value } = evt.target
-    console.log(name, value)
     this.setState({
       [name]: value
     })
@@ -41,4 +41,10 @@ class Register extends React.Component {
   }
 }
 
-export default connect()(Register)
+const mapStateToProps = state => {
+  return {
+    user: state.newClient
+  }
+}
+
+export default connect(mapStateToProps)(Register)

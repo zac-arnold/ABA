@@ -1,4 +1,4 @@
-import { newClient, login } from '../api'
+import { newClient, login, newBudget, signout } from '../api'
 
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
@@ -8,6 +8,9 @@ export const DELETE_INCOME = 'DELETE_INCOME'
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SEND_EXPENSE = 'SEND_EXPENSE'
+
+export const SAVE_BUDGET = 'SAVE_BUDGET'
+export const SAVE_BUDGET_SUCESS = 'SAVE_BUDGET_SUCCESS'
 
 export function sendIncomeToStore (income) {
   return {
@@ -81,5 +84,51 @@ export function signIn (form) {
 
     return login(form)
       .then(res => dispatch(signInSuccess(res)))
+  }
+}
+
+export function savingNewBudget () {
+  return {
+    type: SAVE_BUDGET
+  }
+}
+
+export function saveBudgetSuccess (res) {
+  return {
+    type: SAVE_BUDGET_SUCESS,
+    res
+  }
+}
+
+export function saveBudget (budget) {
+  return (dispatch) => {
+    dispatch(savingNewBudget())
+
+    return newBudget(budget)
+      .then(res => dispatch(saveBudgetSuccess(res)))
+  }
+}
+
+export const LOGGING_OUT = 'LOGGING_OUT'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+
+export function loggingOut () {
+  return {
+    type: LOGGING_OUT
+  }
+}
+
+export function logoutSuccess () {
+  return {
+    type: LOGOUT_SUCCESS
+  }
+}
+
+export function logout () {
+  return (dispatch) => {
+    dispatch(loggingOut())
+
+    return signout()
+      .then(res => dispatch(logoutSuccess(res)))
   }
 }
