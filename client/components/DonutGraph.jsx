@@ -15,7 +15,7 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate () {
-    console.log(this.state)
+  //  console.log(this.state)
     d3.selectAll('svg > *').remove()
     this.updateGraph(this.updateData(this.props))
   }

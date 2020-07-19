@@ -19,7 +19,6 @@ function authentication (req, res, next) {
   // set req.currentUser = user
   // call next()
   next()
-  console.log('bye')
 }
 
 module.exports = {
