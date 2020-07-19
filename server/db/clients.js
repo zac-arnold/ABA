@@ -3,7 +3,8 @@ const { hash, generateSalt, generateSessionId } = require('../../support/crypto'
 
 module.exports = {
   registerUser,
-  login
+  login,
+  deleteSession
 }
 
 function registerUser (credentials, db = connection) {
@@ -79,4 +80,11 @@ function getSession (id, db = connection) {
     .where('id', id)
     .select()
     .first()
+}
+
+function deleteSession (sessionId, db = connection) {
+  console.log('clients.js ', sessionId)
+  // return db('session')
+  //   .where('id', sessionId.session)
+  //   .del()
 }

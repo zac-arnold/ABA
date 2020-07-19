@@ -1,6 +1,6 @@
 const express = require('express')
 
-const db = require('../db/clients')
+// const db = require('../db/clients')
 
 const router = express.Router()
 
@@ -8,10 +8,12 @@ module.exports = router
 
 router.get('/', (req, res) => {
   console.log('logout route ', req.cookies)
-  const session = req.cookies
-  db.deleteSession(session)
+  const sessionId = req.cookies
+  console.log('logout.js', sessionId)
+//   db.deleteSession(sessionId)
+// NEED TO FIND A WAY TO DELETE SESSION FROM DATABASE, CANNOT CHANGE THIS TO A 
+// DELETE ROUTE WITHOUT BREAKING CLIENT_SIDE DELETION
   
-  // console.log('BEFORE logout route', res.clearCookie('session', { expires: new Date(0) }))
   res.clearCookie('session', { expires: new Date(0) })
   res.redirect('/')
 })

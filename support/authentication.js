@@ -1,7 +1,7 @@
 const connection = require('../server/db/connection')
 
 function authentication (req, res, next) {
-  console.log(req.cookies)
+  // console.log(req.cookies)
   req.loggedIn = false
   req.currentUser = null
 
