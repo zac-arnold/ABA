@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { saveBudget } from '../actions'
+
 class SaveBudget extends React.Component {
   submitHandler = evt => {
     console.log(this.props)
     evt.preventDefault()
-    this.props.dispatch(this.props)
+    this.props.dispatch(saveBudget(this.props))
   }
 
   render () {
