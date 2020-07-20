@@ -83,7 +83,6 @@ class DonutGraph extends React.Component {
     const height = 500
     const width = 500
     // const margin = 0
-    console.log(data)
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width / 1.7, height / 1.7)
 

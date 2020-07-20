@@ -18,7 +18,7 @@ class RegisterModal extends React.Component {
     })
   }
 
-  submitHandler = evt => {
+  submitHandler (evt) {
     evt.preventDefault()
     this.props.dispatch(register(this.state))
   }

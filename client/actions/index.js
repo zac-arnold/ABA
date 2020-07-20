@@ -1,4 +1,5 @@
 import { newClient, login, newBudget, signout } from '../api'
+import { findCookie } from '../authenticated'
 
 export const SEND_INCOME = 'SEND_INCOME'
 export const NEW_REGISTER_SENDING = 'NEW_REGISTER_SENDING'
@@ -59,7 +60,10 @@ export function register (form) {
     dispatch(newRegister())
 
     return newClient(form)
-      .then(client => dispatch(newRegisterSuccess(client)))
+      .then(client => {
+        findCookie()
+        dispatch(newRegisterSuccess(client))
+      })
       // NEED TO ADD ERROR ACTION .catch(err => dispatch(showError(err.message)))
   }
 }
@@ -102,6 +106,7 @@ export function saveBudgetSuccess (res) {
 
 export function saveBudget (budget) {
   return (dispatch) => {
+    // console.log('actions.js ', budget)
     dispatch(savingNewBudget())
 
     return newBudget(budget)
