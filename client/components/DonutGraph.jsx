@@ -1,60 +1,60 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
-import { compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
+import { sumOfAmounts, frequencyAdjustment, compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
   state = {
     previousData: {}
   }
 
-  componentDidMount () {
-    // this.updateGraph(this.updateData(this.props))
-    this.setState({
-      previousData: { Surplus: 100 }
-    })
-  }
-
-  componentDidUpdate () {
-    d3.selectAll('svg > *').remove()
-    const transitionData = this.updateData(this.props)
-    if (this.previousData !== transitionData) {
-      // console.log(this.previousData)
-      // console.log(this.transitionData)
-      this.updateGraph(transitionData)
+  componentDidMount() {
+    let i = 0
+    const circleAnimation = () => {
+      if (i++ < 200) {
+        d3.selectAll('svg > *').remove()
+        this.updateGraph({Surplus: 100}, (0.8 + Math.sin(i / 10) / 55))
+        setTimeout(circleAnimation, 30)
+      }
     }
-
-    // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
-    // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
+    circleAnimation()
   }
+
+  componentDidUpdate() {
+    d3.selectAll('svg > *').remove()
+    this.updateGraph(this.updateData(this.props))
+  }
+
+  // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
+  // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
 
   updateData = (props) => {
-    const timeFrame = 30.4375 // set to a month for now
-    let totalIncome = 0
-    console.log(props)
-    props.incomes.forEach(value => {
-      totalIncome += value.amount
-    })
 
-    const MonthlyIncome = totalIncome / timeFrame
-
+    const { incomes, expenses } = props
+    const timeframe = 30.4375// set at monthly for now (days in a month)
+    const adjustedincomes = frequencyAdjustment(incomes, timeframe)
+    const adjustedexpenses = frequencyAdjustment(expenses, timeframe)
+    const totalIncome = sumOfAmounts(adjustedincomes)
+    console.log(totalIncome)
     // this function puts all categories into an array of unique values
-    const categories = compressObjKeystoUniqueArray(props.expenses)
-
+    const categories = compressObjKeystoUniqueArray(adjustedexpenses)
     // this function uses the unique category array to sum all amounts of that category
-    const { data, sumTotalExpenses} = sumPercentageValuesOfObject(props.expenses, categories, MonthlyIncome)
-
+    const { data, sumTotalExpenses } = sumPercentageValuesOfObject(adjustedexpenses, categories, totalIncome)
+    console.log(data)
     // convert values to percentage of total income
-    const difference = 100 - convertToPercentageOfIncome(MonthlyIncome, sumTotalExpenses)
+    const difference = 100 - convertToPercentageOfIncome(totalIncome, sumTotalExpenses)
+    console.log(difference)
 
-    data.Surplus = difference
-    if (isNaN(data.Surplus)) {
+    if (!(data.Surplus)) {
       return { Surplus: 100 }
+    } else {
+      data.Surplus = difference
     }
+    console.log(data)
     return data
   }
 
-  updateGraph = (data) => {
+  updateGraph = (data, animate_radius) => {
     const height = 500
     const width = 500
     // const margin = 0
@@ -84,7 +84,7 @@ class DonutGraph extends React.Component {
     // The arc generator
     const arc = d3.arc()
       .innerRadius(radius * 0.6) // This is the size of the donut hole
-      .outerRadius(radius * 0.8)
+      .outerRadius(radius * animate_radius)
 
     // inner border circle
     svg
@@ -143,10 +143,11 @@ class DonutGraph extends React.Component {
       .style('opacity', 0.7)
   }
 
-  render () {
+  render() {
     return null
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {
