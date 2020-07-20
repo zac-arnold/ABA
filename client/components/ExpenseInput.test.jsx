@@ -24,3 +24,16 @@ test('adds expense to store with valid inputs', async () => {
 
   return expect(state.expense[0].amount).toBe(40000)
 })
+
+test('does not add expense to store with invalid inputs', async () => {
+  expect.assertions(1)
+  const { store } = renderWithRedux(<ExpenseInput />)
+
+  // intentionally not filling out the form
+
+  userEvent.click(screen.getByRole('button'))
+
+  const state = store.getState()
+  await waitFor(() => state.expense.length) // not sure how useful this is :|
+  return expect(state.expense).toHaveLength(1)
+})
