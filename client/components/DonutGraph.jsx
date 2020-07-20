@@ -1,62 +1,82 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
-import { compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
+import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  state = {
-    previousData: {}
-  }
-
   componentDidMount () {
-    // this.updateGraph(this.updateData(this.props))
-    this.setState({
-      previousData: { Surplus: 100 }
-    })
+    let i = 0
+    const circleAnimation = () => {
+      if (i++ < 150) {
+        d3.selectAll('svg > *').remove()
+        this.updateGraph({ Surplus: 100 }, (0.8 + Math.sin(i / 10) / 55))
+        setTimeout(circleAnimation, 30)
+      }
+    }
+    circleAnimation()
   }
 
   componentDidUpdate () {
-    d3.selectAll('svg > *').remove()
-    const transitionData = this.updateData(this.props)
-    if (this.previousData !== transitionData) {
-      // console.log(this.previousData)
-      // console.log(this.transitionData)
-      this.updateGraph(transitionData)
+    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { // case both filled out
+      const { data, totalExpenses } = this.updateData(this.props)
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 40) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) { // case expense only filled out
+      const totalExpenses = sumOfAmounts(this.props.expenses)
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 50) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+    } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { // case input only filled out
+      const totalIncomes = sumOfAmounts(this.props.incomes)
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 50) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph({ Difference: 100 }, 0.8, '+$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+    } else {
+      this.updateGraph({ Difference: 100 }, 0.8, '$0', 'enter your data')
     }
-
-    // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
-    // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
   }
+
+  // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
+  // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
 
   updateData = (props) => {
-    const frequency = 30.4375 // days in a year
-    let totalIncome = 0
-    props.incomes.forEach(value => {
-      totalIncome += value.amount
-    })
-
-    const MonthlyIncome = totalIncome / frequency
-    // this function puts all categories into an array of unique values
-    const categories = compressObjKeystoUniqueArray(props.expenses)
-
-    // this function uses the unique category array to sum all amounts of that category
-    const { data, sumTotalExpenses} = sumPercentageValuesOfObject(props.expenses, categories, MonthlyIncome)
-
-    // convert values to percentage of total income
-    const difference = 100 - convertToPercentageOfIncome(MonthlyIncome, sumTotalExpenses)
-
-    data.Surplus = difference
-    if (isNaN(data.Surplus)) {
-      return { Surplus: 100 }
+    const { incomes, expenses } = props
+    const timeframe = 30.4375// set at monthly for now (days in a month)
+    const adjustedincomes = incomefrequencyAdjustment(incomes, timeframe)
+    const adjustedexpenses = expensefrequencyAdjustment(expenses, timeframe)
+    const totalIncome = sumOfAmounts(adjustedincomes)
+    const totalExpenses = sumOfAmounts(adjustedexpenses)
+    const data = sumPercentageValuesOfObject(adjustedexpenses, compressObjKeystoUniqueArray(adjustedexpenses), totalIncome)
+    const graphData = {
+      data: data,
+      totalExpenses: (totalIncome - totalExpenses)
     }
-    return data
+    return graphData
   }
 
-  updateGraph = (data) => {
+  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
     const height = 500
     const width = 500
     // const margin = 0
-
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width / 1.7, height / 1.7)
 
@@ -82,7 +102,7 @@ class DonutGraph extends React.Component {
     // The arc generator
     const arc = d3.arc()
       .innerRadius(radius * 0.6) // This is the size of the donut hole
-      .outerRadius(radius * 0.8)
+      .outerRadius(radius * animateRadius)
 
     // inner border circle
     svg
@@ -106,19 +126,21 @@ class DonutGraph extends React.Component {
 
     svg
       .append('text')
-      .attr('x', -30)
-      .attr('y', -15)
+      .attr('x', '0%')
+      .attr('y', -30)
+      .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
       .style('font-size', '15px')
-      .text('you spent')
+      .text(`${label}`)
 
     svg
       .append('text')
-      .attr('x', -35)
-      .attr('y', 15)
+      .attr('x', '0%')
+      .attr('y', '0%')
+      .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
       .style('font-size', '30px')
-      .text('$1615')
+      .text(`${message}`)
 
     // svg
     //   .append('rect')

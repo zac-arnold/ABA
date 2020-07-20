@@ -1,12 +1,14 @@
-export function convertToPercentageOfIncome(incomeSum, expense) {
+export function convertToPercentageOfIncome (incomeSum, expense) {
+  console.log(incomeSum)
+  console.log(expense)
   return (100 / incomeSum) * expense
 }
 
-export function findDifferenceBetweenValues(a, b) {
+export function findDifferenceBetweenValues (a, b) {
   return Math.abs(a - b)
 }
 
-export function compressObjKeystoUniqueArray(arrayofobjs) {
+export function compressObjKeystoUniqueArray (arrayofobjs) {
   const categories = []
   arrayofobjs.forEach(expense => {
     if (categories.indexOf(expense.category) === -1) {
@@ -16,9 +18,9 @@ export function compressObjKeystoUniqueArray(arrayofobjs) {
   return categories
 }
 
-export function sumPercentageValuesOfObject (obj, arr, income) {
-  const data = { Surplus: 100 }
+export function sumPercentageValuesOfObject (obj, arr, totalincome) {
   let sumTotalExpenses = 0
+  const data = { Difference: 0 }
   arr.forEach(category => {
     obj.forEach(expense => {
       if (expense.category === category) {
@@ -31,11 +33,35 @@ export function sumPercentageValuesOfObject (obj, arr, income) {
         }
       }
     })
-    // convert values to percentage of total income
-    data[category] = convertToPercentageOfIncome(income, data[category])
+    data[category] = (100 / totalincome) * data[category]
   })
-  return {
-    data: data,
-    sumTotalExpenses: sumTotalExpenses
-  }
+  data.Difference = 100 - (100 / totalincome) * sumTotalExpenses
+  console.log(totalincome)
+  console.log(sumTotalExpenses)
+  return data
+}
+
+// takes and array of income objects and returns a frequency adjusted array of objects
+export function expensefrequencyAdjustment (entries, timeframe) {
+  entries.forEach(entry => {
+    if (!(entry.frequency === 1 || entry.frequency > timeframe)) {
+      entry.amount = entry.amount * (timeframe / entry.frequency)
+      entry.frequency = timeframe
+    }
+  })
+  return entries
+}
+
+export function incomefrequencyAdjustment (entries, timeframe) {
+  entries.forEach(entry => {
+    entry.amount = entry.amount * (timeframe / entry.frequency)
+    entry.frequency = timeframe
+  })
+  return entries
+}
+
+// takes an array of expenses or incomes and outputs a total sum of all amounts
+export function sumOfAmounts (obj) {
+  const total = obj.map(element => element.amount)
+  return total.reduce((acc, value) => acc + value)
 }

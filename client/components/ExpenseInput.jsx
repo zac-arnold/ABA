@@ -9,7 +9,7 @@ class ExpenseInput extends React.Component {
       amount: '',
       description: '',
       category: '',
-      frequency: ''
+      frequency: 1
     }
 
     changeHandler = (evt) => {
@@ -29,7 +29,7 @@ class ExpenseInput extends React.Component {
         amount: 0,
         description: '',
         category: '',
-        frequency: ''
+        frequency: 1
       })
     }
 
@@ -47,7 +47,7 @@ class ExpenseInput extends React.Component {
             </Row>
             <Form.Row className='m-0 p-2'>
               <Col>
-                <OverlayTrigger trigger="hover" placement="bottom"
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Amount</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
@@ -56,16 +56,16 @@ class ExpenseInput extends React.Component {
                 </OverlayTrigger>
               </Col>
               <Col>
-                <OverlayTrigger trigger="hover" placement="bottom"
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Description</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>description</strong> e.g rent</Popover.Content>
-                  </Popover>}>
+                  </Popover>} >
                   <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
                 </OverlayTrigger>
               </Col>
               <Col>
-                <OverlayTrigger trigger="hover" placement="bottom"
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Category</Popover.Title>
                     <Popover.Content>Please choose an expense <strong>category</strong></Popover.Content>
@@ -74,7 +74,7 @@ class ExpenseInput extends React.Component {
                 </OverlayTrigger>
               </Col>
               <Col>
-                <OverlayTrigger trigger="hover" placement="bottom"
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Frequency</Popover.Title>
                     <Popover.Content>Please choose an expense <strong>frequency</strong></Popover.Content>
@@ -91,7 +91,6 @@ class ExpenseInput extends React.Component {
             </Form.Row>
           </Container>
         </Form>
-
       )
     }
 }
