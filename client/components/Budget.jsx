@@ -5,7 +5,7 @@ import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
 
 class Budget extends React.Component {
-  render() {
+  render () {
     return (
       <Row className='m-0'>
         <Col className='p-0 md-12' md={12} lg={6}>

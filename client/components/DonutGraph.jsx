@@ -1,11 +1,10 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
-import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
+import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-
-  componentDidMount() {
+  componentDidMount () {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
@@ -17,46 +16,42 @@ class DonutGraph extends React.Component {
     circleAnimation()
   }
 
-  componentDidUpdate() {
-    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { //case both filled out
-
+  componentDidUpdate () {
+    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { // case both filled out
       const { data, totalExpenses } = this.updateData(this.props)
       let x = 0
       const textAnimation = () => {
         if (x++ <= 40) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), "your balance")
+          this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
       textAnimation()
-
-    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) { //case expense only filled out
-
+    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) { // case expense only filled out
       const totalExpenses = sumOfAmounts(this.props.expenses)
       let x = 0
       const textAnimation = () => {
         if (x++ <= 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), "your balance")
+          this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
       textAnimation()
-
-    } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { //case input only filled out
+    } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { // case input only filled out
       const totalIncomes = sumOfAmounts(this.props.incomes)
       let x = 0
       const textAnimation = () => {
         if (x++ <= 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Difference: 100 }, 0.8, '+$' + (totalIncomes * (x / 50)).toFixed(2), "your balance")
+          this.updateGraph({ Difference: 100 }, 0.8, '+$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
       textAnimation()
     } else {
-      this.updateGraph({ Difference: 100 }, 0.8, '$0', "enter your data")
+      this.updateGraph({ Difference: 100 }, 0.8, '$0', 'enter your data')
     }
   }
 
@@ -64,7 +59,6 @@ class DonutGraph extends React.Component {
   // {56: 5.783125, Surplus: 57.326625, "": 19.48, df: 3.409, rt: 14.001249999999999}
 
   updateData = (props) => {
-
     const { incomes, expenses } = props
     const timeframe = 30.4375// set at monthly for now (days in a month)
     const adjustedincomes = incomefrequencyAdjustment(incomes, timeframe)
@@ -169,11 +163,10 @@ class DonutGraph extends React.Component {
       .style('opacity', 0.7)
   }
 
-  render() {
+  render () {
     return null
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

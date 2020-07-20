@@ -60,23 +60,23 @@ class IncomeInput extends React.Component {
               <Col>
                 <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
               </Col>
-                <Col>
-              <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Insert income source' />
-            </Col>
-            <Col>
-              <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
-                <option value='1'>One-off</option>
-                <option value='7'>Weekly</option>
-                <option value='14'>Fortnightly</option>
-                <option value='30.4375'>Monthly</option>
-                <option value='365.25'>Yearly</option>
-              </Form.Control>
-            </Col>
-          </Form.Row>
-        </Container>
-      </Form>
-    )
-  }
+              <Col>
+                <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Insert income source' />
+              </Col>
+              <Col>
+                <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
+                  <option value='1'>One-off</option>
+                  <option value='7'>Weekly</option>
+                  <option value='14'>Fortnightly</option>
+                  <option value='30.4375'>Monthly</option>
+                  <option value='365.25'>Yearly</option>
+                </Form.Control>
+              </Col>
+            </Form.Row>
+          </Container>
+        </Form>
+      )
+    }
 }
 
 export default connect()(IncomeInput)
