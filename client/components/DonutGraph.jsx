@@ -38,7 +38,7 @@ class DonutGraph extends React.Component {
       }
       let x = 0
       const textAnimation = () => {
-        if (x++ <= 50) {
+        if (x++ < 50) {
           d3.selectAll('svg > *').remove()
           this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
@@ -55,9 +55,9 @@ class DonutGraph extends React.Component {
       }
       let x = 0
       const textAnimation = () => {
-        if (x++ <= 50) {
+        if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Difference: 100 }, 0.8, '+$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph({ Difference: 100 }, 0.8, '$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -151,7 +151,7 @@ class DonutGraph extends React.Component {
       .attr('y', '0%')
       .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
-      .style('font-size', '30px')
+      .style('font-size', '25px')
       .text(`${message}`)
 
     // svg

@@ -54,8 +54,10 @@ export function expensefrequencyAdjustment(entries, timeframe) {
 
 export function incomefrequencyAdjustment(entries, timeframe) {
   entries.forEach(entry => {
-    entry.amount = entry.amount * (timeframe / entry.frequency)
-    entry.frequency = timeframe
+    if (!(entry.frequency === 1)) {
+      entry.amount = entry.amount * (timeframe / entry.frequency)
+      entry.frequency = timeframe
+    }
   })
   return entries
 }
