@@ -15,7 +15,6 @@ class IncomeInput extends React.Component {
     changeHandler = (evt) => {
       evt.preventDefault()
       const { value, name } = evt.target
-      console.log(name)
       this.setState({
         [name]: value
       })
@@ -71,6 +70,7 @@ class IncomeInput extends React.Component {
                   <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
                 </OverlayTrigger>
               </Col>
+
               <Col>
                 <OverlayTrigger trigger="hover" placement="bottom"
                   overlay={<Popover id="popover-basic">

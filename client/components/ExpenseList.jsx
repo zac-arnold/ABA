@@ -1,13 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import { deleteExpense } from '../actions/index'
 
 class ExpenseList extends React.Component {
-  componentDidMount () {
-
-  }
-
   removeItem (id) {
     this.props.dispatch(deleteExpense(id))
   }
@@ -17,7 +13,10 @@ class ExpenseList extends React.Component {
       this.props.expenses.map(expense => {
         return (
           <Modal.Dialog size="xl" key={expense.id} className='m-2 p-1'>
-            <Modal.Header closeButton className='p-3' onClick={() => this.removeItem(expense.id)}>{expense.name + ': $' + expense.amount + ' (' + expense.category + ')'}</Modal.Header>
+            <Modal.Body className='p-2 font-size'>
+              {`${expense.description}: $${expense.amount} frequency ${expense.frequency}.`}
+              <Button onClick={() => this.removeItem(expense.id)} className='float-right'>X</Button>
+            </Modal.Body>
           </Modal.Dialog>
         )
       })

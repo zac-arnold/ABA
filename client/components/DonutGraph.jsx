@@ -1,6 +1,7 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
+import { compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
   state = {
@@ -18,8 +19,8 @@ class DonutGraph extends React.Component {
     d3.selectAll('svg > *').remove()
     const transitionData = this.updateData(this.props)
     if (this.previousData !== transitionData) {
-      console.log(this.previousData)
-      console.log(this.transitionData)
+      // console.log(this.previousData)
+      // console.log(this.transitionData)
       this.updateGraph(transitionData)
     }
 
@@ -36,33 +37,14 @@ class DonutGraph extends React.Component {
 
     const MonthlyIncome = totalIncome / frequency
     // this function puts all categories into an array of unique values
-    const categories = []
-    props.expenses.forEach(expense => {
-      if (categories.indexOf(expense.category) === -1) {
-        categories.push(expense.category)
-      }
-    })
+    const categories = compressObjKeystoUniqueArray(props.expenses)
 
     // this function uses the unique category array to sum all amounts of that category
-    const data = { Surplus: 0 }
-    let sumTotal = 0
-    categories.forEach(category => {
-      props.expenses.forEach(expense => {
-        if (expense.category === category) {
-          if (data[category]) {
-            data[category] += expense.amount
-            sumTotal += expense.amount
-          } else {
-            data[category] = expense.amount
-            sumTotal += expense.amount
-          }
-        }
-      })
-      // convert values to percentage of total income
-      data[category] = (100 / MonthlyIncome) * data[category]
-    })
+    const { data, sumTotalExpenses} = sumPercentageValuesOfObject(props.expenses, categories, MonthlyIncome)
+
     // convert values to percentage of total income
-    const difference = 100 - ((100 / MonthlyIncome) * sumTotal)
+    const difference = 100 - convertToPercentageOfIncome(MonthlyIncome, sumTotalExpenses)
+
     data.Surplus = difference
     if (isNaN(data.Surplus)) {
       return { Surplus: 100 }
