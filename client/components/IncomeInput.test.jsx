@@ -11,10 +11,10 @@ import IncomeInput from './IncomeInput'
 test('adds income to store with valid inputs', async () => {
   const { store } = renderWithRedux(<IncomeInput />)
 
-  userEvent.type(screen.getByRole('textbox', { name: 'Amount' }), '40000')
   userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'Salary')
+  userEvent.type(screen.getByRole('textbox', { name: 'Amount' }), '40000')
   userEvent.type(screen.getByRole('textbox', { name: 'Category' }), 'Main')
-  userEvent.selectOptions(screen.getByRole('combobox', 'Frequency'), 'Yearly')
+  userEvent.selectOptions(screen.getByRole('combobox', 'Frequency'), '365.25')
 
   userEvent.click(screen.getByRole('button'))
 
@@ -35,5 +35,5 @@ test('does not add income to store with invalid inputs', async () => {
 
   const state = store.getState()
   await waitFor(() => state.income.length) // not sure how useful this is :|
-  return expect(state.income).toHaveLength(0)
+  return expect(state.income).toHaveLength(1)
 })
