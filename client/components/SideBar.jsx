@@ -13,7 +13,7 @@ class SideBar extends React.Component {
       <>
         <IncomeInput />
         <IncomeList />
-        {this.props.incomes[0] ? <><ExpenseInput /><ExpenseList /></> : <PopupAdvice />}
+        {(this.props.incomes[0] || this.props.expenses[0]) ? <><ExpenseInput /><ExpenseList /></> : <PopupAdvice />}
       </>
     )
   }
@@ -21,7 +21,8 @@ class SideBar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    incomes: state.income
+    incomes: state.income,
+    expenses: state.expense
   }
 }
 

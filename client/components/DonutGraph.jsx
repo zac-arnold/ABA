@@ -24,7 +24,7 @@ class DonutGraph extends React.Component {
     if(this.props.expenses.length > 0 && this.props.incomes.length > 0){
     d3.selectAll('svg > *').remove()
     const { data, totalExpenses } = this.updateData(this.props)
-    this.updateGraph(data, 0.8, totalExpenses, 'you spent')
+    this.updateGraph(data, 0.8, totalExpenses, "you've spent")
     }
   }
 
@@ -42,12 +42,12 @@ class DonutGraph extends React.Component {
     const data = sumPercentageValuesOfObject(adjustedexpenses, compressObjKeystoUniqueArray(adjustedexpenses), totalIncome)
     const graphData = {
       data: data,
-      totalExpenses: '$' + Math.round(totalExpenses)
+      totalExpenses: '$' + totalExpenses.toFixed(2)
     }
     return graphData
   }
 
-  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Hello', label = '') => {
+  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Hello', label = '...') => {
     const height = 500
     const width = 500
     // const margin = 0
@@ -101,16 +101,18 @@ class DonutGraph extends React.Component {
 
     svg
       .append('text')
-      .attr('x', -30)
-      .attr('y', -15)
+      .attr('x', '0%')
+      .attr('y', -30)
+      .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
       .style('font-size', '15px')
-      .text(`You spent`)
+      .text(`${label}`)
 
     svg
       .append('text')
-      .attr('x', -35)
-      .attr('y', 15)
+      .attr('x', '0%')
+      .attr('y', '0%')
+      .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
       .style('font-size', '30px')
       .text(`${message}`)
