@@ -5,7 +5,9 @@ const initialState = []
 function expenses (state = initialState, action) {
   switch (action.type) {
     case SEND_EXPENSE:
+      console.log(action)
       action.expense.amount = Number(action.expense.amount)
+      action.expense.frequency = Number(action.expense.frequency)
       return [...state, action.expense]
 
     case DELETE_EXPENSE:

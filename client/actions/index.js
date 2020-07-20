@@ -8,7 +8,6 @@ export const DELETE_INCOME = 'DELETE_INCOME'
 export const SIGNING_IN = 'SIGNING_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SEND_EXPENSE = 'SEND_EXPENSE'
-
 export const SAVE_BUDGET = 'SAVE_BUDGET'
 export const SAVE_BUDGET_SUCESS = 'SAVE_BUDGET_SUCCESS'
 

@@ -4,9 +4,9 @@ import { SEND_EXPENSE, DELETE_EXPENSE } from '../actions'
 test('SEND_EXPENSE adds expense to expense array', () => {
   const initialTestState = [{
     id: 200,
+    amount: '300',
     name: 'Power bill',
     date: 1594938869,
-    amount: 300,
     frequency: 'weekly',
     category: 'Utilities'
   }]
@@ -30,19 +30,19 @@ test('SEND_EXPENSE adds expense to expense array', () => {
 test('DELETE_EXPENSE deletes expense from expense array', () => {
   const initialTestState = [{
     id: 200,
+    amount: '300',
     name: 'Power bill',
     date: 1594938869,
-    amount: 300,
-    frequency: 'weekly',
-    category: 'Utilities'
+    category: 'Utilities',
+    frequency: 'weekly'
   }]
 
   const testAction = {
     type: DELETE_EXPENSE,
     expense: {
       id: 666420,
-      name: 'Food',
       amount: '150',
+      name: 'Food',
       category: 'Groceries',
       frequency: 'One off'
     }
@@ -58,11 +58,11 @@ test('default returns state', () => {
   // Arrage
   const initialTestState = [{
     id: 200,
+    amount: '300',
     name: 'Power bill',
     date: 1594938869,
-    amount: 300,
-    frequency: 'weekly',
-    category: 'Utilities'
+    category: 'Utilities',
+    frequency: 'weekly'
   }]
 
   // Act

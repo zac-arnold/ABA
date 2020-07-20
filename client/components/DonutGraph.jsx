@@ -1,7 +1,7 @@
 import React from 'react'
 import * as d3 from 'd3'
 import { connect } from 'react-redux'
-import { compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
+import { adjustIncomeToTimeframe, workOutFrequencyAdjustment, compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
   state = {
@@ -29,26 +29,27 @@ class DonutGraph extends React.Component {
   }
 
   updateData = (props) => {
-    const frequency = 30.4375 // days in a year
-    let totalIncome = 0
-    props.incomes.forEach(value => {
-      totalIncome += value.amount
+    const { expenses, incomes } = props
+    const timeFrame = 30.4167 // we have it set to a month
+    expenses.map(expense => {
+      expense.amount = workOutFrequencyAdjustment(timeFrame, expenses.amount, expenses.frequency)
     })
 
-    const MonthlyIncome = totalIncome / frequency
-    // this function puts all categories into an array of unique values
-    const categories = compressObjKeystoUniqueArray(props.expenses)
-
-    // this function uses the unique category array to sum all amounts of that category
-    const { data, sumTotalExpenses} = sumPercentageValuesOfObject(props.expenses, categories, MonthlyIncome)
-
-    // convert values to percentage of total income
-    const difference = 100 - convertToPercentageOfIncome(MonthlyIncome, sumTotalExpenses)
+    console.log(expenses)
+    const adjustedIncome = adjustIncomeToTimeframe(incomes, timeFrame)
+    console.log(adjustedIncome)
+    const categories = compressObjKeystoUniqueArray(expenses)
+    console.log(categories)
+    const { data, sumTotalExpenses } = sumPercentageValuesOfObject(expenses, categories, adjustedIncome)
+    console.log(data)
+    const difference = 100 - convertToPercentageOfIncome(adjustedIncome, sumTotalExpenses)
+    console.log(difference)
 
     data.Surplus = difference
     if (isNaN(data.Surplus)) {
       return { Surplus: 100 }
     }
+    console.log(data)
     return data
   }
 
@@ -141,7 +142,7 @@ class DonutGraph extends React.Component {
       .style('opacity', 0.7)
   }
 
-  render () {
+  render() {
     return null
   }
 }
