@@ -20,41 +20,47 @@ class IncomeInput extends React.Component {
     })
   }
 
-  sendToStore = () => {
-    const data = this.state
-    data.id = Date.now()
-    this.props.dispatch(sendIncomeToStore(this.state))
-    this.setState({
-      id: 0,
-      amount: 0,
-      description: '',
-      category: '',
-      frequency: 1
-    })
-  }
+    sendToStore = (e) => {
+      e.preventDefault()
+      if (!e.target.checkValidity()) return
+      this.setState({
+        id: Date.now(),
+        amount: this.state.amount,
+        description: this.state.description,
+        category: this.state.category,
+        frequency: this.state.frequency
+      })
+      this.props.dispatch(sendIncomeToStore(this.state))
+      this.setState({
+        id: 0,
+        amount: '',
+        description: '',
+        category: '',
+        frequency: ''
+      })
+    }
 
-  render() {
-    return (
+    render () {
+      return (
 
-      <Form>
-        <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
-          <Row className='align-middle pt-2 m-0'>
-            <Col className='float-left'>
-              Income
+        <Form onSubmit={this.sendToStore}>
+          <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
+            <Row className='align-middle pt-2 m-0'>
+              <Col className='float-left'>
+                            Income
               </Col>
-            <Col>
-              <Button onClick={() => this.sendToStore()} className='float-right' size='sm'>Add</Button>
-            </Col>
-          </Row>
-          <Form.Row className='m-0 p-2'>
-            <Col>
-              <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description eg. Salary' />
-            </Col>
-            <Col>
-              <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
-            </Col>
-
-            <Col>
+              <Col>
+                <Button className='float-right' size='sm' type='submit'>Add</Button>
+              </Col>
+            </Row>
+            <Form.Row className='m-0 p-2'>
+              <Col>
+                <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description eg. Salary' />
+              </Col>
+              <Col>
+                <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+              </Col>
+                <Col>
               <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Insert income source' />
             </Col>
             <Col>

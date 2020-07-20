@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import Title from './Title'
+import { Row, Col } from 'react-bootstrap'
+
 import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
 import Footer from './Footer'
@@ -27,9 +27,8 @@ class Budget extends React.Component {
         </Row>
         <Footer />
       </Container>
-
-    )
-  }
+      )
+     }
 }
 
 export default Budget
