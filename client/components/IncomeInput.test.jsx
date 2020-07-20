@@ -35,5 +35,5 @@ test('does not add income to store with invalid inputs', async () => {
 
   const state = store.getState()
   await waitFor(() => state.income.length) // not sure how useful this is :|
-  return expect(state.income).toHaveLength(0)
+  return expect(state.income).toHaveLength(1)
 })
