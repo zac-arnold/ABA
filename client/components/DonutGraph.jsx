@@ -21,7 +21,7 @@ class DonutGraph extends React.Component {
       const { data, totalExpenses } = this.updateData(this.props)
       let x = 0
       const textAnimation = () => {
-        if (x++ <= 50) {
+        if (x++ < 50) {
           d3.selectAll('svg > *').remove()
           this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
