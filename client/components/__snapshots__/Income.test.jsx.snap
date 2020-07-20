@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Income has the correct structure 1`] = `
-<label
-  for="name"
->
-  Name 
-</label>
-`;
