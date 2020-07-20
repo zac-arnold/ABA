@@ -3,24 +3,54 @@ import { connect } from 'react-redux'
 import { Modal, Button } from 'react-bootstrap'
 import { deleteIncome } from '../actions/index'
 
-class IncomeList extends React.Component {
-  removeItem (id) {
-    this.props.dispatch(deleteIncome(id))
+function IncomeList (props) {
+  const removeItem = (id) => {
+    props.dispatch(deleteIncome(id))
   }
 
-  render () {
+  function switchFrequency (frequency) {
+    switch (frequency) {
+      case 1:
+        frequency = 'one off payment'
+        return frequency
+
+      case 7:
+        frequency = 'per week'
+        return frequency
+
+      case 14:
+        frequency = 'per fortnight'
+        return frequency
+
+      case 30.4375:
+        frequency = 'per month'
+        return frequency
+
+      case 365.25:
+        frequency = 'annually'
+        return frequency
+
+      default:
+        return frequency
+    }
+  }
+
+  if (props.incomes) {
     return (
-      this.props.incomes.map(income => {
+      props.incomes.map(income => {
+        income.frequency = switchFrequency(income.frequency)
         return (
           <Modal.Dialog size="xl" key={income.id} className='m-2 p-1'>
             <Modal.Body className='p-2 font-size'>
-              {`${income.description}: $${income.amount} frequency ${income.frequency}.`}
-              <Button onClick={() => this.removeItem(income.id)} className='float-right'>X</Button>
+              {`${income.description}: $${income.amount.toFixed(2)} ${income.frequency}.`}
+              <Button onClick={() => removeItem(income.id)} className='float-right'>X</Button>
             </Modal.Body>
           </Modal.Dialog>
         )
       })
     )
+  } else {
+    return null
   }
 }
 
