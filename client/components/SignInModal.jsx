@@ -2,12 +2,11 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Modal, Form } from 'react-bootstrap'
 
-import { register } from '../actions'
+import { signIn } from '../actions'
 
-class RegisterModal extends React.Component {
+class SignInModal extends React.Component {
   state = {
     username: '',
-    email: '',
     password: ''
   }
 
@@ -19,9 +18,9 @@ class RegisterModal extends React.Component {
   }
 
   submitHandler = evt => {
-    console.log('registerModal.jsx ', this.state)
+    console.log('SignInModal.jsx ', this.state)
     evt.preventDefault()
-    this.props.dispatch(register(this.state))
+    this.props.dispatch(signIn(this.state))
   }
 
   render () {
@@ -34,7 +33,7 @@ class RegisterModal extends React.Component {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-          Create account
+          Sign In
           </Modal.Title>
         </Modal.Header>
         <Form onSubmit={(evt) => this.submitHandler(evt)}>
@@ -43,24 +42,14 @@ class RegisterModal extends React.Component {
               <Form.Label>Username</Form.Label>
               <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
             </Form.Group>
-            <Form.Group>
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" name='email' value={this.state.email} onChange={this.handleChange} />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
-            </Form.Group>
 
             <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
-              <Form.Text className="text-muted">
-                Your password requires at least one capital case letter, one lower case letter, one number and one symbol. The password must be at least 8 characters long.
-              </Form.Text>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHide} type="submit">Register</Button>
+            <Button onClick={this.props.onHide} type="submit">Sign In</Button>
           </Modal.Footer>
         </Form>
       </Modal>
@@ -74,4 +63,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(RegisterModal)
+export default connect(mapStateToProps)(SignInModal)
