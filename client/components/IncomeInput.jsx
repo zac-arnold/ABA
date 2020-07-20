@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Col, Row, Container, FormControl, Button } from 'react-bootstrap'
+import { Form, Col, Row, Container, FormControl, Button, Popover, OverlayTrigger } from 'react-bootstrap'
 import { sendIncomeToStore } from '../actions/index'
 import { connect } from 'react-redux'
 
@@ -54,23 +54,48 @@ class IncomeInput extends React.Component {
             </Row>
             <Form.Row className='m-0 p-2'>
               <Col>
-                <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                <OverlayTrigger trigger="hover" placement="bottom"
+                  overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Income Amount</Popover.Title>
+                    <Popover.Content>Please enter an income <strong>amount</strong></Popover.Content>
+                  </Popover>}>
+                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                </OverlayTrigger>
               </Col>
               <Col>
-                <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
+                <OverlayTrigger trigger="hover" placement="bottom"
+                  overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Income Description</Popover.Title>
+                    <Popover.Content>Please enter an income <strong>description</strong> e.g Salary</Popover.Content>
+                  </Popover>}>
+                  <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
+                </OverlayTrigger>
               </Col>
               <Col>
-                <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
+                <OverlayTrigger trigger="hover" placement="bottom"
+                  overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Category</Popover.Title>
+                    <Popover.Content>Please enter an income <strong>category</strong></Popover.Content>
+                  </Popover>}>
+                  <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
+                </OverlayTrigger>
               </Col>
               <Col>
-                <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
-                  <option>One-off</option>
-                  <option>Weekly</option>
-                  <option>Fortnightly</option>
-                  <option>Monthly</option>
-                  <option>Yearly</option>
-                </Form.Control>
+                <OverlayTrigger trigger="hover" placement="bottom"
+                  overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Income Frequency</Popover.Title>
+                    <Popover.Content>Please choose an income <strong>frequency</strong></Popover.Content>
+                  </Popover>}>
+                  <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="frequency" as="select">
+                    <option>One-off</option>
+                    <option>Weekly</option>
+                    <option>Fortnightly</option>
+                    <option>Monthly</option>
+                    <option>Yearly</option>
+                  </Form.Control>
+                </OverlayTrigger>
               </Col>
+
             </Form.Row>
           </Container>
         </Form>
