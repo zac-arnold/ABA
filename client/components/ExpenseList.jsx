@@ -4,10 +4,6 @@ import { Modal, Button } from 'react-bootstrap'
 import { deleteExpense } from '../actions/index'
 
 class ExpenseList extends React.Component {
-  componentDidMount () {
-
-  }
-
   removeItem (id) {
     this.props.dispatch(deleteExpense(id))
   }
