@@ -11,7 +11,7 @@ class DonutGraph extends React.Component {
   componentDidMount() {
     let i = 0
     const circleAnimation = () => {
-      if (i++ < 200) {
+      if (i++ < 150) {
         d3.selectAll('svg > *').remove()
         this.updateGraph({Surplus: 100}, (0.8 + Math.sin(i / 10) / 55))
         setTimeout(circleAnimation, 30)
@@ -21,9 +21,11 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate() {
+    if(this.props.expenses.length > 0 && this.props.incomes.length > 0){
     d3.selectAll('svg > *').remove()
     const { data, totalExpenses } = this.updateData(this.props)
-    this.updateGraph(data, 0.8, totalExpenses)
+    this.updateGraph(data, 0.8, totalExpenses, 'you spent')
+    }
   }
 
   // {56: 5.783125, Surplus: 71.327875, "": 19.48, df: 3.409}
@@ -40,12 +42,12 @@ class DonutGraph extends React.Component {
     const data = sumPercentageValuesOfObject(adjustedexpenses, compressObjKeystoUniqueArray(adjustedexpenses), totalIncome)
     const graphData = {
       data: data,
-      totalExpenses: Math.round(totalExpenses)
+      totalExpenses: '$' + Math.round(totalExpenses)
     }
     return graphData
   }
 
-  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Waiting') => {
+  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Hello', label = '') => {
     const height = 500
     const width = 500
     // const margin = 0

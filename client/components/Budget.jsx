@@ -12,7 +12,7 @@ class Budget extends React.Component {
         <Title />
         <Row className='m-0'>
           <Col className='p-0 md-12' md={12} lg={6}>
-            <div className='p-1 border border-dark rounded my_dataviz overflow-hidden mt-2 m-auto'>
+            <div className='p-1 my_dataviz overflow-hidden mt-4 m-auto align-middle'>
               <svg id="my_dataviz"></svg>
             </div>
             < DonutGraph />

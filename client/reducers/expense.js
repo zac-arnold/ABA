@@ -1,28 +1,6 @@
 import { SEND_EXPENSE, DELETE_EXPENSE } from '../actions'
 
-const initialState = [
-  {
-    id: 1595224251853,
-    amount: 1500,
-    description: 'wewfwfef',
-    category: 'Food',
-    frequency: 30
-  },
-  {
-    id: 1595224348805,
-    amount: 500,
-    description: 'ihgiub',
-    category: 'Subscriptions',
-    frequency: 7
-  },
-  {
-    id: 1595228194376,
-    amount: 450,
-    description: 'rthjrth',
-    category: 'Transport',
-    frequency: 7
-  }
-]
+const initialState = []
 
 function expenses (state = initialState, action) {
   switch (action.type) {
