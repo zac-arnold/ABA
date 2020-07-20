@@ -60,7 +60,16 @@ class IncomeInput extends React.Component {
               </Col>
 
               <Col>
-                <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
+                <Form.Control name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' as="select">
+                  <option>Home</option>
+                  <option>Food</option>
+                  <option>Utilities</option>
+                  <option>Transport</option>
+                  <option>Subscriptions</option>
+                  <option>Entertainment</option>
+                  <option>Personal</option>
+                  <option>Insurance</option>
+                </Form.Control>
               </Col>
               <Col>
                 <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">

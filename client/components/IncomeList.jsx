@@ -17,7 +17,7 @@ class IncomeList extends React.Component {
       this.props.incomes.map(income => {
         return (
           <Modal.Dialog size="xl" key={income.id} className='m-2 p-1'>
-            <Modal.Body closeButton className='p-2 font-size'>
+            <Modal.Body className='p-2 font-size'>
               {`${income.description}: $${income.amount} frequency ${income.frequency}.`}
               <Button onClick={() => this.removeItem(income.id)} className='float-right'>X</Button>
             </Modal.Body>
