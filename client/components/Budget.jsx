@@ -5,7 +5,7 @@ import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
 import Footer from './Footer'
 
-class Budget extends React.Component { 
+class Budget extends React.Component {
   render () {
     return (
       <Container fluid className='p-0' md={12}>
