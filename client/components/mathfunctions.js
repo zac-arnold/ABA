@@ -35,7 +35,9 @@ export function sumPercentageValuesOfObject(obj, arr, totalincome) {
     })
     data[category] = (100 / totalincome) * data[category]
   })
-  data.Difference = (100 / totalincome) * sumTotalExpenses
+  data.Difference = 100 - (100 / totalincome) * sumTotalExpenses
+  console.log(totalincome)
+  console.log(sumTotalExpenses)
   return data
 }
 

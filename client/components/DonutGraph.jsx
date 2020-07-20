@@ -4,16 +4,13 @@ import { connect } from 'react-redux'
 import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, convertToPercentageOfIncome, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  state = {
-    previousData: {}
-  }
 
   componentDidMount() {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
         d3.selectAll('svg > *').remove()
-        this.updateGraph({Surplus: 100}, (0.8 + Math.sin(i / 10) / 55))
+        this.updateGraph({ Surplus: 100 }, (0.8 + Math.sin(i / 10) / 55))
         setTimeout(circleAnimation, 30)
       }
     }
@@ -21,10 +18,13 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate() {
-    if(this.props.expenses.length > 0 && this.props.incomes.length > 0){
-    d3.selectAll('svg > *').remove()
-    const { data, totalExpenses } = this.updateData(this.props)
-    this.updateGraph(data, 0.8, totalExpenses, "you've spent")
+    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) {
+      d3.selectAll('svg > *').remove()
+      const { data, totalExpenses } = this.updateData(this.props)
+      this.updateGraph(data, 0.8, totalExpenses, "you've spent")
+    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) {
+      d3.selectAll('svg > *').remove()
+      this.updateGraph({ Difference: 100 }, 0.8, '$-' + sumOfAmounts(this.props.expenses).toFixed(2), "you've spent")
     }
   }
 
@@ -51,7 +51,7 @@ class DonutGraph extends React.Component {
     const height = 500
     const width = 500
     // const margin = 0
-
+    console.log(data)
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     const radius = Math.min(width / 1.7, height / 1.7)
 
