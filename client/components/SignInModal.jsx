@@ -18,7 +18,6 @@ class SignInModal extends React.Component {
   }
 
   submitHandler = evt => {
-    console.log('SignInModal.jsx ', this.state)
     evt.preventDefault()
     this.props.dispatch(signIn(this.state))
   }
@@ -49,7 +48,7 @@ class SignInModal extends React.Component {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHideSignIn} type="submit">Sign In</Button>
+            <Button onClick={this.props.onHide} type="submit">Sign In</Button>
           </Modal.Footer>
         </Form>
       </Modal>
