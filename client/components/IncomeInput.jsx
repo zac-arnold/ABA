@@ -15,13 +15,14 @@ class IncomeInput extends React.Component {
     changeHandler = (evt) => {
       evt.preventDefault()
       const { value, name } = evt.target
-      console.log(name)
       this.setState({
         [name]: value
       })
     }
 
-    sendToStore = () => {
+    sendToStore = (e) => {
+      e.preventDefault()
+      if (!e.target.checkValidity()) return
       this.setState({
         id: Date.now(),
         amount: this.state.amount,
@@ -42,14 +43,14 @@ class IncomeInput extends React.Component {
     render () {
       return (
 
-        <Form>
+        <Form onSubmit={this.sendToStore}>
           <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
             <Row className='align-middle pt-2 m-0'>
               <Col className='float-left'>
                             Income
               </Col>
               <Col>
-                <Button onClick={() => this.sendToStore()} className='float-right' size='sm'>Add</Button>
+                <Button className='float-right' size='sm' type='submit'>Add</Button>
               </Col>
             </Row>
             <Form.Row className='m-0 p-2'>
@@ -63,7 +64,7 @@ class IncomeInput extends React.Component {
                 <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
               </Col>
               <Col>
-                <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
+                <Form.Control name='frequency' aria-label="Frequency" value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
                   <option>One-off</option>
                   <option>Weekly</option>
                   <option>Fortnightly</option>

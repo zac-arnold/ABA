@@ -1,58 +1,39 @@
 import React from 'react'
 import { renderWithRedux } from '../testing/utils'
-import { fireEvent } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
-test('select drop-downs must use the fireEvent.change', () => {
-  const handleChange = jest.fn()
-  const { container } = renderWithRedux(
-    <select onChange={handleChange}>
-      <option value="1">One-off</option>
-      <option value="2">Weekly</option>
-      <option value="3">Fortnightly</option>
-      <option value="4">Monthly</option>
-      <option value="5">Yearly</option>
-    </select>
-  )
-  const select = container.firstChild
-  const option1 = container.getElementsByTagName('option').item(0)
-  const option2 = container.getElementsByTagName('option').item(1)
-  const option3 = container.getElementsByTagName('option').item(2)
-  const option4 = container.getElementsByTagName('option').item(3)
-  const option5 = container.getElementsByTagName('option').item(4)
+import IncomeInput from './IncomeInput'
 
-  fireEvent.change(select, { target: { value: '2' } })
+test('adds income to store with valid inputs', async () => {
+  const { store } = renderWithRedux(<IncomeInput />)
 
-  expect(handleChange).toHaveBeenCalledTimes(1)
-  expect(option2.selected).toBe(true)
-  expect(option1.selected).toBe(false)
-  expect(option3.selected).toBe(false)
-  expect(option4.selected).toBe(false)
-  expect(option5.selected).toBe(false)
+  userEvent.type(screen.getByRole('textbox', { name: 'Amount' }), '40000')
+  userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'Salary')
+  userEvent.type(screen.getByRole('textbox', { name: 'Category' }), 'Main')
+  userEvent.selectOptions(screen.getByRole('combobox', 'Frequency'), 'Yearly')
+
+  userEvent.click(screen.getByRole('button'))
+
+  const state = store.getState()
+
+  await waitFor(() => state.income.length > 0)
+
+  return expect(state.income[0].amount).toBe(40000)
 })
 
-test('test that the placeholders in the input fields are correct', () => {
+test('does not add income to store with invalid inputs', async () => {
+  expect.assertions(1)
+  const { store } = renderWithRedux(<IncomeInput />)
 
-  renderWithRedux() {
-    return (
-      <input
-      name='amount' 
-      value={this.state.amount} 
-      onChange={(evt) => this.changeHandler(evt)} 
-      size='sm' 
-      aria-label="Amount" 
-      placeholder='$' 
-      onChange={this.handleChange}
-      />
-    )
-  }
-}
+  // intentionally not filling out the form
 
-  const { input } = setup()
-  fireEvent.change(input, { target: { placeholder: '$' } })
+  userEvent.click(screen.getByRole('button'))
 
-
-  expect(input.placeholder).toBe('$')
+  const state = store.getState()
+  await waitFor(() => state.income.length) // not sure how useful this is :|
+  return expect(state.income).toHaveLength(0)
 })
