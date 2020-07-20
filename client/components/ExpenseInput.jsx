@@ -9,7 +9,7 @@ class ExpenseInput extends React.Component {
       amount: '',
       description: '',
       category: '',
-      frequency: ''
+      frequency: 1
     }
 
     changeHandler = (evt) => {
@@ -29,7 +29,7 @@ class ExpenseInput extends React.Component {
         amount: 0,
         description: '',
         category: '',
-        frequency: ''
+        frequency: 1
       })
     }
 

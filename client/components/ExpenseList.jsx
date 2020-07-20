@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal, Button, } from 'react-bootstrap'
 import { deleteExpense } from '../actions/index'
 
 class ExpenseList extends React.Component {

@@ -18,9 +18,9 @@ export function compressObjKeystoUniqueArray(arrayofobjs) {
   return categories
 }
 
-export function sumPercentageValuesOfObject(obj, arr, income) {
-  let data = { Surplus: 100 }
+export function sumPercentageValuesOfObject(obj, arr, totalincome) {
   let sumTotalExpenses = 0
+  let data = { Difference: 0 }
   arr.forEach(category => {
     obj.forEach(expense => {
       if (expense.category === category) {
@@ -33,30 +33,35 @@ export function sumPercentageValuesOfObject(obj, arr, income) {
         }
       }
     })
-    // convert values to percentage of total income
-    console.log(data[category])
-    data[category] = convertToPercentageOfIncome(income, data[category])
+    data[category] = (100 / totalincome) * data[category]
   })
-  console.log(data)
-  console.log(sumTotalExpenses)
-  return {
-    data: data,
-    sumTotalExpenses: sumTotalExpenses
-  }
+  data.Difference = (100 / totalincome) * sumTotalExpenses
+  return data
 }
 
 //takes and array of income objects and returns a frequency adjusted array of objects
-export function frequencyAdjustment(incomes, timeframe) {
-  incomes.forEach(income => {
-    income.amount = income.amount * (timeframe / income.frequency)
+export function expensefrequencyAdjustment(entries, timeframe) {
+  entries.forEach(entry => {
+    if (entry.frequency === 1 || entry.frequency > timeframe) {
+      entry.amount = entry.amount
+    } else {
+      entry.amount = entry.amount * (timeframe / entry.frequency)
+      entry.frequency = timeframe
+    }
   })
-  return incomes
+  return entries
+}
+
+export function incomefrequencyAdjustment(entries, timeframe) {
+  entries.forEach(entry => {
+    entry.amount = entry.amount * (timeframe / entry.frequency)
+    entry.frequency = timeframe
+  })
+  return entries
 }
 
 //takes an array of expenses or incomes and outputs a total sum of all amounts
 export function sumOfAmounts(obj) {
-  const total = obj.reduce((acc, element) => {
-    return element.amount
-  })
-  return total
+  const total = obj.map(element => element.amount)
+  return total.reduce((acc, value) => acc + value)
 }
