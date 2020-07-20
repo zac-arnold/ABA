@@ -2597,7 +2597,7 @@ fieldset:disabled a.btn {
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #0069d9;
+  background-color: #64cda3;
   border-color: #0062cc;
   box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }
@@ -2611,8 +2611,8 @@ fieldset:disabled a.btn {
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #0062cc;
-  border-color: #005cbf;
+  background-color:#002455;
+  border-color: #002455;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -5779,17 +5779,6 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-color: #155724;
 }
 
-.footer {
-  padding: 30px;
-  height: 100px;
-  width: 100%;
-  text-align: right;
-  color: #002455;
-  background-color: #64cda3;
-  position: absolute;
-  bottom: 0;
-}
-
 .list-group-item-info {
   color: #0c5460;
   background-color: #bee5eb;
@@ -6096,7 +6085,6 @@ a.close.disabled {
   border-bottom: 1px solid #dee2e6;
   border-top-left-radius: calc(0.3rem - 1px);
   border-top-right-radius: calc(0.3rem - 1px);
-
 }
 
 .modal-header .close {
