@@ -20,11 +20,6 @@ class DonutGraph extends React.Component {
   componentDidUpdate() {
     if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { //case both filled out
 
-
-
-      // d3.selectAll('svg > *').remove()
-      // const { data, totalExpenses } = this.updateData(this.props)
-      // this.updateGraph(data, 0.8, totalExpenses, "your balance")
       const { data, totalExpenses } = this.updateData(this.props)
       let x = 0
       const textAnimation = () => {
@@ -49,9 +44,19 @@ class DonutGraph extends React.Component {
       }
       textAnimation()
 
-    } else { //case
-      d3.selectAll('svg > *').remove()
-      this.updateGraph({ Difference: 100 }, 0.8, '$0', "you've spent")
+    } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { //case input only filled out
+      const totalIncomes = sumOfAmounts(this.props.incomes)
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 50) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph({ Difference: 100 }, 0.8, '+$' + (totalIncomes * (x / 50)).toFixed(2), "your balance")
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+    } else {
+      this.updateGraph({ Difference: 100 }, 0.8, '$0', "enter your data")
     }
   }
 
@@ -74,7 +79,7 @@ class DonutGraph extends React.Component {
     return graphData
   }
 
-  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Hello', label = '...') => {
+  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
     const height = 500
     const width = 500
     // const margin = 0

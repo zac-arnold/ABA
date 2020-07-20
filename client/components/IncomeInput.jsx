@@ -9,7 +9,7 @@ class IncomeInput extends React.Component {
     amount: '',
     description: '',
     category: '',
-    frequency: ''
+    frequency: 1
   }
 
   changeHandler = (evt) => {
@@ -21,20 +21,15 @@ class IncomeInput extends React.Component {
   }
 
   sendToStore = () => {
-    this.setState({
-      id: Date.now(),
-      amount: this.state.amount,
-      description: this.state.description,
-      category: this.state.category,
-      frequency: this.state.frequency
-    })
+    const data = this.state
+    data.id = Date.now()
     this.props.dispatch(sendIncomeToStore(this.state))
     this.setState({
       id: 0,
-      amount: '',
+      amount: 0,
       description: '',
       category: '',
-      frequency: ''
+      frequency: 1
     })
   }
 
