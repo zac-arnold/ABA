@@ -9,7 +9,7 @@ class ExpenseInput extends React.Component {
       amount: '',
       description: '',
       category: '',
-      frequency: ''
+      frequency: 1
     }
 
     changeHandler = (evt) => {
@@ -29,7 +29,7 @@ class ExpenseInput extends React.Component {
         amount: 0,
         description: '',
         category: '',
-        frequency: ''
+        frequency: 1
       })
     }
 
@@ -66,7 +66,7 @@ class ExpenseInput extends React.Component {
               </Col>
               <Col>
                 <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
-                  <option value='0'>One-off</option>
+                  <option value='1'>One-off</option>
                   <option value='7'>Weekly</option>
                   <option value='14'>Fortnightly</option>
                   <option value='30.4375'>Monthly</option>
