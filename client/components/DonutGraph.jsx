@@ -34,7 +34,7 @@ class DonutGraph extends React.Component {
       if (this.props.expenses[0].frequency === 1 || this.props.expenses[0].frequency > timeframe) {
         totalExpenses = sumOfAmounts(this.props.expenses)
       } else {
-        totalExpenses = sumOfAmounts(this.props.expenses) * (this.props.expenses[0].frequency / timeframe)
+        totalExpenses = sumOfAmounts(this.props.expenses) * (timeframe / this.props.expenses[0].frequency)
       }
       let x = 0
       const textAnimation = () => {
@@ -48,10 +48,10 @@ class DonutGraph extends React.Component {
     } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { // case input only filled out
       let totalIncomes
       const timeframe = 30.4375
-      if (this.props.incomes[0].frequency === 1 || this.props.incomes[0].frequency > timeframe) {
+      if (this.props.incomes[0].frequency === 1) {
         totalIncomes = sumOfAmounts(this.props.incomes)
       } else {
-        totalIncomes = sumOfAmounts(this.props.incomes) * (this.props.incomes[0].frequency / timeframe)
+        totalIncomes = sumOfAmounts(this.props.incomes) * (timeframe / this.props.incomes[0].frequency)
       }
       let x = 0
       const textAnimation = () => {
