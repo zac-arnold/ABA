@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Modal, Form } from 'react-bootstrap'
+import { Button, Modal, Form, Navbar } from 'react-bootstrap'
 
 import { signIn } from '../actions'
 
@@ -23,14 +23,17 @@ class SignInModal extends React.Component {
   }
 
   render () {
+    const modalProps = Object.assign({}, this.props)
+    delete modalProps.dispatch
     return (
       <Modal
-        {...this.props}
+        {...modalProps}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
+          <Navbar.Brand id='modal-logo'>Balance</Navbar.Brand>
           <Modal.Title id="contained-modal-title-vcenter">
           Sign In
           </Modal.Title>

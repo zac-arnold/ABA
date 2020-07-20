@@ -24,9 +24,11 @@ class RegisterModal extends React.Component {
   }
 
   render () {
+    const modalProps = Object.assign({}, this.props)
+    delete modalProps.dispatch
     return (
       <Modal
-        {...this.props}
+        {...modalProps}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
