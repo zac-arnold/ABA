@@ -18,13 +18,40 @@ class DonutGraph extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) {
-      d3.selectAll('svg > *').remove()
+    if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { //case both filled out
+
+
+
+      // d3.selectAll('svg > *').remove()
+      // const { data, totalExpenses } = this.updateData(this.props)
+      // this.updateGraph(data, 0.8, totalExpenses, "your balance")
       const { data, totalExpenses } = this.updateData(this.props)
-      this.updateGraph(data, 0.8, totalExpenses, "you've spent")
-    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) {
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 40) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), "your balance")
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+
+    } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) { //case expense only filled out
+
+      const totalExpenses = sumOfAmounts(this.props.expenses)
+      let x = 0
+      const textAnimation = () => {
+        if (x++ <= 50) {
+          d3.selectAll('svg > *').remove()
+          this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), "your balance")
+          setTimeout(textAnimation, 10)
+        }
+      }
+      textAnimation()
+
+    } else { //case
       d3.selectAll('svg > *').remove()
-      this.updateGraph({ Difference: 100 }, 0.8, '$-' + sumOfAmounts(this.props.expenses).toFixed(2), "you've spent")
+      this.updateGraph({ Difference: 100 }, 0.8, '$0', "you've spent")
     }
   }
 
@@ -42,7 +69,7 @@ class DonutGraph extends React.Component {
     const data = sumPercentageValuesOfObject(adjustedexpenses, compressObjKeystoUniqueArray(adjustedexpenses), totalIncome)
     const graphData = {
       data: data,
-      totalExpenses: '$' + totalExpenses.toFixed(2)
+      totalExpenses: (totalIncome - totalExpenses)
     }
     return graphData
   }
