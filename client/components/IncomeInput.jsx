@@ -36,7 +36,7 @@ class IncomeInput extends React.Component {
         amount: '',
         description: '',
         category: '',
-        frequency: ''
+        frequency: 1
       })
     }
 

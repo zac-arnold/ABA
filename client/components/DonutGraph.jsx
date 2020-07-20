@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
@@ -16,7 +16,7 @@ class DonutGraph extends React.Component {
     circleAnimation()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     if (this.props.expenses.length > 0 && this.props.incomes.length > 0) { // case both filled out
       const { data, totalExpenses } = this.updateData(this.props)
       let x = 0
@@ -29,7 +29,13 @@ class DonutGraph extends React.Component {
       }
       textAnimation()
     } else if (!(this.props.incomes.length > 0) && this.props.expenses.length > 0) { // case expense only filled out
-      const totalExpenses = sumOfAmounts(this.props.expenses) * (30.4375 / this.props.expenses[0].frequency)
+      let totalExpenses
+      const timeframe = 30.4375
+      if (this.props.expenses[0].frequency === 1 || this.props.expenses[0].frequency > timeframe) {
+        totalExpenses = sumOfAmounts(this.props.expenses)
+      } else {
+        totalExpenses = sumOfAmounts(this.props.expenses) * (this.props.expenses[0].frequency / timeframe)
+      }
       let x = 0
       const textAnimation = () => {
         if (x++ <= 50) {
@@ -40,7 +46,13 @@ class DonutGraph extends React.Component {
       }
       textAnimation()
     } else if (this.props.incomes.length > 0 && !(this.props.expenses.length > 0)) { // case input only filled out
-      const totalIncomes = sumOfAmounts(this.props.incomes) * (30.4375 / this.props.incomes[0].frequency)
+      let totalIncomes
+      const timeframe = 30.4375
+      if (this.props.incomes[0].frequency === 1 || this.props.incomes[0].frequency > timeframe) {
+        totalIncomes = sumOfAmounts(this.props.incomes)
+      } else {
+        totalIncomes = sumOfAmounts(this.props.incomes) * (this.props.incomes[0].frequency / timeframe)
+      }
       let x = 0
       const textAnimation = () => {
         if (x++ <= 50) {
@@ -163,7 +175,7 @@ class DonutGraph extends React.Component {
       .style('opacity', 0.7)
   }
 
-  render () {
+  render() {
     return null
   }
 }
