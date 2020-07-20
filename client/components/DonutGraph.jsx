@@ -19,8 +19,8 @@ class DonutGraph extends React.Component {
     d3.selectAll('svg > *').remove()
     const transitionData = this.updateData(this.props)
     if (this.previousData !== transitionData) {
-      console.log(this.previousData)
-      console.log(this.transitionData)
+      // console.log(this.previousData)
+      // console.log(this.transitionData)
       this.updateGraph(transitionData)
     }
 

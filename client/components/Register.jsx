@@ -25,7 +25,6 @@ class Register extends React.Component {
   render () {
     return (
       <div>
-        <h3>Register</h3>
         <form onSubmit={(evt) => this.submitHandler(evt)}>
           <label htmlFor='username'>Username:</label>
           <input type='text' name='username' value={this.state.username} onChange={this.handleChange} />
