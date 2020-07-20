@@ -36,6 +36,7 @@ class DonutGraph extends React.Component {
     })
 
     const MonthlyIncome = totalIncome / frequency
+    
     // this function puts all categories into an array of unique values
     const categories = compressObjKeystoUniqueArray(props.expenses)
 
