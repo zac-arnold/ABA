@@ -39,17 +39,17 @@ class SignInModal extends React.Component {
         <Form onSubmit={(evt) => this.submitHandler(evt)}>
           <Modal.Body>
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label htmlFor='insert username here'>Username</Form.Label>
               <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label htmlFor='insert password here'>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.onHide} type="submit">Sign In</Button>
+            <Button onClick={this.props.onHideSignIn} type="submit">Sign In</Button>
           </Modal.Footer>
         </Form>
       </Modal>
@@ -57,10 +57,4 @@ class SignInModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.newClient
-  }
-}
-
-export default connect(mapStateToProps)(SignInModal)
+export default connect()(SignInModal)
