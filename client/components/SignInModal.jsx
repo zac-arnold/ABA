@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Modal, Form } from 'react-bootstrap'
+import { Button, Modal, Form, Navbar } from 'react-bootstrap'
 
 import { signIn } from '../actions'
 
@@ -18,20 +18,22 @@ class SignInModal extends React.Component {
   }
 
   submitHandler = evt => {
-    console.log('SignInModal.jsx ', this.state)
     evt.preventDefault()
     this.props.dispatch(signIn(this.state))
   }
 
   render () {
+    const modalProps = Object.assign({}, this.props)
+    delete modalProps.dispatch
     return (
       <Modal
-        {...this.props}
+        {...modalProps}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
+          <Navbar.Brand id='modal-logo'>Balance</Navbar.Brand>
           <Modal.Title id="contained-modal-title-vcenter">
           Sign In
           </Modal.Title>
@@ -39,12 +41,12 @@ class SignInModal extends React.Component {
         <Form onSubmit={(evt) => this.submitHandler(evt)}>
           <Modal.Body>
             <Form.Group>
-              <Form.Label>Username</Form.Label>
+              <Form.Label htmlFor='insert username here'>Username</Form.Label>
               <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label htmlFor='insert password here'>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
             </Form.Group>
           </Modal.Body>
@@ -57,10 +59,4 @@ class SignInModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.newClient
-  }
-}
-
-export default connect(mapStateToProps)(SignInModal)
+export default connect()(SignInModal)

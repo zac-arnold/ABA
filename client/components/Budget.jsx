@@ -4,6 +4,8 @@ import { Row, Col } from 'react-bootstrap'
 import SideBar from './SideBar'
 import DonutGraph from './DonutGraph'
 
+import Footer from './Footer'
+
 const Budget = () => {
   return (
     <Row className='m-0'>
