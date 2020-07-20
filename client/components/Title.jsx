@@ -1,12 +1,11 @@
 import React from 'react'
-import { Navbar, Nav, Button, Modal } from 'react-bootstrap'
+import { Navbar, Nav, Button, Modal, Form } from 'react-bootstrap'
 
-import FormModal from './RegisterFormModal'
 import SignIn from './SignIn'
-// import Register from './Register'
+import Register from './Register'
 // import Logout from './Logout'
 
-function MyVerticallyCenteredModal (props) {
+function RegisterModal (props) {
   return (
     <Modal
       {...props}
@@ -16,20 +15,32 @@ function MyVerticallyCenteredModal (props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+          Create account
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
+      <Form>
+        <Modal.Body>
+          <Form.Group controlId="formBasicUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Choose a username" />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide} type="submit">Register</Button>
+        </Modal.Footer>
+      </Form>
     </Modal>
   )
 }
@@ -55,7 +66,7 @@ function Title () {
         {/* <Logout /> */}
 
       </Navbar>
-      <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)}/>
+      <RegisterModal show={modalShow} onHide={() => setModalShow(false)}/>
     </>
   )
 }
