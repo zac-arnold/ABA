@@ -5,7 +5,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap'
 
 const Title = () => {
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar id="title" bg="light" variant="light">
       <Navbar.Brand href="#home">Balance</Navbar.Brand>
       <Nav className="mr-auto">
         {/* <Nav.Link href="#home">Home</Nav.Link>

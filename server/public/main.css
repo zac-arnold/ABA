@@ -1,147 +1,32 @@
-/* svg {
-  width: 100%;
-  height: 600px;
+#title {
+width: 100vw; 
+position: fixed;
+top: 0;
+z-index: 100;
+}
+
+#app {
+  margin: 100px 0px 
 }
 
 
-/* body {
-  width: 100%;
-  height: 100vh;
-}
-
-#app{
-  width: 100%;
-  height: 100%
-}
-
-/* div{
-  height:100%;
-  width:100%;
-} */
-
-/* #app {
-  width: 100%;
-  height: 100%;
-}
-
-.dot {
-  width: 2rem;
-  height: 2rem;
-  border: 1px #ccc solid;
-  border-radius: 50%;
-} */
-
-/* button {
-  width: 4rem;
-  height: 2rem;
-} */ */
-
-/* #welcome-page {
-  width: 100%;
-  height: 100%;
-  border: 1px solid green;
-} */
-/* 
-#donut-graph {
-  width: 100%;
-  height: 100%;
-}
-
-#budget-wrapper {
-  display: flex;
-  height: 100%;
-}
-
-#graph-container{
-  width:100%;
-  height:100%;
-}
-
-#sidebar{
-  float: left;
-  height: 100%;
-}
-
-.title-bar{
-  text-align: center;
-  background-color: #f37685;
-  padding: 0.5px;
-  color: white;
-  font-size: 2rem;
-  height: 100px;
-}
-
-.container {
-  height: 70vh;
-  background-color: #ffc1c8;
-  display:flex;
-}
-
-.left-container {
-  background-color: #ffcece;
-  border-radius: 30pt;
-  float: left;
-  height: 100%;
-  width: 50%;
-  margin-top: 20px;
-  margin-bottom: 1px;
-  margin-left: 100px;
-  margin-right: 20px;
-  box-shadow:
-  0 51px 54px -8px rgba(0, 0, 0, 0.23);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.right-container {
-  float: right;
-  background-color: #ffcece;
-  border-radius: 30pt;
-  height: 100%;
-  width: 50%;
-  margin-top: 20px;
-  margin-bottom: 1px;
-  margin-left: 20px;
-  margin-right: 100px;
-  box-shadow:
-  0 51px 54px -8px rgba(0, 0, 0, 0.23)
-;
-  text-align: center;
-  vertical-align: middle;
-}
 
 .footer {
   padding: 30px;
   height: 100px;
   width: 100%;
-  text-align: center;
-  color: white;
-  background-color: #f37685;
+  text-align: right;
+  color: #002455;
+  background-color: #64cda3;
+  position: fixed;
+  bottom: 0;
 }
 
-.slick-slider{
-  float: right;
-  height: 100%;
-  width:100%;
+.socials {
+  float: left;
+  padding:10px;
 }
 
-#graph-container {
- height:100%;
- width:100%;
+img {
+  padding: 0px 10px;
 }
-
-.slider-frame{
-  width:100%;
-  height:100%;
-}
-
-#login-box{
-  margin: 0 auto;
-  text-align: center;
-  height: 50%;
-}
-
-#register-box{
-  margin: 0 auto;
-  height: 50%;
-} */ */

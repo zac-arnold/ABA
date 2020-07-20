@@ -5778,17 +5778,6 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-color: #155724;
 }
 
-.footer {
-  padding: 30px;
-  height: 100px;
-  width: 100%;
-  text-align: right;
-  color: #002455;
-  background-color: #64cda3;
-  position: absolute;
-  bottom: 0;
-}
-
 .list-group-item-info {
   color: #0c5460;
   background-color: #bee5eb;
