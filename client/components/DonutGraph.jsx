@@ -29,14 +29,15 @@ class DonutGraph extends React.Component {
   }
 
   updateData = (props) => {
-    const frequency = 30.4375 // days in a year
+    const timeFrame = 30.4375 // set to a month for now
     let totalIncome = 0
+    console.log(props)
     props.incomes.forEach(value => {
       totalIncome += value.amount
     })
 
-    const MonthlyIncome = totalIncome / frequency
-    
+    const MonthlyIncome = totalIncome / timeFrame
+
     // this function puts all categories into an array of unique values
     const categories = compressObjKeystoUniqueArray(props.expenses)
 
