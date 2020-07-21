@@ -29,7 +29,7 @@ class ExpenseInput extends React.Component {
         id: 0,
         amount: '',
         description: '',
-        category: '',
+        category: 'Home',
         frequency: 1
       })
     }
