@@ -4,7 +4,8 @@ import { Navbar, Nav, Button } from 'react-bootstrap'
 import RegisterModal from './RegisterModal'
 import SignInModalHolder from './SignInModalHolder'
 
-// import Logout from './Logout'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import Logout from './Logout'
 
 function Title () {
   const [modalShow, setModalShow] = React.useState(false)
@@ -18,9 +19,13 @@ function Title () {
         <Nav.Link href="#features">Features</Nav.Link>
         <Nav.Link href="#pricing">Pricing</Nav.Link> */}
         </Nav>
-        <Button variant="secondary" size="lg mr-2" onClick={() => setModalShow(true)}>Register</Button>
-        <SignInModalHolder />
-        {/* <Logout /> */}
+        <IfNotAuthenticated>
+          <Button variant="secondary" size="lg mr-2" onClick={() => setModalShow(true)}>Register</Button>
+          <SignInModalHolder />
+        </IfNotAuthenticated>
+        <IfAuthenticated>
+          <Logout />
+        </IfAuthenticated>
       </Navbar>
       <RegisterModal show={modalShow} onHide={() => setModalShow(false)}/>
     </>
