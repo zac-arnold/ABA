@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  componentDidMount () {
+  componentDidMount() {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
@@ -16,7 +16,7 @@ class DonutGraph extends React.Component {
     circleAnimation()
   }
 
-  componentDidUpdate () {
+  componentDidUpdate() {
     const { expenses, incomes } = this.props
 
     if (expenses.length > 0 && incomes.length > 0) { // case both filled out
@@ -35,7 +35,7 @@ class DonutGraph extends React.Component {
       const frequencyAdjustedExpenses = incomefrequencyAdjustment(expenses, timeframe)
       const totalExpenses = sumOfAmounts(frequencyAdjustedExpenses)
       const data = sumPercentageValuesOfObject(frequencyAdjustedExpenses, compressObjKeystoUniqueArray(frequencyAdjustedExpenses), totalExpenses)
-      delete data.Difference
+      delete data.Surplus
       let x = 0
       const textAnimation = () => {
         if (x++ < 50) {
@@ -58,7 +58,8 @@ class DonutGraph extends React.Component {
         }
       }
       textAnimation()
-    } else {
+    } else { //case nothing entered in either
+      d3.selectAll('svg > *').remove()
       this.updateGraph({ Surplus: 100 }, 0.8, '$0', 'enter your data')
     }
   }
@@ -171,7 +172,7 @@ class DonutGraph extends React.Component {
       .style('opacity', 1.0)
 
     // chart legend//////
-    if (message !== 'Enter your data') {
+    if (message !== 'Enter your data' && data.Surplus !== 100) {
       let spacing = 0
       for (const key in data) {
         svg
@@ -190,12 +191,20 @@ class DonutGraph extends React.Component {
           .style('font-family', 'Helvetica')
           .style('font-size', '20px')
           .text(`${key}`)
+
+        svg
+          .append('text')
+          .attr('x', '100px')
+          .attr('y', `${290 + spacing}px`)
+          .attr('text-anchor', 'middle')
+          .style('font-size', '20px')
+          .text(`${data[key]}`)
         spacing += 30
       }
     }
   }
 
-  render () {
+  render() {
     return null
   }
 }
