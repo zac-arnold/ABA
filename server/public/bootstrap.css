@@ -2077,11 +2077,11 @@ pre code {
 }
 
 .form-control:focus {
-  color: #495057;
-  background-color: #fff;
+  color:#651A83;
+  background-color: #ECA4A6;
   border-color: #80bdff;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  box-shadow: 0 0 0 0.2rem #4AC200;
 }
 
 .form-control::-webkit-input-placeholder {
