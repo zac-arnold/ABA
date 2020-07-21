@@ -34,11 +34,13 @@ class DonutGraph extends React.Component {
       const timeframe = 30.4375
       const frequencyAdjustedExpenses = incomefrequencyAdjustment(expenses, timeframe)
       const totalExpenses = sumOfAmounts(frequencyAdjustedExpenses)
+      const data = sumPercentageValuesOfObject(frequencyAdjustedExpenses, compressObjKeystoUniqueArray(frequencyAdjustedExpenses), totalExpenses)
+      delete data['Difference']
       let x = 0
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Difference: 100 }, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph(data, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -80,7 +82,6 @@ class DonutGraph extends React.Component {
   }
 
   updateGraph = (data = { Difference: 100 }, animateRadius, message = 'Enter your data', label = '') => {
-    console.log(data)
     const height = 750
     const width = 500
     // const margin = 0
