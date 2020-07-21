@@ -25,7 +25,7 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph(data, 0.8, '$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph(data, 0.8, (totalExpenses * (x / 50)), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -40,7 +40,7 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph(data, 0.8, '-$' + (totalExpenses * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph(data, 0.8, (totalExpenses * (x / 50)), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -53,14 +53,14 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Surplus: 100 }, 0.8, '$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph({ Surplus: 100 }, 0.8, (totalIncomes * (x / 50)), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
       textAnimation()
     } else { //case nothing entered in either
       d3.selectAll('svg > *').remove()
-      this.updateGraph({ Surplus: 100 }, 0.8, '$0', 'enter your data')
+      this.updateGraph({ Surplus: 100 }, 0.8, 0, 'enter your data')
     }
   }
 
@@ -150,7 +150,7 @@ class DonutGraph extends React.Component {
       .attr('text-anchor', 'middle')
       .style('font-family', 'Helvetica')
       .style('font-size', '25px')
-      .text(`${message}`)
+      .text(typeof message === 'string' ? `${message}` : `$${message.toFixed(2)}`)
 
     // svg
     //   .append('rect')
@@ -174,10 +174,11 @@ class DonutGraph extends React.Component {
     // chart legend//////
     if (message !== 'Enter your data' && data.Surplus !== 100) {
       let spacing = 0
+      const totalexpenditure = ((100 / data.Surplus * message))
       for (const key in data) {
         svg
           .append('rect')
-          .attr('x', '-100px')
+          .attr('x', '-130px')
           .attr('y', `${272 + spacing}px`)
           .attr('width', 20)
           .attr('height', 20)
@@ -194,11 +195,11 @@ class DonutGraph extends React.Component {
 
         svg
           .append('text')
-          .attr('x', '100px')
+          .attr('x', '130px')
           .attr('y', `${290 + spacing}px`)
           .attr('text-anchor', 'middle')
           .style('font-size', '20px')
-          .text(`${data[key].toFixed(1)}%`)
+          .text(`$${((totalexpenditure * (data[key] / 100)).toFixed(2))}`)
         spacing += 30
       }
     }
