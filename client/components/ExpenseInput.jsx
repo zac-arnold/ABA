@@ -26,7 +26,7 @@ class ExpenseInput extends React.Component {
       this.props.dispatch(sendExpenseToStore(data))
       this.setState({
         id: 0,
-        amount: 0,
+        amount: '',
         description: '',
         category: '',
         frequency: 1

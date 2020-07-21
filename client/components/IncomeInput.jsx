@@ -20,29 +20,21 @@ class IncomeInput extends React.Component {
     })
   }
 
-    sendToStore = (e) => {
-      e.preventDefault()
-      if (!e.target.checkValidity()) return
-      this.setState({
-        id: Date.now(),
-        amount: this.state.amount,
-        description: this.state.description,
-        category: this.state.category,
-        frequency: this.state.frequency
-      })
-      this.props.dispatch(sendIncomeToStore(this.state))
-      this.setState({
-        id: 0,
-        amount: '',
-        description: '',
-        category: '',
-        frequency: 1
-      })
-    }
+  sendToStore = (e) => {
+    const data = this.state
+    data.id = Date.now()
+    this.props.dispatch(sendIncomeToStore(this.state))
+    this.setState({
+      id: 0,
+      amount: '',
+      description: '',
+      category: '',
+      frequency: 1
+    })
+  }
 
-    render () {
-      return (
-
+  render() {
+    return (
         <Form onSubmit={this.sendToStore}>
           <Container className='mb-2 border border-dark rounded p-0 bg-dark text-white'>
             <Row className='align-middle pt-2 m-0'>

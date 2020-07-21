@@ -44,6 +44,7 @@ class ExpenseList extends React.Component {
             <Modal.Body className='p-2 font-size'>
               {`${expense.description}: $${expense.amount.toFixed(2)} ${newFrequency}.`}
               <Button onClick={() => this.removeItem(expense.id)} className='float-right'>X</Button>
+
             </Modal.Body>
           </Modal.Dialog>
         )
