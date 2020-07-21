@@ -16,7 +16,6 @@ class RegisterModal extends React.Component {
 
   handleChange = evt => {
     const { name, value } = evt.target
-    console.log(name)
     if (name === 'username') {
       if (value.split('').length < 3) {
         this.setState({
@@ -54,7 +53,6 @@ class RegisterModal extends React.Component {
       }
     }
 
-    console.log('registermodal ', value)
     this.setState({
       [name]: value
     })
