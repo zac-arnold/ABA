@@ -1,8 +1,10 @@
 /* global cy */
 
-describe('the budget page', () => {
-  it('visits the budget page', () => {
-    cy.visit('http://localhost:3000/budget')
+describe('the home page', () => {
+  it('visits the home page', () => {
+    cy.visit('http://localhost:3000/')
+    cy.get('nav')
+      .contains('Balance')
   })
 
   it('clicks through the instructions', () => {
@@ -10,15 +12,11 @@ describe('the budget page', () => {
       .click()
   })
 
-  it('inputs description into the income modal', () => {
-    cy.contains('Description')
-      .click(.description)
-      .type('Salary')
-  })
-
-  it('inputs amount into the income modal', () => {
-    cy.contains('$')
-      .click(input.amount)
-      .type('$40000')
+  it('chooses monthly in the combo box', () => {
+    cy.get('select')
+      .click({ multiple: true })
+    // .select()
+    // cy.select('Monthly')
+    //   .click()
   })
 })
