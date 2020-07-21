@@ -11,13 +11,13 @@ class Budget extends React.Component {
         <Col className='p-0 md-12' md={12} lg={6}>
           <h3 className='text-center mt-4 strong'>Your Monthly Summary</h3>
           <Row>
-            <div className='p-1 my_dataviz overflow-hidden mt-4 m-auto align-middle'>
+            <div className='p-1 my_dataviz overflow-hidden m-auto align-middle'>
               <svg id="my_dataviz"></svg>
             </div>
           </Row>
           < DonutGraph />
         </Col>
-        <Col className='m-0 p-2' md={12} lg={6}>
+        <Col className='m-0 p-2 border-left' md={12} lg={6}>
           <SideBar />
         </Col>
       </Row>

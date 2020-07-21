@@ -9,7 +9,7 @@ class DonutGraph extends React.Component {
     const circleAnimation = () => {
       if (i++ < 150) {
         d3.selectAll('svg > *').remove()
-        this.updateGraph({ Surplus: 100 }, (0.8 + Math.sin(i / 10) / 55))
+        this.updateGraph({ Difference: 100 }, (0.8 + Math.sin(i / 10) / 55))
         setTimeout(circleAnimation, 30)
       }
     }
@@ -79,8 +79,9 @@ class DonutGraph extends React.Component {
     return graphData
   }
 
-  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
-    const height = 500
+  updateGraph = (data = { Difference: 100 }, animateRadius, message = 'Enter your data', label = '') => {
+    console.log(data)
+    const height = 750
     const width = 500
     // const margin = 0
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -92,12 +93,13 @@ class DonutGraph extends React.Component {
       .attr('height', height)
       .append('g')
       // attr('transform-origin', '250px, 250px')
-      .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
+      .attr('transform', 'translate(' + 250 + ',' + 250 + ')')
 
     // set the color scale
-    const color = d3.scaleOrdinal()
-      .domain(data)
-      .range(['#ECA4A6', '#651A83', '#9EC1FF', '#A56B38', '#F1F227', '#E74E21', '#2ECCB0', '#E6BCFF', '#4AC200'])
+    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#A56B38', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Difference: '#2ECCB0' }
+    const color = (name) => {
+      return colourPairs[name]
+    }
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
@@ -155,7 +157,6 @@ class DonutGraph extends React.Component {
     //   .style('fill', 'rgb(0,0,255)')
     //   .style('font-size', '30px')
     //   .text('$1615')
-
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
       .selectAll('allSlices')
@@ -166,7 +167,31 @@ class DonutGraph extends React.Component {
       .attr('fill', function (d) { return (color(d.data.key)) })
       .attr('stroke', 'white')
       .style('stroke-width', '2px')
-      .style('opacity', 0.7)
+      .style('opacity', 1.0)
+
+    //chart legend//////
+    if (message !== 'Enter your data') {
+      let spacing = 0
+      for (const key in data) {
+        svg
+          .append('rect')
+          .attr('x', '-100px')
+          .attr('y', `${272 + spacing}px`)
+          .attr('width', 20)
+          .attr('height', 20)
+          .attr('fill', `${color(key)}`)
+
+        svg
+          .append('text')
+          .attr('x', '0%')
+          .attr('y', `${290 + spacing}px`)
+          .attr('text-anchor', 'middle')
+          .style('font-family', 'Helvetica')
+          .style('font-size', '20px')
+          .text(`${key}`)
+        spacing += 30
+      }
+    }
   }
 
   render() {
