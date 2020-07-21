@@ -95,9 +95,9 @@ class DonutGraph extends React.Component {
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
 
     // set the color scale
-    var color = d3.scaleOrdinal()
+    const color = d3.scaleOrdinal()
       .domain(data)
-      .range(['#a0f5b7', '#002455', '#36a59c', '#64cda3', '#15637d'])
+      .range(['#ECA4A6', '#651A83', '#9EC1FF', '#A56B38', '#F1F227', '#E74E21', '#2ECCB0', '#E6BCFF', '#4AC200'])
 
     // Compute the position of each group on the pie:
     const pie = d3.pie()
