@@ -20,7 +20,8 @@ class ExpenseInput extends React.Component {
       })
     }
 
-    sendToStore = () => {
+    sendToStore = (e) => {
+      e.preventDefault()
       const data = this.state
       data.id = Date.now()
       this.props.dispatch(sendExpenseToStore(data))
@@ -35,14 +36,14 @@ class ExpenseInput extends React.Component {
 
     render () {
       return (
-        <Form>
+        <Form onSubmit={this.sendToStore}>
           <Container className='mt-2 mb-1 border border-dark rounded p-0 bg-dark text-white'>
             <Row className='align-middle pt-2 m-0'>
               <Col className='float-left'>
                             Expense
               </Col>
               <Col>
-                <Button onClick={() => this.sendToStore()} className='float-right' size='sm'>Add</Button>
+                <Button className='float-right' size='sm' type='submit'>Add</Button>
               </Col>
             </Row>
             <Form.Row className='m-0 p-2'>
