@@ -50,7 +50,12 @@ class RegisterModal extends React.Component {
               </Popover>}>
               <Form.Group>
                 <Form.Label htmlFor='insert username here'>Username</Form.Label>
-                <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
+                <Form.Control
+                  type="text"
+                  placeholder="Choose a username"
+                  name='username'
+                  value={this.state.username}
+                  onChange={this.handleChange} />
               </Form.Group>
             </OverlayTrigger>
 
@@ -63,7 +68,12 @@ class RegisterModal extends React.Component {
               </Popover>}>
               <Form.Group>
                 <Form.Label htmlFor='insert email here'>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" name='email' value={this.state.email} onChange={this.handleChange} />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  name='email'
+                  value={this.state.email}
+                  onChange={this.handleChange} />
                 <Form.Text className="text-muted">
                 We will never share your email with anyone else.
                 </Form.Text>
@@ -79,7 +89,12 @@ class RegisterModal extends React.Component {
               </Popover>}>
               <Form.Group>
                 <Form.Label htmlFor='insert password here'>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name='password'
+                  value={this.state.password}
+                  onChange={this.handleChange} />
                 <Form.Text className="text-muted">
                 Your password requires at least one capital case letter, one lower case letter, one number and one symbol. The password must be at least 8 characters long.
                 </Form.Text>

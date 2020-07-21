@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
@@ -16,7 +16,7 @@ class DonutGraph extends React.Component {
     circleAnimation()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     const { expenses, incomes } = this.props
 
     if (expenses.length > 0 && incomes.length > 0) { // case both filled out
@@ -35,7 +35,7 @@ class DonutGraph extends React.Component {
       const frequencyAdjustedExpenses = incomefrequencyAdjustment(expenses, timeframe)
       const totalExpenses = sumOfAmounts(frequencyAdjustedExpenses)
       const data = sumPercentageValuesOfObject(frequencyAdjustedExpenses, compressObjKeystoUniqueArray(frequencyAdjustedExpenses), totalExpenses)
-      delete data['Difference']
+      delete data.Difference
       let x = 0
       const textAnimation = () => {
         if (x++ < 50) {
@@ -170,7 +170,7 @@ class DonutGraph extends React.Component {
       .style('stroke-width', '2px')
       .style('opacity', 1.0)
 
-    //chart legend//////
+    // chart legend//////
     if (message !== 'Enter your data') {
       let spacing = 0
       for (const key in data) {
@@ -195,7 +195,7 @@ class DonutGraph extends React.Component {
     }
   }
 
-  render() {
+  render () {
     return null
   }
 }
