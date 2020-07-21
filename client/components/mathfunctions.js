@@ -20,7 +20,7 @@ export function compressObjKeystoUniqueArray(arrayofobjs) {
 
 export function sumPercentageValuesOfObject(obj, arr, totalincome) {
   let sumTotalExpenses = 0
-  const data = { Difference: 0 }
+  const data = { Surplus: 0 }
   arr.forEach(category => {
     obj.forEach(expense => {
       if (expense.category === category) {
@@ -35,9 +35,7 @@ export function sumPercentageValuesOfObject(obj, arr, totalincome) {
     })
     data[category] = (100 / totalincome) * data[category]
   })
-  data.Difference = 100 - (100 / totalincome) * sumTotalExpenses
-  console.log(totalincome)
-  console.log(sumTotalExpenses)
+  data.Surplus = 100 - (100 / totalincome) * sumTotalExpenses
   return data
 }
 

@@ -9,7 +9,7 @@ class DonutGraph extends React.Component {
     const circleAnimation = () => {
       if (i++ < 150) {
         d3.selectAll('svg > *').remove()
-        this.updateGraph({ Difference: 100 }, (0.8 + Math.sin(i / 10) / 55))
+        this.updateGraph({ Surplus: 100 }, (0.8 + Math.sin(i / 10) / 55))
         setTimeout(circleAnimation, 30)
       }
     }
@@ -53,13 +53,13 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph({ Difference: 100 }, 0.8, '$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
+          this.updateGraph({ Surplus: 100 }, 0.8, '$' + (totalIncomes * (x / 50)).toFixed(2), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
       textAnimation()
     } else {
-      this.updateGraph({ Difference: 100 }, 0.8, '$0', 'enter your data')
+      this.updateGraph({ Surplus: 100 }, 0.8, '$0', 'enter your data')
     }
   }
 
@@ -81,7 +81,7 @@ class DonutGraph extends React.Component {
     return graphData
   }
 
-  updateGraph = (data = { Difference: 100 }, animateRadius, message = 'Enter your data', label = '') => {
+  updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
     const height = 750
     const width = 500
     // const margin = 0
@@ -97,7 +97,7 @@ class DonutGraph extends React.Component {
       .attr('transform', 'translate(' + 250 + ',' + 250 + ')')
 
     // set the color scale
-    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#A56B38', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Difference: '#2ECCB0' }
+    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#A56B38', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Surplus: '#2ECCB0' }
     const color = (name) => {
       return colourPairs[name]
     }
