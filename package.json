@@ -52,6 +52,7 @@
     "knex": "^0.21.2",
     "react-bootstrap": "^1.2.2",
     "react-bootstrap-validation": "^0.1.11",
+    "react-form-with-constraints": "^0.15.0",
     "react-icons": "^3.10.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

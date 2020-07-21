@@ -10,7 +10,6 @@ const router = express.Router()
 module.exports = router
 
 router.post('/', (req, res) => {
-  console.log('register', req.body)
   const { username, email, password } = req.body
   const credentials = { username, email, password }
   return db.registerUser(credentials)

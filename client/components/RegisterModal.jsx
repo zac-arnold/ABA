@@ -8,11 +8,51 @@ class RegisterModal extends React.Component {
   state = {
     username: '',
     email: '',
-    password: ''
+    password: '',
+    usernameError: false,
+    emailError: false,
+    passwordError: false
   }
 
   handleChange = evt => {
     const { name, value } = evt.target
+    if (name === 'username') {
+      if (value.split('').length < 3) {
+        this.setState({
+          usernameError: true
+        })
+      } else {
+        this.setState({
+          usernameError: false
+        })
+      }
+    }
+
+    if (name === 'email') {
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+        console.log('hello')
+        this.setState({
+          emailError: true
+        })
+      } else {
+        this.setState({
+          emailError: false
+        })
+      }
+    }
+
+    if (name === 'password') {
+      if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(value)) {
+        this.setState({
+          passwordError: true
+        })
+      } else {
+        this.setState({
+          passwordError: false
+        })
+      }
+    }
+
     this.setState({
       [name]: value
     })
@@ -20,7 +60,9 @@ class RegisterModal extends React.Component {
 
   submitHandler (evt) {
     evt.preventDefault()
-    this.props.dispatch(register(this.state))
+    if (!this.state.usernameError && !this.state.emailError && !this.state.passwordError) {
+      this.props.dispatch(register(this.state))
+    }
   }
 
   render () {
@@ -56,7 +98,9 @@ class RegisterModal extends React.Component {
                   name='username'
                   value={this.state.username}
                   onChange={this.handleChange} />
+                {this.state.usernameError && <span className='inputWarning'>Username needs to be greater than 2 charaters.</span>}
               </Form.Group>
+
             </OverlayTrigger>
 
             <OverlayTrigger
@@ -74,6 +118,7 @@ class RegisterModal extends React.Component {
                   name='email'
                   value={this.state.email}
                   onChange={this.handleChange} />
+                {this.state.emailError && <span className='inputWarning'>Please enter a valid email address.</span>}
                 <Form.Text className="text-muted">
                 We will never share your email with anyone else.
                 </Form.Text>
@@ -95,8 +140,9 @@ class RegisterModal extends React.Component {
                   name='password'
                   value={this.state.password}
                   onChange={this.handleChange} />
+                {this.state.passwordError && <span className='inputWarning'>Please enter a password that is least one capital case letter, one lower case letter and one number. The password must be at least 8 characters long</span>}
                 <Form.Text className="text-muted">
-                Your password requires at least one capital case letter, one lower case letter, one number and one symbol. The password must be at least 8 characters long.
+                Your password requires at least one capital case letter, one lower case letter and one number. The password must be at least 8 characters long.
                 </Form.Text>
               </Form.Group>
             </OverlayTrigger>
