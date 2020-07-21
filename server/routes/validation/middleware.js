@@ -1,8 +1,11 @@
 const middleware = (schema) => {
+  
   return (req, res, next) => {
-    let { error } = schema.validate(req.body)
-    const valid = error = null
+    console.log('hello')
+    const { error } = schema.validate(req.body)
+    const valid = error == null
     if (valid) {
+      console.log('middleware ', valid)
       next()
     } else {
       const { details } = error
