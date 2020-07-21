@@ -2,9 +2,6 @@ const express = require('express')
 
 const db = require('../db/clients')
 
-// const schema = require('./validation/schema')
-// const middleware = require('./validation/middleware')
-
 const router = express.Router()
 
 module.exports = router
