@@ -49,7 +49,7 @@ class IncomeInput extends React.Component {
           <Form.Row className='m-0 p-2'>
 
             <Col>
-              <OverlayTrigger data-trigger="hover focus" placement="bottom"
+              <OverlayTrigger data-trigger="hover focus" placement="top"
                 overlay={<Popover id="popover-basic">
                   <Popover.Title as="h3">Income Description</Popover.Title>
                   <Popover.Content>Please enter an income <strong>description</strong> e.g Salary</Popover.Content>
@@ -58,7 +58,7 @@ class IncomeInput extends React.Component {
               </OverlayTrigger>
             </Col>
             <Col>
-              <OverlayTrigger data-trigger="hover focus" placement="bottom"
+              <OverlayTrigger data-trigger="hover focus" placement="top"
                 overlay={<Popover id="popover-basic">
                   <Popover.Title as="h3">Income Amount</Popover.Title>
                   <Popover.Content>Please enter an income <strong>amount</strong></Popover.Content>
@@ -67,7 +67,7 @@ class IncomeInput extends React.Component {
               </OverlayTrigger>
             </Col>
             <Col>
-              <OverlayTrigger data-trigger="hover focus" placement="bottom"
+              <OverlayTrigger data-trigger="hover focus" placement="top"
                 overlay={<Popover id="popover-basic">
                   <Popover.Title as="h3">Category</Popover.Title>
                   <Popover.Content>Please enter an income <strong>category</strong></Popover.Content>
@@ -76,12 +76,12 @@ class IncomeInput extends React.Component {
               </OverlayTrigger>
             </Col>
             <Col>
-              <OverlayTrigger data-trigger="hover focus" placement="bottom"
+              <OverlayTrigger data-trigger="hover focus" placement="top"
                 overlay={<Popover id="popover-basic">
                   <Popover.Title as="h3">Income Frequency</Popover.Title>
                   <Popover.Content>Please choose an income <strong>frequency</strong></Popover.Content>
                 </Popover>} >
-                <Form.Control required name='frequency' id="frequencyDescription" value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
+                <Form.Control required name='frequency' id="frequencyDescription" value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} aria-label="Frequency" size='sm' as="select">
                   <option value='1'>One-off</option>
                   <option value='7'>Weekly</option>
                   <option value='14'>Fortnightly</option>
