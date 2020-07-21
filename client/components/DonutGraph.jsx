@@ -198,7 +198,7 @@ class DonutGraph extends React.Component {
           .attr('y', `${290 + spacing}px`)
           .attr('text-anchor', 'middle')
           .style('font-size', '20px')
-          .text(`${data[key]}`)
+          .text(`${data[key].toFixed(1)}%`)
         spacing += 30
       }
     }
