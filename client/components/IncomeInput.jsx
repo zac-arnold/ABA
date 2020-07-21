@@ -23,8 +23,8 @@ class IncomeInput extends React.Component {
     sendToStore = (e) => {
       e.preventDefault()
       if (!e.target.checkValidity()) return
+      this.state.id = Date.now()
       this.setState({
-        id: Date.now(),
         amount: this.state.amount,
         description: this.state.description,
         category: this.state.category,

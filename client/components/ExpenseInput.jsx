@@ -26,7 +26,7 @@ class ExpenseInput extends React.Component {
       this.props.dispatch(sendExpenseToStore(data))
       this.setState({
         id: 0,
-        amount: 0,
+        amount: '',
         description: '',
         category: '',
         frequency: 1
@@ -80,7 +80,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Content>Please choose an expense <strong>frequency</strong></Popover.Content>
                   </Popover>}>
                   <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
-                    <option value='0'>One-off</option>
+                    <option value='1'>One-off</option>
                     <option value='7'>Weekly</option>
                     <option value='14'>Fortnightly</option>
                     <option value='30.4375'>Monthly</option>

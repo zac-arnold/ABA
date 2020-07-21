@@ -40,7 +40,7 @@ function ExpenseList (props) {
       props.expenses.map(expense => {
         const stringFrequency = switchFrequency(expense.frequency)
         return (
-          <Modal.Dialog size="xl" key={expense.id} className='m-2 p-1'>
+          <Modal.Dialog size="xl" key={props.expense.id} className='m-2 p-1'>
             <Modal.Body className='p-2 font-size'>
               {`${expense.description}: $${expense.amount.toFixed(2)} ${stringFrequency}.`}
               <Button onClick={() => removeItem(expense.id)} className='float-right'>X</Button>
