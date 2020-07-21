@@ -47,6 +47,7 @@ class ExpenseInput extends React.Component {
               </Col>
             </Row>
             <Form.Row className='m-0 p-2'>
+
               <Col>
                 <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
