@@ -12,7 +12,7 @@ describe('the budget page', () => {
 
   it('inputs description into the income modal', () => {
     cy.contains('Description')
-      .click(input.description)
+      .click(.description)
       .type('Salary')
   })
 
