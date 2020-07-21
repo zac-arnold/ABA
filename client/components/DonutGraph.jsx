@@ -98,7 +98,7 @@ class DonutGraph extends React.Component {
       .attr('transform', 'translate(' + 250 + ',' + 250 + ')')
 
     // set the color scale
-    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#A56B38', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Surplus: '#2ECCB0' }
+    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#2A4F00', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Surplus: '#2ECCB0' }
     const color = (name) => {
       return colourPairs[name]
     }
