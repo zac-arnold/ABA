@@ -10,9 +10,15 @@ describe('the budget page', () => {
       .click()
   })
 
-//   it('inputs $ amount into the income modal', () => {
-//     cy.contains('$')
-//       .click(input.amount)
-//       .type('$40000')
-//   })
+  it('inputs description into the income modal', () => {
+    cy.contains('Description')
+      .click(.description)
+      .type('Salary')
+  })
+
+  it('inputs amount into the income modal', () => {
+    cy.contains('$')
+      .click(input.amount)
+      .type('$40000')
+  })
 })
