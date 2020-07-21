@@ -1,10 +1,10 @@
 exports.up = function (knex) {
   return knex.schema.createTable('expense', table => {
     table.increments('id').primary()
-    table.string('amount')
+    table.integer('amount')
     table.string('description')
     table.string('category')
-    table.string('frequency')
+    table.integer('frequency')
   })
 }
 
