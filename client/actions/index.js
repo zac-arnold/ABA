@@ -87,7 +87,10 @@ export function signIn (form) {
     dispatch(signingIn())
 
     return login(form)
-      .then(res => dispatch(signInSuccess(res)))
+      .then(res => {
+        findCookie()
+        dispatch(signInSuccess(res))
+      })
   }
 }
 
@@ -134,6 +137,9 @@ export function logout () {
     dispatch(loggingOut())
 
     return signout()
-      .then(res => dispatch(logoutSuccess(res)))
+      .then(res => {
+        findCookie()
+        dispatch(logoutSuccess(res))
+      })
   }
 }

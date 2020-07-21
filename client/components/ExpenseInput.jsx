@@ -49,15 +49,6 @@ class ExpenseInput extends React.Component {
               <Col>
                 <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
-                    <Popover.Title as="h3">Expense Amount</Popover.Title>
-                    <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
-                  </Popover>}>
-                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
-                </OverlayTrigger>
-              </Col>
-              <Col>
-                <OverlayTrigger data-trigger="hover focus" placement="bottom"
-                  overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Description</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>description</strong> e.g rent</Popover.Content>
                   </Popover>} >
@@ -67,10 +58,28 @@ class ExpenseInput extends React.Component {
               <Col>
                 <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Expense Amount</Popover.Title>
+                    <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
+                  </Popover>}>
+                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                </OverlayTrigger>
+              </Col>
+              <Col>
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
+                  overlay={<Popover id="popover-basic">
                     <Popover.Title as="h3">Expense Category</Popover.Title>
                     <Popover.Content>Please choose an expense <strong>category</strong></Popover.Content>
                   </Popover>}>
-                  <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' />
+                  <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' as="select">
+                    <option>Home</option>
+                    <option>Food</option>
+                    <option>Utilities</option>
+                    <option>Transport</option>
+                    <option>Subscriptions</option>
+                    <option>Entertainment</option>
+                    <option>Personal</option>
+                    <option>Insurance</option>
+                  </FormControl>
                 </OverlayTrigger>
               </Col>
               <Col>
