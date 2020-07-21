@@ -54,7 +54,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Title as="h3">Expense Description</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>description</strong> e.g rent</Popover.Content>
                   </Popover>} >
-                  <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
+                  <FormControl required name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
                 </OverlayTrigger>
               </Col>
               <Col>
@@ -63,7 +63,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Title as="h3">Expense Amount</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
                   </Popover>}>
-                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                  <FormControl required type='Number' step="0.01" min='0' name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
                 </OverlayTrigger>
               </Col>
               <Col>
@@ -72,7 +72,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Title as="h3">Expense Category</Popover.Title>
                     <Popover.Content>Please choose an expense <strong>category</strong></Popover.Content>
                   </Popover>}>
-                  <FormControl name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' as="select">
+                  <FormControl required name='category' value={this.state.category} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Category" placeholder='Category' as="select">
                     <option>Home</option>
                     <option>Food</option>
                     <option>Utilities</option>
@@ -90,7 +90,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Title as="h3">Expense Frequency</Popover.Title>
                     <Popover.Content>Please choose an expense <strong>frequency</strong></Popover.Content>
                   </Popover>}>
-                  <Form.Control name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
+                  <Form.Control required name='frequency' value={this.state.frequency} onChange={(evt) => this.changeHandler(evt)} size='sm' as="select">
                     <option value='1'>One-off</option>
                     <option value='7'>Weekly</option>
                     <option value='14'>Fortnightly</option>
