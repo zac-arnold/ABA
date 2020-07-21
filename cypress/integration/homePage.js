@@ -11,12 +11,4 @@ describe('the home page', () => {
     cy.contains('Got it!')
       .click()
   })
-
-  it('chooses monthly in the combo box', () => {
-    cy.get('select')
-      .click({ multiple: true })
-    // .select()
-    // cy.select('Monthly')
-    //   .click()
-  })
 })

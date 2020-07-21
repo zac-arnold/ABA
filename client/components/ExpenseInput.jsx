@@ -46,15 +46,7 @@ class ExpenseInput extends React.Component {
               </Col>
             </Row>
             <Form.Row className='m-0 p-2'>
-              <Col>
-                <OverlayTrigger data-trigger="hover focus" placement="bottom"
-                  overlay={<Popover id="popover-basic">
-                    <Popover.Title as="h3">Expense Amount</Popover.Title>
-                    <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
-                  </Popover>}>
-                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
-                </OverlayTrigger>
-              </Col>
+
               <Col>
                 <OverlayTrigger data-trigger="hover focus" placement="bottom"
                   overlay={<Popover id="popover-basic">
@@ -62,6 +54,15 @@ class ExpenseInput extends React.Component {
                     <Popover.Content>Please enter an expense <strong>description</strong> e.g rent</Popover.Content>
                   </Popover>} >
                   <FormControl name='description' value={this.state.description} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Description" placeholder='Description' />
+                </OverlayTrigger>
+              </Col>
+              <Col>
+                <OverlayTrigger data-trigger="hover focus" placement="bottom"
+                  overlay={<Popover id="popover-basic">
+                    <Popover.Title as="h3">Expense Amount</Popover.Title>
+                    <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
+                  </Popover>}>
+                  <FormControl name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
                 </OverlayTrigger>
               </Col>
               <Col>
