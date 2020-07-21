@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { sumOfAmounts, incomefrequencyAdjustment, expensefrequencyAdjustment, compressObjKeystoUniqueArray, sumPercentageValuesOfObject } from './mathfunctions'
 
 class DonutGraph extends React.Component {
-  componentDidMount() {
+  componentDidMount () {
     let i = 0
     const circleAnimation = () => {
       if (i++ < 150) {
@@ -16,7 +16,7 @@ class DonutGraph extends React.Component {
     circleAnimation()
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     const { expenses, incomes } = this.props
 
     if (expenses.length > 0 && incomes.length > 0) { // case both filled out
@@ -58,7 +58,7 @@ class DonutGraph extends React.Component {
         }
       }
       textAnimation()
-    } else { //case nothing entered in either
+    } else { // case nothing entered in either
       d3.selectAll('svg > *').remove()
       this.updateGraph({ Surplus: 100 }, 0.8, 0, 'enter your data')
     }
@@ -205,7 +205,7 @@ class DonutGraph extends React.Component {
     }
   }
 
-  render() {
+  render () {
     return null
   }
 }
