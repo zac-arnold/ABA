@@ -67,4 +67,3 @@ export function sumOfAmounts(obj) {
   const total = obj.map(element => element.amount)
   return total.reduce((acc, value) => acc + value)
 }
-
