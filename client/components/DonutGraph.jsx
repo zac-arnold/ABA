@@ -40,7 +40,7 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph(data, 0.8, (totalExpenses * (x / 50)), 'your balance')
+          this.updateGraph(data, 0.8, -(totalExpenses * (x / 50)), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -174,7 +174,15 @@ class DonutGraph extends React.Component {
     // chart legend//////
     if (message !== 'Enter your data' && data.Surplus !== 100) {
       let spacing = 0
-      const totalexpenditure = ((100 / data.Surplus * message))
+      let totalexpenditure
+      console.log(data)
+      if (data.Surplus) {
+        totalexpenditure = ((100 / data.Surplus * message))
+      } else {
+        totalexpenditure = Math.abs(message)
+      }
+      console.log(totalexpenditure)
+
       for (const key in data) {
         svg
           .append('rect')
