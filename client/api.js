@@ -4,7 +4,6 @@ const rootUrl = 'http://localhost:3000/api/v1'
 const acceptJsonHeader = { Accept: 'application/json' }
 
 export function newClient (form) {
-  console.log('api', form)
   return request
     .post(`${rootUrl}/register`)
     .set(acceptJsonHeader)
@@ -12,7 +11,7 @@ export function newClient (form) {
     .then(res => {
       return res.body
     })
-    .catch(err => console.log('api.js ', err))
+    .catch(err => console.log('New client registering error', err))
 }
 
 export function login (form) {
@@ -23,11 +22,10 @@ export function login (form) {
     .then(res => {
       return res.body
     })
-    .catch(err => console.log('api.js ', err))
+    .catch(err => console.log('Error logging ', err))
 }
 
 export function newBudget (budget) {
-  console.log('api.js ', budget)
   return request
     .post(`${rootUrl}/budget`)
     .set(acceptJsonHeader)
@@ -35,7 +33,7 @@ export function newBudget (budget) {
     .then(res => {
       return res.body
     })
-    .catch(err => console.log('api.js ', err))
+    .catch(err => console.log('Error adding new budget', err))
 }
 
 export function signout () {
@@ -44,5 +42,5 @@ export function signout () {
     .then(response => {
       return response.body
     })
-    .catch('Failed to delete cookie from database')
+    .catch(err => console.log('Failed to delete cookie from database', err))
 }

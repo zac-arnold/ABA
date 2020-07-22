@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Wait indicator appears when content pending 1`] = `
+<div>
+  <img
+    class="waitIndicator"
+    src="./images/new1.svg"
+  />
+</div>
+`;
+
+exports[`Wait indicator does not appear when content is not pending 1`] = `<div />`;

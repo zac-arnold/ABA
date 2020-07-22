@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component to match snapshot 1`] = `
+<div>
+  <nav
+    class="navbar navbar-expand navbar-light bg-light"
+    id="title"
+  >
+    <span
+      class="navbar-brand"
+    >
+      Balance
+    </span>
+    <div
+      class="mr-auto navbar-nav"
+    />
+    <button
+      class="btn btn-secondary btn-lg mr-2"
+      type="button"
+    >
+      Register
+    </button>
+    <button
+      class="btn btn-secondary btn-lg mr-2"
+      type="button"
+    >
+      Sign In
+    </button>
+  </nav>
+</div>
+`;
