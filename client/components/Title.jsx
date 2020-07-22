@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 
 import RegisterModal from './RegisterModal'
@@ -7,9 +8,12 @@ import WaitIndicator from './WaitIndicator'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Logout from './Logout'
+import NameDisplay from './NameDisplay'
 
-function Title () {
+function Title (props) {
   const [modalShow, setModalShow] = React.useState(false)
+
+  console.log(props)
 
   return (
     <>
@@ -26,6 +30,7 @@ function Title () {
           <SignInModalHolder />
         </IfNotAuthenticated>
         <IfAuthenticated>
+          <NameDisplay />
           <Logout />
         </IfAuthenticated>
       </Navbar>
@@ -34,4 +39,10 @@ function Title () {
   )
 }
 
-export default Title
+const mapStateToProps = (state) => {
+  return {
+    user: state.newClient
+  }
+}
+
+export default connect(mapStateToProps)(Title)
