@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <div className='footer'>
       <div className="socials">
-        <img src='./icons/facebook.svg' />
-        <img src='./icons/github.svg' />
-        <img src='./icons/instagram.svg' />
+        <img aria-label= 'Facebook link' src='./icons/facebook.svg' />
+        <img aria-label= 'Github link'src='./icons/github.svg' />
+        <img aria-label= 'Instagram link'src='./icons/instagram.svg' />
       </div>
       <p>{authors}</p>
       <p>&copy; {copyright}</p>

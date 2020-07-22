@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 
 import RegisterModal from './RegisterModal'
@@ -12,8 +11,6 @@ import NameDisplay from './NameDisplay'
 
 function Title (props) {
   const [modalShow, setModalShow] = React.useState(false)
-
-  console.log(props)
 
   return (
     <>
@@ -39,10 +36,4 @@ function Title (props) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.newClient
-  }
-}
-
-export default connect(mapStateToProps)(Title)
+export default Title

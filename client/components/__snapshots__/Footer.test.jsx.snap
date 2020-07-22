@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`component to match snapshot 1`] = `
+<div>
+  <div
+    class="footer"
+  >
+    <div
+      class="socials"
+    >
+      <img
+        aria-label="Facebook link"
+        src="./icons/facebook.svg"
+      />
+      <img
+        aria-label="Github link"
+        src="./icons/github.svg"
+      />
+      <img
+        aria-label="Instagram link"
+        src="./icons/instagram.svg"
+      />
+    </div>
+    <p>
+      A.Walker-Cochrane - J.Alipate - Z.Arnold - P.McNie
+    </p>
+    <p>
+      © 
+      2020 ABA
+    </p>
+  </div>
+</div>
+`;
