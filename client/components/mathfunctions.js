@@ -1,13 +1,3 @@
-export function convertToPercentageOfIncome (incomeSum, expense) {
-  console.log(incomeSum)
-  console.log(expense)
-  return (100 / incomeSum) * expense
-}
-
-export function findDifferenceBetweenValues (a, b) {
-  return Math.abs(a - b)
-}
-
 export function compressObjKeystoUniqueArray (arrayofobjs) {
   const categories = []
   arrayofobjs.forEach(expense => {

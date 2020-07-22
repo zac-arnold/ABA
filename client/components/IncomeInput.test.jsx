@@ -12,7 +12,7 @@ test('adds income to store with valid inputs', async () => {
   const { store } = renderWithRedux(<IncomeInput />)
 
   userEvent.type(screen.getByRole('textbox', { name: 'Description' }), 'Salary')
-  userEvent.type(screen.getByRole('textbox', { name: 'Amount' }), '40000')
+  userEvent.type(screen.getByRole('spinbutton', { name: 'Amount' }), '40000')
   userEvent.type(screen.getByRole('textbox', { name: 'Category' }), 'Main')
   userEvent.selectOptions(screen.getByRole('combobox', 'Frequency'), '365.25')
 

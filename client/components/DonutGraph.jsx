@@ -40,7 +40,7 @@ class DonutGraph extends React.Component {
       const textAnimation = () => {
         if (x++ < 50) {
           d3.selectAll('svg > *').remove()
-          this.updateGraph(data, 0.8, (totalExpenses * (x / 50)), 'your balance')
+          this.updateGraph(data, 0.8, -(totalExpenses * (x / 50)), 'your balance')
           setTimeout(textAnimation, 10)
         }
       }
@@ -83,7 +83,7 @@ class DonutGraph extends React.Component {
   }
 
   updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
-    const height = 750
+    const height = 800
     const width = 500
     // const margin = 0
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
@@ -98,7 +98,7 @@ class DonutGraph extends React.Component {
       .attr('transform', 'translate(' + 250 + ',' + 250 + ')')
 
     // set the color scale
-    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#A56B38', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Surplus: '#2ECCB0' }
+    const colourPairs = { Home: '#ECA4A6', Food: '#651A83', Utilities: '#9EC1FF', Transport: '#2A4F00', Subscriptions: '#F1F227', Entertainment: '#E74E21', Personal: '#4AC200', Insurance: '#E6BCFF', Surplus: '#2ECCB0' }
     const color = (name) => {
       return colourPairs[name]
     }
@@ -174,7 +174,15 @@ class DonutGraph extends React.Component {
     // chart legend//////
     if (message !== 'Enter your data' && data.Surplus !== 100) {
       let spacing = 0
-      const totalexpenditure = ((100 / data.Surplus * message))
+      let totalexpenditure
+      console.log(data)
+      if (data.Surplus) {
+        totalexpenditure = ((100 / data.Surplus * message))
+      } else {
+        totalexpenditure = Math.abs(message)
+      }
+      console.log(totalexpenditure)
+
       for (const key in data) {
         svg
           .append('rect')
