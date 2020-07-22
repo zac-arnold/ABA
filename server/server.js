@@ -23,7 +23,7 @@ server.use('/api/v1/budget', budget)
 server.use('/api/v1/logout', logout)
 
 server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'))
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 })
 
 module.exports = server
