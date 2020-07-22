@@ -3,6 +3,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap'
 
 import RegisterModal from './RegisterModal'
 import SignInModalHolder from './SignInModalHolder'
+import WaitIndicator from './WaitIndicator'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import Logout from './Logout'
@@ -19,6 +20,7 @@ function Title () {
         <Nav.Link href="#features">Features</Nav.Link>
         <Nav.Link href="#pricing">Pricing</Nav.Link> */}
         </Nav>
+        <WaitIndicator />
         <IfNotAuthenticated>
           <Button variant="secondary" size="lg mr-2" onClick={() => setModalShow(true)}>Register</Button>
           <SignInModalHolder />

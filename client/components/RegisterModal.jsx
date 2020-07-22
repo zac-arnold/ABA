@@ -98,7 +98,7 @@ class RegisterModal extends React.Component {
                   name='username'
                   value={this.state.username}
                   onChange={this.handleChange} />
-                {this.state.usernameError && <span className='inputWarning'>Username needs to be greater than 2 charaters.</span>}
+                {this.state.usernameError && <Form.Text className="text-muted">Username needs to be greater than 2 charaters.</Form.Text>}
               </Form.Group>
 
             </OverlayTrigger>
@@ -118,10 +118,7 @@ class RegisterModal extends React.Component {
                   name='email'
                   value={this.state.email}
                   onChange={this.handleChange} />
-                {this.state.emailError && <span className='inputWarning'>Please enter a valid email address.</span>}
-                <Form.Text className="text-muted">
-                We will never share your email with anyone else.
-                </Form.Text>
+                {this.state.emailError && <Form.Text className="text-muted">Please enter a valid email address.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
 
@@ -140,10 +137,7 @@ class RegisterModal extends React.Component {
                   name='password'
                   value={this.state.password}
                   onChange={this.handleChange} />
-                {this.state.passwordError && <span className='inputWarning'>Please enter a password that is least one capital case letter, one lower case letter and one number. The password must be at least 8 characters long</span>}
-                <Form.Text className="text-muted">
-                Your password requires at least one capital case letter, one lower case letter and one number. The password must be at least 8 characters long.
-                </Form.Text>
+                {this.state.passwordError && <Form.Text className="text-muted"> Please enter a password that has a length of 8 characters and includes at least one capital case letter, one lower case letter and one number.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
 
