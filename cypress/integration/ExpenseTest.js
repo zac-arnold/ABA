@@ -42,10 +42,6 @@ describe('how the expense component works', () => {
       .type('Power')
   })
 
-  it('waits for 2 seconds', () => {
-    cy.wait('')
-  })
-
   it('input expense amount', () => {
     cy.get('input.expenseAmount')
       .type('150')
