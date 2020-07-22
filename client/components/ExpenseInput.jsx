@@ -63,7 +63,7 @@ class ExpenseInput extends React.Component {
                     <Popover.Title as="h3">Expense Amount</Popover.Title>
                     <Popover.Content>Please enter an expense <strong>amount</strong></Popover.Content>
                   </Popover>}>
-                  <FormControl required type='Number' step="0.01" min='0' name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                  <FormControl required className='number-input' type='Number' step="0.01" min='0' name='amount' value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
                 </OverlayTrigger>
               </Col>
               <Col>
