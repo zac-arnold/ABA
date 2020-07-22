@@ -19,7 +19,7 @@ describe('how the expense component works', () => {
 
   it('input salary description', () => {
     cy.get('input.amountDescription')
-      .type('50000')
+      .type('500000')
   })
 
   it('inputs Category description', () => {
@@ -34,8 +34,30 @@ describe('how the expense component works', () => {
 
   it('clicks the add button in the Income modal', () => {
     cy.contains('Add')
-      .click()
-    cy.contains('Salary')
-      .contains('5000')
+      .click({ force: true })
   })
+
+  // it('input expense description in the Expense Description input', () => {
+  //   cy.get('input.expenseDescription')
+  //     .type('Power')
+  // })
+
+  // it('waits for 2 seconds', () => {
+  //   cy.wait('')
+  // })
+
+  // it('input expense amount', () => {
+  //   cy.get('input.expenseAmount')
+  //     .type('150')
+  // })
+
+  // it('selects Utilities Category from the dropdown', () => {
+  //   cy.get('#categoryDescription')
+  //     .select('Utilities')
+  // })
+
+  // it('selects Monthly from the dropdown', () => {
+  //   cy.get('#frequencyDescription')
+  //     .select('30.4375')
+  // })
 })

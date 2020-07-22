@@ -34,9 +34,7 @@ describe('how the income component works', () => {
 
   it('clicks the add button in the Income modal', () => {
     cy.contains('Add')
-      .click()
-    cy.contains('Salary')
-      .contains('5000')
+      .click({ force: true })
   })
 
   it('clicks the x button in the Income modal', () => {
