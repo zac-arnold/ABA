@@ -12,7 +12,7 @@ router.post('/', (req, res) => {
   return db.login(credentials)
     .then(response => {
       const { user, session } = response
-      res.cookie('session', session.id, { maxAge: 24 * 60 * 60, httpOnly: true })
+      res.cookie('session', session.id, { maxAge: 24 * 60 * 60 })
       return user
     })
     .then((user) => {
