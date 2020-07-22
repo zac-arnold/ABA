@@ -1,4 +1,4 @@
-// Update with your config settings.
+const path = require('path')
 
 module.exports = {
 
@@ -7,6 +7,20 @@ module.exports = {
     useNullAsDefault: false,
     connection: {
       filename: './dev.sqlite3'
+    }
+  },
+
+  test: {
+    client: 'sqlite3',
+    connection: {
+      filename: ':memory:'
+    },
+    useNullAsDefault: true,
+    migrations: {
+      directory: path.join(__dirname, 'migrations')
+    },
+    seeds: {
+      directory: path.join(__dirname, 'seeds')
     }
   },
 
