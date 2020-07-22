@@ -10,7 +10,7 @@
     "server": "node server",
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
-    "start": "run-s client server",
+    "start": "node server",
     "dev": "run-p dev:client dev:server",
     "cypress:open": "cypress open",
     "test": "jest --verbose --noStackTrace",
