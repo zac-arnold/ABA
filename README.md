@@ -1,3 +1,7 @@
-# ABA - A Budgeting App (provisional name)
+# Balance
 
-test2
+Developers: 
+- Ariel Walker-Cochrane
+- Johnny Alipate 
+- Zac Arnold 
+- Pete McNie
