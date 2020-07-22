@@ -12,7 +12,7 @@ z-index: 100;
 .waitIndicator {
   width: 100%;
   height: auto;
-  max-width: 100px;
+  max-width: 70px;
 
 }
 
@@ -36,7 +36,3 @@ img {
   padding: 0px 10px;
 }
 
-.inputWarning {
-  color: rgb(228, 95, 95);
-  font-size: 1rem;
-}

@@ -77,7 +77,7 @@ class SignInModal extends React.Component {
               <Form.Group>
                 <Form.Label htmlFor='insert username here'>Username</Form.Label>
                 <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
-                {this.state.usernameError && <span className='inputWarning'>Username needs to be greater than 2 charaters.</span>}
+                {this.state.usernameError && <Form.Text className="text-muted">Your username is greater than 2 charaters.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
 
@@ -89,7 +89,7 @@ class SignInModal extends React.Component {
               <Form.Group>
                 <Form.Label htmlFor='insert password here'>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
-                {this.state.passwordError && <span className='inputWarning'>Your password is least one capital case letter, one lower case letter and one number. The password must be at least 8 characters long</span>}
+                {this.state.passwordError && <Form.Text className="text-muted">Your password is at least 8 characters long and has at least one capital case letter, one lower case letter and one number.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
 
