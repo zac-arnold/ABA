@@ -1,13 +1,18 @@
 import React from 'react'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
 
-import Words from './Words'
-import AddWord from './AddWord'
+import Title from './Title'
+import Footer from './Footer'
+import Budget from './Budget'
 
 const App = () => (
-  <div className='app-container'>
-    <Words />
-    <AddWord />
-  </div>
+  <>
+    <Title />
+    <Router>
+      <Route exact path='/' component={Budget} />
+    </Router>
+    <Footer />
+  </>
 )
 
 export default App

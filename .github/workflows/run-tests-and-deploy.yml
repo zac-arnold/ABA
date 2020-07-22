@@ -1,0 +1,48 @@
+name: pushWorkflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: npm i
+      - name: Run lint
+        run: npm run lint
+      - name: testWithJest
+        run: npm run test
+
+  cypress-run:
+    name: intergration-test
+    needs: [tests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      # https://github.com/cypress-io/github-action
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
+        with:
+          record: false
+          start: npm run dev
+          working-directory: ./
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{secrets.CYPRESS_RECORD_KEY}}
+
+  build:
+    name: deploy
+    needs: [tests, cypress-run]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.2.6 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: 'aba-matai-2020' #Must be unique in Heroku
+          heroku_email: 'videozac@gmail.com'

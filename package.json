@@ -4,12 +4,17 @@
   "description": "React Redux using express",
   "main": "server/index.js",
   "scripts": {
+    "format": "npx eslint . --fix --ext .js,.jsx",
+    "lint": "npx eslint . --ext .js,.jsx --ignore-path .eslintignore",
     "client": "webpack",
     "server": "node server",
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "start": "run-s client server",
-    "dev": "run-p dev:client dev:server"
+    "dev": "run-p dev:client dev:server",
+    "cypress:open": "cypress open",
+    "test": "jest --verbose --noStackTrace",
+    "test:watch": "npm test -- --watchAll"
   },
   "author": "EDA",
   "license": "ISC",
@@ -20,16 +25,41 @@
     ],
     "plugins": [
       "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread"
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-regenerator",
+      "@babel/plugin-transform-runtime"
+    ]
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/cypress/"
+    ],
+    "setupFiles": [
+      "<rootDir>/client/testing/setup.js"
     ]
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "@testing-library/user-event": "^12.0.11",
+    "bootstrap": "^4.5.0",
+    "bootstrap-icons": "^1.0.0-alpha5",
+    "cookie-parser": "^1.4.5",
     "d3": "^5.16.0",
+    "d3-scale-chromatic": "^1.5.0",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "knex": "^0.21.2",
+    "react-bootstrap": "^1.2.2",
+    "react-bootstrap-validation": "^0.1.11",
+    "react-form-with-constraints": "^0.15.0",
+    "react-icons": "^3.10.0",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-slick": "^0.26.1",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.88.2",
+    "slick-carousel": "^1.8.1",
     "sqlite3": "^5.0.0",
     "superagent": "^5.3.1"
   },
@@ -37,10 +67,23 @@
     "@babel/core": "^7.10.3",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.10.3",
+    "@babel/plugin-transform-regenerator": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.10.5",
     "@babel/preset-env": "^7.10.3",
     "@babel/preset-react": "^7.10.1",
+    "@testing-library/dom": "^7.21.1",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.7",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
-    "cypress": "^4.10.0",
+    "cypress": "^4.11.0",
+    "eslint": "^7.4.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.1.0",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
