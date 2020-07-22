@@ -16,3 +16,4 @@ router.get('/', (req, res) => {
   res.clearCookie('session', { expires: new Date(0) })
   res.redirect('/')
 })
+
