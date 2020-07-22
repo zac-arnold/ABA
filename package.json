@@ -1,7 +1,7 @@
 {
   "name": "boilerplate-react-redux",
   "version": "0.2.0",
-  "description": "React Redux using express",
+  "description": "Balance Budgeting App",
   "main": "server/index.js",
   "scripts": {
     "format": "npx eslint . --fix --ext .js,.jsx",
@@ -11,6 +11,7 @@
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "start": "node server",
+    "build": "webpack",
     "dev": "run-p dev:client dev:server",
     "cypress:open": "cypress open",
     "test": "jest --verbose --noStackTrace",
