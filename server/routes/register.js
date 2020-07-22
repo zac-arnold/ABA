@@ -12,7 +12,6 @@ router.post('/', (req, res) => {
   return db.registerUser(credentials)
     .then(() => {
       const newUser = { username: credentials.username, password: credentials.password }
-      // console.log('newUser ', newUser)
       return db.login(newUser)
         .then(response => {
           const { user, session } = response

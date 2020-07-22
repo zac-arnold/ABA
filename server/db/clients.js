@@ -4,7 +4,8 @@ const { hash, generateSalt, generateSessionId } = require('../../support/crypto'
 module.exports = {
   registerUser,
   login,
-  deleteSession
+  doesUserExist,
+  getSession
 }
 
 function registerUser (credentials, db = connection) {
@@ -30,6 +31,7 @@ function registerUser (credentials, db = connection) {
           salt: hashes.salt
         })
     })
+    .catch((err) => console.error(err.message))
 }
 
 function doesUserExist (username, db = connection) {
@@ -42,7 +44,6 @@ function doesUserExist (username, db = connection) {
 }
 
 function login (credentials, db = connection) {
-  // console.log('db', credentials)
   return db('user')
     .where('username', credentials.username)
     .select()
@@ -61,7 +62,6 @@ function login (credentials, db = connection) {
       return Promise.reject(new Error('Passwords do not match'))
     })
     .then((user) => {
-      // console.log('db returned user ', user)
       const randomString = generateSessionId()
       const objectToInsert = { id: randomString, user_id: user.id }
       return db('session')
@@ -80,11 +80,4 @@ function getSession (id, db = connection) {
     .where('id', id)
     .select()
     .first()
-}
-
-function deleteSession (sessionId, db = connection) {
-  console.log('clients.js ', sessionId)
-  // return db('session')
-  //   .where('id', sessionId.session)
-  //   .del()
 }
