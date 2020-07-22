@@ -63,7 +63,7 @@ class IncomeInput extends React.Component {
                   <Popover.Title as="h3">Income Amount</Popover.Title>
                   <Popover.Content>Please enter an income <strong>amount</strong></Popover.Content>
                 </Popover>}>
-                <FormControl required type='Number' step='0.01' min='0' name='amount' className="amountDescription" value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
+                <FormControl required type='Number' step='0.01' min='0' name='amount' className="amountDescription number-input" value={this.state.amount} onChange={(evt) => this.changeHandler(evt)} size='sm' aria-label="Amount" placeholder='$' />
               </OverlayTrigger>
             </Col>
             <Col>

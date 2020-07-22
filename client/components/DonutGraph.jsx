@@ -83,7 +83,7 @@ class DonutGraph extends React.Component {
   }
 
   updateGraph = (data = { Surplus: 100 }, animateRadius, message = 'Enter your data', label = '') => {
-    const height = 750
+    const height = 800
     const width = 500
     // const margin = 0
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.

@@ -10,9 +10,15 @@
   margin-left: 40px;
 }
 
+.number-input{
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
+}
+
 .my_dataviz{
   width: 500px;
-  height: 750px;
+  height: 800px;
 }
 
 :root {
