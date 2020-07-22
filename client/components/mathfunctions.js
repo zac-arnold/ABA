@@ -1,4 +1,3 @@
-
 export function compressObjKeystoUniqueArray (arrayofobjs) {
   const categories = []
   arrayofobjs.forEach(expense => {
