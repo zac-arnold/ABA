@@ -37,27 +37,27 @@ describe('how the expense component works', () => {
       .click({ force: true })
   })
 
-  // it('input expense description in the Expense Description input', () => {
-  //   cy.get('input.expenseDescription')
-  //     .type('Power')
-  // })
+  it('input expense description in the Expense Description input', () => {
+    cy.get('input.expenseDescription')
+      .type('Power')
+  })
 
-  // it('waits for 2 seconds', () => {
-  //   cy.wait('')
-  // })
+  it('waits for 2 seconds', () => {
+    cy.wait('')
+  })
 
-  // it('input expense amount', () => {
-  //   cy.get('input.expenseAmount')
-  //     .type('150')
-  // })
+  it('input expense amount', () => {
+    cy.get('input.expenseAmount')
+      .type('150')
+  })
 
-  // it('selects Utilities Category from the dropdown', () => {
-  //   cy.get('#categoryDescription')
-  //     .select('Utilities')
-  // })
+  it('selects Utilities Category from the dropdown', () => {
+    cy.get('#categoryDescription')
+      .select('Utilities')
+  })
 
-  // it('selects Monthly from the dropdown', () => {
-  //   cy.get('#frequencyDescription')
-  //     .select('30.4375')
-  // })
+  it('selects Monthly from the dropdown', () => {
+    cy.get('#frequencyDescription')
+      .select('30.4375')
+  })
 })
