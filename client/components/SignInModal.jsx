@@ -75,8 +75,8 @@ class SignInModal extends React.Component {
                 <Popover.Content>Please enter your <strong>Username</strong></Popover.Content>
               </Popover>}>
               <Form.Group>
-                <Form.Label htmlFor='insert username here'>Username</Form.Label>
-                <Form.Control type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
+                <Form.Label htmlFor='username' aria-label='username'>Username</Form.Label>
+                <Form.Control aria-label='enter username here' type="text" placeholder="Choose a username" name='username' value={this.state.username} onChange={this.handleChange} />
                 {this.state.usernameError && <Form.Text className="text-muted">Your username is greater than 2 charaters.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
@@ -87,12 +87,11 @@ class SignInModal extends React.Component {
                 <Popover.Content>Please enter your <strong>Password</strong></Popover.Content>
               </Popover>}>
               <Form.Group>
-                <Form.Label htmlFor='insert password here'>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
+                <Form.Label htmlFor='password' aria-label='password'>Password</Form.Label>
+                <Form.Control aria-label='enter password here' type="password" placeholder="Password" name='password' value={this.state.password} onChange={this.handleChange} />
                 {this.state.passwordError && <Form.Text className="text-muted">Your password is at least 8 characters long and has at least one capital case letter, one lower case letter and one number.</Form.Text>}
               </Form.Group>
             </OverlayTrigger>
-
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.props.onHide} type="submit">Sign In</Button>

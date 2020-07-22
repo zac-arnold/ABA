@@ -91,8 +91,9 @@ class RegisterModal extends React.Component {
                 <Popover.Content>Please enter a <strong>Username</strong></Popover.Content>
               </Popover>}>
               <Form.Group>
-                <Form.Label htmlFor='insert username here'>Username</Form.Label>
+                <Form.Label htmlFor='username' aria-label='username'>Username</Form.Label>
                 <Form.Control
+                  aria-label='enter username here'
                   type="text"
                   placeholder="Choose a username"
                   name='username'
@@ -111,8 +112,9 @@ class RegisterModal extends React.Component {
                 <Popover.Content>Please enter your <strong>Email Address</strong></Popover.Content>
               </Popover>}>
               <Form.Group>
-                <Form.Label htmlFor='insert email here'>Email address</Form.Label>
+                <Form.Label htmlFor='email' aria-label='email'>Email address</Form.Label>
                 <Form.Control
+                  aria-label='enter email here'
                   type="email"
                   placeholder="Enter email"
                   name='email'
@@ -130,8 +132,9 @@ class RegisterModal extends React.Component {
                 <Popover.Content>Please enter a <strong>Password</strong>. Your password requires at least one capital case letter, one lower case letter, one number and one symbol. The password must be at least 8 characters long.</Popover.Content>
               </Popover>}>
               <Form.Group>
-                <Form.Label htmlFor='insert password here'>Password</Form.Label>
+                <Form.Label htmlFor='password' aria-label='password'>Password</Form.Label>
                 <Form.Control
+                  aria-label='enter password here'
                   type="password"
                   placeholder="Password"
                   name='password'

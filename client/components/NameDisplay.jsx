@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const NameDisplay = props => {
   return (
     <>
-      <h3>Welcome! {props.client.username}</h3>
+      <p className='welcomeMessage'>Welcome {props.client.username}!</p>
     </>
   )
 }
