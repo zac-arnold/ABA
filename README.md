@@ -1,6 +1,6 @@
 # Balance
 
-Introduction: 
+## Introduction
 Balance is the culmination of my time studying at Enspiral's Dev Academy. In the final week of study my team came together around the idea of creating a budgeting app. 
 
 The brief was to create an accessible application that was able to be used immediately. We wanted to add mobile compatibility, and have budgeting information displayed visually for the user. As a stretch we would look into having the ability to login and logout so that our clients could save their budgets and we could send monthly updates through to them (if they so desired).
@@ -9,8 +9,7 @@ Initially I found myself sparking up the discussions around how we would visual
 
 Creating Balance was a huge challenge but one that I thoroughly enjoyed.
 
-
-Quick Overview:
+## Quick Overview:
 To fire up the app as soon as possible you will need to:
 
 * git clone 
@@ -20,7 +19,7 @@ To fire up the app as soon as possible you will need to:
 open http://localhost:3000/ to see the Balance app
 
 
-Developers: 
+## Developers: 
 - Ariel Walker-Cochrane
 - Johnny Alipate 
 - Zac Arnold 
